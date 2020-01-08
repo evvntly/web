@@ -13,14 +13,10 @@ const Navigation = styled.nav`
   margin: 0;
   position: absolute;
   top: 0;
-  height: 80px;
   width: 100%;
   background: ${WHITE};
   z-index: 1;
   font-family: ${FONT_FAMILY};
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
   a {
     font-weight: ${WEIGHT.NORMAL};
     text-decoration: none;
@@ -38,6 +34,15 @@ const Navigation = styled.nav`
       margin: 0;
     }
   }
+`;
+
+const NavWrapper = styled.div`
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
 `;
 
 const Hamburger = styled.div`
@@ -123,10 +128,12 @@ const Nav = () => {
   return (
     <>
       <Navigation>
-        <Link to="/" aria-label="Concert Buddy">
-          logo
-        </Link>
-        <NavItems />
+        <NavWrapper>
+          <Link to="/" aria-label="Concert Buddy">
+            logo
+          </Link>
+          <NavItems />
+        </NavWrapper>
       </Navigation>
       <MobileNav>
         <Link to="/" aria-label="Concert Buddy">

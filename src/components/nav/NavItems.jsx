@@ -68,7 +68,7 @@ const NavItems = () => {
         </li>
         <li>
           <Link
-            to="contact"
+            to="/contact"
             aria-label="Contact"
             activeStyle={{ color: "#006ebc" }}
           >

@@ -25,7 +25,24 @@ const Navigation = styled.footer`
 const Footer = () => {
   return (
     <Navigation>
-      <div>© Copyright 2020 - Made with ❤ by @johnnyxbell</div>
+      <div>
+        © Copyright 2020 - Made with{" "}
+        <span
+          role="img"
+          aria-label="Love Heart"
+          style={{ color: "red", padding: "0 0 0 4px" }}
+        >
+          ❤️
+        </span>{" "}
+        by{" "}
+        <a
+          href="https://www.twitter.com/johnnyxbell"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          @johnnyxbell
+        </a>
+      </div>
     </Navigation>
   );
 };
