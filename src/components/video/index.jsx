@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { isMobile } from "react-device-detect";
 import { FONT_FAMILY } from "../../styles/typography";
@@ -90,6 +90,18 @@ const ButtonSecondary = styled.div`
 `;
 
 const Video = () => {
+  const [data, setData] = useState({});
+  useEffect(() => {
+    fetch(
+      `https://api.seatgeek.com/2/events?performers.slug=beartooth&range=50mi&geoip=true&client_id=${
+        process.env.GATSBY_API_KEY
+      }`
+    )
+      .then(response => response.json())
+      .then(data => setData({ data }))
+      .catch(err => console.log(err));
+  }, []);
+  console.log(data);
   return (
     <>
       <PosterImage>

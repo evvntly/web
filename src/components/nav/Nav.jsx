@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { WHITE } from "../../styles/colors";
 import { FONT_FAMILY, WEIGHT } from "../../styles/typography";
 import NavItems from "./NavItems";
-import { VERSION } from "../../constants/version";
 
 const Navigation = styled.nav`
   @media (max-width: 769px) and (min-width: 320px) {
