@@ -3,7 +3,6 @@ import { Link } from "gatsby";
 import styled from "styled-components";
 import { BLACK, WHITE } from "../../styles/colors";
 import { FONT_FAMILY, WEIGHT } from "../../styles/typography";
-import { VERSION } from "../../constants/version";
 
 const Items = styled.nav`
   a {

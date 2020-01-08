@@ -44,12 +44,14 @@ const TextInput = ({
   type,
   name,
   required,
-  onFocus
+  onFocus,
+  onChange
 }) => {
   return (
     <InputWrapper>
       {title && <Title>{title}</Title>}
       <Input
+        onChange={onChange}
         onFocus={onFocus}
         type={type}
         placeholder={placeholder}
@@ -68,7 +70,8 @@ TextInput.propTypes = {
   error: PropTypes.string,
   type: PropTypes.string,
   required: PropTypes.bool,
-  onFocus: PropTypes.func
+  onFocus: PropTypes.func,
+  onChange: PropTypes.func
 };
 
 export default TextInput;

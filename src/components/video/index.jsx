@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { isMobile } from "react-device-detect";
 import { FONT_FAMILY } from "../../styles/typography";
 import { BLACK, WHITE } from "../../styles/colors";
 import PosterImage from "./poster";
 import TextInput from "../../library/inputs/text";
+import { myContext } from "../../context/provider";
+import { navigate } from "gatsby";
 
 const BackgroundVideo = styled.video`
   position: absolute;
@@ -90,18 +92,21 @@ const ButtonSecondary = styled.div`
 `;
 
 const Video = () => {
-  const [data, setData] = useState({});
-  useEffect(() => {
+  const context = useContext(myContext);
+  console.log(context);
+  const onButtonClick = () => {
     fetch(
-      `https://api.seatgeek.com/2/events?performers.slug=beartooth&range=50mi&geoip=true&client_id=${
+      `https://api.seatgeek.com/2/events?performers.slug=${context.artistName
+        .replace(/\s+/g, "-")
+        .toLowerCase()}&range=50mi&geoip=true&client_id=${
         process.env.GATSBY_API_KEY
       }`
     )
       .then(response => response.json())
-      .then(data => setData({ data }))
+      .then(data => context.setData(data))
+      .then(navigate("/find-buddy/"))
       .catch(err => console.log(err));
-  }, []);
-  console.log(data);
+  };
   return (
     <>
       <PosterImage>
@@ -124,9 +129,16 @@ const Video = () => {
         <h1>Looking for a concert / gig buddy?</h1>
         <h2>Stop searching and start connecting!</h2>
         <Input>
-          <TextInput placeholder="Enter Artist Name" />
+          <TextInput
+            onChange={e => {
+              context.setArtistName(e.target.value);
+            }}
+            placeholder="Enter Artist Name"
+          />
         </Input>
-        <ButtonSecondary>Find your buddy</ButtonSecondary>
+        <ButtonSecondary onClick={() => onButtonClick()}>
+          Find your buddy
+        </ButtonSecondary>
       </Content>
     </>
   );

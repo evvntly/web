@@ -2,12 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="76c4ca80-8ddd-493f-8160-619f7b6c4366" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/nav/Nav.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/nav/Nav.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/eslintrc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/about-stress-proof.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/consult.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/contact.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/how-it-works.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/poster.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/services.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/testimonial-bg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/layout-page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/layout-page.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/nav/NavItems.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/nav/NavItems.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/video/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/video/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/library/inputs/text.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/library/inputs/text.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,7 +28,9 @@
     <scope name="Local" pattern="file[concertbuddy]:src//*" />
   </component>
   <component name="ProjectId" id="1W5mWG7a2knDq7WjdyE1n39nbIC" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -71,5 +80,9 @@
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state x="879" y="385" key="scopes/0.0.2560.1440@0.0.2560.1440" timestamp="1578448318760" />
+    <state x="945" y="382" width="670" height="676" key="search.everywhere.popup" timestamp="1578454559039">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="945" y="382" width="670" height="676" key="search.everywhere.popup/0.0.2560.1440@0.0.2560.1440" timestamp="1578454559039" />
   </component>
 </project>

@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['standard'],
+  extends: ["gatsby-standard", "plugin:react/recommended", "eslint:recommended"],
   plugins: ['standard', 'react'],
   rules: {
     'no-var': 'error', // optional, recommended when using es6+

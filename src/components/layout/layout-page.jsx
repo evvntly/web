@@ -6,8 +6,6 @@ import { FONT_FAMILY, WEIGHT } from "../../styles/typography";
 
 const Container = styled.div``;
 
-const Main = styled.main``;
-
 const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
@@ -25,7 +23,7 @@ const LayoutPage = ({ children }) => {
       <GlobalStyle />
       <Nav />
       <Container>
-        <Main>{children}</Main>
+        <div>{children}</div>
       </Container>
       <Footer />
     </>
