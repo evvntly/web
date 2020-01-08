@@ -22,6 +22,8 @@ const Container = styled.div`
 
 const FindBuddy = () => {
   const context = useContext(myContext);
+  console.log(context);
+  console.log(Object.keys(context.data).length);
   return (
     <>
       <Helmet>
@@ -30,7 +32,7 @@ const FindBuddy = () => {
         <meta name="description" content="Find a concert buddy" />
       </Helmet>
       <LayoutPage>
-        <Banner img="contact" />
+        <Banner img="moshpit" />
         <Container>
           <Main>
             <Heading title="Find Buddy" />

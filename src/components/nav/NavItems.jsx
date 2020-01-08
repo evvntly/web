@@ -49,13 +49,17 @@ const NavItems = () => {
           </Link>
         </li>
         <li>
-          <Link to="#" aria-label="About" activeStyle={{ color: "#006ebc" }}>
+          <Link
+            to="/about"
+            aria-label="About"
+            activeStyle={{ color: "#006ebc" }}
+          >
             About
           </Link>
         </li>
         <li>
           <Link
-            to="#"
+            to="/find-buddy"
             aria-label="Find a buddy"
             activeStyle={{ color: "#006ebc" }}
           >
@@ -63,7 +67,11 @@ const NavItems = () => {
           </Link>
         </li>
         <li>
-          <Link to="#" aria-label="Contact" activeStyle={{ color: "#006ebc" }}>
+          <Link
+            to="contact"
+            aria-label="Contact"
+            activeStyle={{ color: "#006ebc" }}
+          >
             Contact
           </Link>
         </li>

@@ -98,7 +98,7 @@ const Video = () => {
     fetch(
       `https://api.seatgeek.com/2/events?performers.slug=${context.artistName
         .replace(/\s+/g, "-")
-        .toLowerCase()}&range=50mi&geoip=true&client_id=${
+        .toLowerCase()}&range=500mi&geoip=true&client_id=${
         process.env.GATSBY_API_KEY
       }`
     )
