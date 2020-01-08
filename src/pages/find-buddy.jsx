@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import moment from "moment";
 import LayoutPage from "../components/layout/layout-page";
 import Heading from "../library/headings/Heading";
 import { Helmet } from "react-helmet";
@@ -35,8 +36,10 @@ const FindBuddy = () => {
         <Banner img="moshpit" />
         <Container>
           <Main>
-            <Heading title="Find Buddy" />
-            <ParagraphNormal>Find your buddy</ParagraphNormal>
+            <Heading title="Find your concert buddy" />
+            <ParagraphNormal>{`Upcoming concerts for ${
+              context.artistName
+            } 👇👇👇👇`}</ParagraphNormal>
             {Object.keys(context.data).length !== 0 &&
               context.data.events.length === 0 && (
                 <div>{`Sorry no ${context.artistName} events near you`}</div>
@@ -44,12 +47,29 @@ const FindBuddy = () => {
             {context.data &&
               Object.keys(context.data).length !== 0 &&
               context.data.events.map(item => (
-                <div key={item.id}>
+                <div
+                  style={{
+                    padding: "10px",
+                    margin: "20px 0",
+                    border: "1px solid black"
+                  }}
+                  key={item.id}
+                >
+                  <p>
+                    {moment(item.datetime_local).format("dddd")},{" "}
+                    {moment(item.datetime_local).format("MMMM Do YYYY, h:mma")}
+                  </p>
+                  <p>{item.title}</p>
                   <p>
                     {item.venue.name}, {item.venue.address},{" "}
                     {item.venue.display_location}
                   </p>
-                  <p>{item.title}</p>
+                  <div>
+                    <img src={item.performers[0].image} />
+                  </div>
+                  <button onClick={() => alert("find buddy")}>
+                    Find buddy
+                  </button>
                 </div>
               ))}
           </Main>
