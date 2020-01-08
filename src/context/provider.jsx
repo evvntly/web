@@ -4,7 +4,8 @@ export const myContext = React.createContext();
 const Provider = props => {
   const [data, setData] = useState({});
   const [artistName, setArtistName] = useState("");
-  const [user, setUser] = React.useState();
+  const [user, setUser] = useState(false);
+  const [signin, setSignin] = useState(false);
 
   const context = {
     data,
@@ -12,7 +13,9 @@ const Provider = props => {
     artistName,
     setArtistName,
     user,
-    setUser
+    setUser,
+    signin,
+    setSignin
   };
 
   return (

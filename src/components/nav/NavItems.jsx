@@ -4,6 +4,9 @@ import styled from "styled-components";
 import { BLACK, WHITE } from "../../styles/colors";
 import { FONT_FAMILY, WEIGHT } from "../../styles/typography";
 import { myContext } from "../../context/provider";
+import SignIn from "../signin";
+import { FirebaseContext } from "gatsby-plugin-firebase";
+import { navigate } from "gatsby";
 
 const Profile = styled.img`
   width: 45px;
@@ -49,53 +52,73 @@ const Items = styled.nav`
 
 const NavItems = () => {
   const context = useContext(myContext);
+  const firebase = React.useContext(FirebaseContext);
   return (
-    <Items>
-      <ul>
-        <li>
-          <Link to="/" aria-label="Home" activeStyle={{ color: "#006ebc" }}>
-            Home
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/about"
-            aria-label="About"
-            activeStyle={{ color: "#006ebc" }}
-          >
-            About
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/find-buddy"
-            aria-label="Find a buddy"
-            activeStyle={{ color: "#006ebc" }}
-          >
-            Find a buddy
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/contact"
-            aria-label="Contact"
-            activeStyle={{ color: "#006ebc" }}
-          >
-            Contact
-          </Link>
-        </li>
-        {context.user && (
+    <>
+      <Items>
+        <ul>
           <li>
-            <Profile src={context.user.photoURL} />
+            <Link to="/" aria-label="Home" activeStyle={{ color: "#006ebc" }}>
+              Home
+            </Link>
           </li>
-        )}
-        {!context.user && (
-          <a>
-            <li>LOGIN / SIGNUP</li>
-          </a>
-        )}
-      </ul>
-    </Items>
+          <li>
+            <Link
+              to="/about"
+              aria-label="About"
+              activeStyle={{ color: "#006ebc" }}
+            >
+              About
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/find-buddy"
+              aria-label="Find a buddy"
+              activeStyle={{ color: "#006ebc" }}
+            >
+              Find a buddy
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/contact"
+              aria-label="Contact"
+              activeStyle={{ color: "#006ebc" }}
+            >
+              Contact
+            </Link>
+          </li>
+          {context.user && (
+            <li>
+              <Profile
+                src={context.user.photoURL}
+                onClick={() => {
+                  firebase
+                    .auth()
+                    .signOut()
+                    .then(
+                      function() {
+                        navigate("/");
+                        context.setUser(false);
+                      },
+                      function(error) {
+                        // An error happened.
+                      }
+                    );
+                }}
+              />
+            </li>
+          )}
+          {!context.user && (
+            <a>
+              <li onClick={() => context.setSignin(true)}>LOGIN / SIGNUP</li>
+            </a>
+          )}
+        </ul>
+      </Items>
+      {context.signin && <SignIn />}
+    </>
   );
 };
 
