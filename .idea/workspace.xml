@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="76c4ca80-8ddd-493f-8160-619f7b6c4366" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="NamedScopeManager">
+    <scope name="Local" pattern="file[concertbuddy]:src//*" />
+  </component>
+  <component name="ProjectId" id="1W5mWG7a2knDq7WjdyE1n39nbIC" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
+    <property name="settings.editor.selected.configurable" value="watcher.settings" />
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="912" y="499" key="EditFileWatcherDialog" timestamp="1578448345845">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="912" y="499" key="EditFileWatcherDialog/0.0.2560.1440@0.0.2560.1440" timestamp="1578448345845" />
+    <state x="781" y="359" key="SettingsEditor" timestamp="1578448346926">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="781" y="359" key="SettingsEditor/0.0.2560.1440@0.0.2560.1440" timestamp="1578448346926" />
+    <state x="879" y="385" key="scopes" timestamp="1578448318760">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="879" y="385" key="scopes/0.0.2560.1440@0.0.2560.1440" timestamp="1578448318760" />
+  </component>
+</project>

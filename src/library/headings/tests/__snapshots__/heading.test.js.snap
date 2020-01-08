@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Heading Heading 1`] = `
+<div>
+  <h1
+    className="Heading__Title-sc-2qqen3-0 dNmNsH"
+  >
+    hello
+  </h1>
+</div>
+`;
+
+exports[`Heading Heading with trailing text 1`] = `
+<div>
+  <h1
+    className="Heading__Title-sc-2qqen3-0 dNmNsH"
+  >
+    hello
+  </h1>
+  <p
+    className="Heading__TrailingText-sc-2qqen3-1 iSBTRn"
+  >
+    I am some trailing text
+  </p>
+</div>
+`;
