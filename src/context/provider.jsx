@@ -1,16 +1,18 @@
 import React, { useState } from "react";
-
 export const myContext = React.createContext();
 
 const Provider = props => {
   const [data, setData] = useState({});
   const [artistName, setArtistName] = useState("");
+  const [user, setUser] = React.useState();
 
   const context = {
     data,
     setData,
     artistName,
-    setArtistName
+    setArtistName,
+    user,
+    setUser
   };
 
   return (

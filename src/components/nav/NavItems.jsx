@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "gatsby";
 import styled from "styled-components";
 import { BLACK, WHITE } from "../../styles/colors";
 import { FONT_FAMILY, WEIGHT } from "../../styles/typography";
+import { myContext } from "../../context/provider";
 
+const Profile = styled.img`
+  width: 45px;
+  height: 45px;
+  border-radius: 45px;
+  border: 3px solid #ffffff;
+`;
 const Items = styled.nav`
   a {
-    color: ${BLACK};
+    color: ${WHITE};
     @media (max-width: 769px) and (min-width: 320px) {
       color: ${WHITE};
     }
@@ -21,6 +28,7 @@ const Items = styled.nav`
     display: flex;
     padding: 0;
     margin: 0;
+    align-items: center;
     @media (max-width: 769px) and (min-width: 320px) {
       flex-direction: column;
       justify-content: center;
@@ -40,6 +48,7 @@ const Items = styled.nav`
 `;
 
 const NavItems = () => {
+  const context = useContext(myContext);
   return (
     <Items>
       <ul>
@@ -75,6 +84,16 @@ const NavItems = () => {
             Contact
           </Link>
         </li>
+        {context.user && (
+          <li>
+            <Profile src={context.user.photoURL} />
+          </li>
+        )}
+        {!context.user && (
+          <a>
+            <li>LOGIN / SIGNUP</li>
+          </a>
+        )}
       </ul>
     </Items>
   );

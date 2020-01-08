@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "gatsby";
 import styled from "styled-components";
-import { WHITE } from "../../styles/colors";
+import { GREY, WHITE } from "../../styles/colors";
 import { FONT_FAMILY, WEIGHT } from "../../styles/typography";
 import NavItems from "./NavItems";
 
@@ -14,7 +14,8 @@ const Navigation = styled.nav`
   position: absolute;
   top: 0;
   width: 100%;
-  background: ${WHITE};
+  background: ${GREY};
+  box-shadow: #000000 1px 1px 5px;
   z-index: 1;
   font-family: ${FONT_FAMILY};
   a {
@@ -42,7 +43,8 @@ const NavWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 80px;
+  padding: 10px 0 3px 0;
+  min-height: 70px;
 `;
 
 const Hamburger = styled.div`
