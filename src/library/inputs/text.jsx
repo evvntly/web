@@ -45,7 +45,8 @@ const TextInput = ({
   name,
   required,
   onFocus,
-  onChange
+  onChange,
+  value
 }) => {
   return (
     <InputWrapper>
@@ -58,6 +59,7 @@ const TextInput = ({
         required={required}
         name={name}
         error={error ? true : false}
+        value={value}
       />
       {error && <Error>{error}</Error>}
     </InputWrapper>

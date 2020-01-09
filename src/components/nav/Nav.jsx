@@ -31,7 +31,7 @@ const Navigation = styled.nav`
   li {
     list-style-type: none;
     font-weight: ${WEIGHT.NORMAL};
-    margin-right: 20px;
+    margin-right: 30px;
     &:last-child {
       margin: 0;
     }
