@@ -92,7 +92,7 @@ const StyledBackgroundSection = styled(BackgroundSection)`
   align-items: center;
   position: relative;
   @media (max-width: 769px) and (min-width: 320px) {
-    height: 175px;
+    height: 175px !important; // override inline
   }
 `;
 

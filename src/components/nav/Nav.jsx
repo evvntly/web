@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "gatsby";
 import styled from "styled-components";
-import { GREY, WHITE } from "../../styles/colors";
+import { BLACK, GREY, WHITE } from "../../styles/colors";
 import { FONT_FAMILY, WEIGHT } from "../../styles/typography";
 import NavItems from "./NavItems";
 import Logo from "../../assets/svgs/logo.svg";
@@ -83,10 +83,11 @@ const MobileItems = styled.div`
   width: 100%;
   background: black;
   height: 100vh;
-  top: 50px;
+  padding-top: 50px;
 `;
 
 const HamburgerIcon = styled.div`
+  z-index: 5;
   position: absolute;
   padding: 0 10px;
   right: 15px;
@@ -98,8 +99,8 @@ const HamburgerIcon = styled.div`
     position: absolute;
     width: 1.4em;
     height: 0.15em;
-    background: black;
-    box-shadow: 0 0.5em 0 0 black, 0 1em 0 0 black;
+    background: ${BLACK};
+    box-shadow: 0 0.5em 0 0 ${BLACK}, 0 1em 0 0 ${BLACK};
   }
 `;
 
@@ -124,7 +125,7 @@ const CloseIcon = styled.div`
     content: " ";
     height: 33px;
     width: 4px;
-    background-color: #333;
+    background-color: #ccc;
   }
   &:before {
     transform: rotate(45deg);
@@ -157,11 +158,16 @@ const Nav = () => {
             setShowHamburger(!showHamburger);
           }}
         >
-          {showHamburger ? <CloseIcon /> : <HamburgerIcon />}
+          <HamburgerIcon />
         </Hamburger>
       </MobileNav>
       {showHamburger && (
         <MobileItems>
+          <CloseIcon
+            onClick={() => {
+              setShowHamburger(!showHamburger);
+            }}
+          />
           <NavItems />
         </MobileItems>
       )}

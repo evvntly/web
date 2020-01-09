@@ -86,7 +86,7 @@ const ButtonPrimary = styled.div`
   border-radius: 4px;
   border: 2px solid #f0bb48;
   padding: 10px 40px;
-  margin-top: 50px;
+  margin-top: 30px;
   color: #f0bb48;
   background: transparent;
   :hover {
@@ -105,7 +105,7 @@ const ButtonSecondary = styled.div`
   border-radius: 4px;
   border: 2px solid #f0bb48;
   padding: 10px 40px;
-  margin-top: 50px;
+  margin-top: 30px;
   color: ${BLACK};
   background: #f0bb48;
   :hover {
@@ -163,9 +163,11 @@ const Video = () => {
           <ButtonSecondary onClick={() => onButtonClick()}>
             Find your buddy
           </ButtonSecondary>
-          <ButtonPrimary onClick={() => context.setSignin(true)}>
-            Signup!
-          </ButtonPrimary>
+          {!context.user && (
+            <ButtonPrimary onClick={() => context.setSignin(true)}>
+              Signup!
+            </ButtonPrimary>
+          )}
         </ButtonWrapper>
       </Content>
     </>

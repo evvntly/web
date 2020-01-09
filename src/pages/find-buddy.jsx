@@ -18,12 +18,11 @@ const Main = styled.div`
 `;
 
 const Container = styled.div`
-  margin: 50px 0;
+  margin: 25px 0;
 `;
 
 const FindBuddy = () => {
   const context = useContext(myContext);
-  console.log("user", context.user);
   return (
     <>
       <Helmet>
@@ -36,9 +35,37 @@ const FindBuddy = () => {
         <Container>
           <Main>
             <Heading title="Find your event buddy" />
-            <Paragraph>{`Upcoming events for ${
-              context.artistName
-            } 👇👇👇👇`}</Paragraph>
+            {context.data && Object.keys(context.data).length === 0 && (
+              <Paragraph>
+                Currently you have not searched for an event start looking for
+                your event buddy by using the filter below.
+              </Paragraph>
+            )}
+            <div
+              style={{
+                height: 150,
+                width: "100%",
+                background: "#ccc",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                fontSize: 30
+              }}
+            >
+              Filter
+            </div>
+            {context.data && Object.keys(context.data).length !== 0 && (
+              <>
+                <Paragraph>
+                  We are currently showing you events 50 miles around your
+                  current location, please use the filter above to refine your
+                  search.
+                </Paragraph>
+                <Paragraph>{`Upcoming events for ${
+                  context.artistName
+                } 👇👇👇👇`}</Paragraph>
+              </>
+            )}
             {Object.keys(context.data).length !== 0 &&
               context.data.events.length === 0 && (
                 <div>{`Sorry no ${context.artistName} events near you`}</div>
