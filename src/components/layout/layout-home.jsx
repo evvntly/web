@@ -7,6 +7,7 @@ import { FONT_FAMILY, WEIGHT } from "../../styles/typography";
 import { FirebaseContext } from "gatsby-plugin-firebase";
 import { myContext } from "../../context/provider";
 import SignIn from "../signin";
+import { BLACK } from "../../styles/colors";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -24,17 +25,28 @@ const Main = styled.div`
   height: 100vh;
 `;
 
+export const Notice = styled.div`
+  height: 50px;
+  background: #f0bb48;
+  position: relative;
+  z-index: 100000000000;
+  line-height: 50px;
+  color: ${BLACK};
+  font-family: ${FONT_FAMILY};
+  text-align: center;
+  font-size: 13px;
+`;
+
 const Content = styled.div``;
 
 const LayoutHome = ({ children }) => {
   const context = useContext(myContext);
-  let firebase = React.useContext(FirebaseContext);
+  const firebase = React.useContext(FirebaseContext);
   useEffect(() => {
     firebase &&
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
           context.setUser(user);
-        } else {
         }
       });
   }, [firebase, context.user]);
@@ -42,6 +54,14 @@ const LayoutHome = ({ children }) => {
     <>
       <GlobalStyle />
       <Main>
+        {!context.withinUs && (
+          <Notice>
+            Hey there, search only works within the US. sorry....
+            <span role="img" aria-label="crying">
+              😭
+            </span>
+          </Notice>
+        )}
         <Nav />
         <Video />
       </Main>

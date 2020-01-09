@@ -30,9 +30,9 @@ const Overlay = styled.div`
 const BackgroundSection = ({
   className,
   img,
-  height = 370,
+  height = 200,
   title,
-  overlay = false
+  overlay = true
 }) => (
   <StaticQuery
     query={graphql`

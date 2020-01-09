@@ -6,6 +6,7 @@ import { FONT_FAMILY, WEIGHT } from "../../styles/typography";
 import { myContext } from "../../context/provider";
 import { FirebaseContext } from "gatsby-plugin-firebase";
 import SignIn from "../signin";
+import { Notice } from "./layout-home";
 
 const Container = styled.div``;
 
@@ -28,13 +29,20 @@ const LayoutPage = ({ children }) => {
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
           context.setUser(user);
-        } else {
         }
       });
   }, [firebase, context.user]);
   return (
     <>
       <GlobalStyle />
+      {!context.withinUs && (
+        <Notice>
+          Hey there, search only works within the US. sorry....
+          <span role="img" aria-label="crying">
+            😭
+          </span>
+        </Notice>
+      )}
       <Nav />
       <Container>
         <div>{children}</div>

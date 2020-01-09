@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "gatsby";
 import styled from "styled-components";
 import { BLACK, GREY, WHITE } from "../../styles/colors";
 import { FONT_FAMILY, WEIGHT } from "../../styles/typography";
 import NavItems from "./NavItems";
 import Logo from "../../assets/svgs/logo.svg";
+import { myContext } from "../../context/provider";
 
 const Navigation = styled.nav`
   @media (max-width: 769px) and (min-width: 320px) {
@@ -12,7 +13,7 @@ const Navigation = styled.nav`
   }
   padding: 0;
   margin: 0;
-  position: fixed;
+  position: sticky;
   top: 0;
   width: 100%;
   background: ${GREY};
@@ -136,10 +137,11 @@ const CloseIcon = styled.div`
 `;
 
 const Nav = () => {
+  const context = useContext(myContext);
   const [showHamburger, setShowHamburger] = useState(false);
   return (
     <>
-      <Navigation>
+      <Navigation showNotice={!context.withinUs}>
         <NavWrapper>
           <Link to="/" aria-label="Concert Buddy">
             <LogoIcon />

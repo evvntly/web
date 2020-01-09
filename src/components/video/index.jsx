@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { FONT_FAMILY } from "../../styles/typography";
 import { BLACK, WHITE } from "../../styles/colors";
-import PosterImage from "./poster";
 import TextInput from "../../library/inputs/text";
 import { myContext } from "../../context/provider";
 import { navigate } from "gatsby";
@@ -11,13 +10,15 @@ const BackgroundVideo = styled.video`
   position: absolute;
   top: 50%;
   left: 50%;
-  -webkit-transform: translateX(-50%) translateY(-50%);
   transform: translateX(-50%) translateY(-50%);
   min-width: 100%;
   min-height: 100%;
   width: auto;
   height: auto;
   overflow: hidden;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
 `;
 
 const Overlay = styled.div`
@@ -142,11 +143,9 @@ const Video = () => {
 
   return (
     <>
-      <PosterImage>
-        <BackgroundVideo autoPlay playsInline muted loop>
-          <source src={selectRandomVideo} type="video/mp4" />
-        </BackgroundVideo>
-      </PosterImage>
+      <BackgroundVideo autoPlay playsInline muted loop>
+        <source src={selectRandomVideo} type="video/mp4" />
+      </BackgroundVideo>
       <Overlay />
       <Content>
         <h1>Looking for a event / gig / sports game buddy?</h1>
