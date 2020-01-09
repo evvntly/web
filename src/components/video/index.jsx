@@ -7,27 +7,20 @@ import { myContext } from "../../context/provider";
 import { navigate } from "gatsby";
 
 const BackgroundVideo = styled.video`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
+  position: fixed;
+  right: 0;
+  bottom: 0;
   min-width: 100%;
   min-height: 100%;
-  width: auto;
-  height: auto;
-  overflow: hidden;
-  bottom: 0;
-  right: 0;
-  z-index: -1;
 `;
 
 const Overlay = styled.div`
   text-align: center;
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
   right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
   background: ${BLACK};
   opacity: 0.5;
 `;

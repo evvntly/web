@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 import { FirebaseContext } from "gatsby-plugin-firebase";
 import { myContext } from "../../context/provider";
@@ -21,7 +21,7 @@ const ButtonContainer = styled.div`
 `;
 
 const Overlay = styled.div`
-  position: absolute;
+  position: fixed;
   height: 100vh;
   width: 100vw;
   background: #000;
@@ -31,10 +31,11 @@ const Overlay = styled.div`
   right: 0;
   bottom: 0;
   z-index: 4;
+  backdrop-filter: blur(4px);
 `;
 
 const Container = styled.div`
-  position: absolute;
+  position: fixed;
   height: 100vh;
   width: 100vw;
   top: 0;
@@ -97,6 +98,10 @@ const Button = styled.button`
 `;
 
 const SignIn = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const context = useContext(myContext);
   const firebase = React.useContext(FirebaseContext);
   const provider = firebase && new firebase.auth.FacebookAuthProvider();
