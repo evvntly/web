@@ -1,19 +1,19 @@
 import React, { useContext } from "react";
 import { Link } from "gatsby";
 import styled from "styled-components";
-import { BLACK, WHITE } from "../../styles/colors";
+import { WHITE } from "../../styles/colors";
 import { FONT_FAMILY, WEIGHT } from "../../styles/typography";
 import { myContext } from "../../context/provider";
-import SignIn from "../signin";
-import { FirebaseContext } from "gatsby-plugin-firebase";
-import { navigate } from "gatsby";
+import UserNav from "./user-nav";
 
-const Profile = styled.img`
-  width: 45px;
-  height: 45px;
-  border-radius: 45px;
-  border: 3px solid #ffffff;
+const LoginButton = styled.div`
+  cursor: pointer;
+  color: ${WHITE};
+  &:hover {
+    color: #1ca1ff;
+  }
 `;
+
 const Items = styled.nav`
   a {
     color: ${WHITE};
@@ -24,7 +24,7 @@ const Items = styled.nav`
     text-decoration: none;
     text-transform: uppercase;
     :hover {
-      color: #006ebc;
+      color: #1ca1ff;
     }
   }
   ul {
@@ -52,13 +52,13 @@ const Items = styled.nav`
 
 const NavItems = () => {
   const context = useContext(myContext);
-  const firebase = React.useContext(FirebaseContext);
+
   return (
     <>
       <Items>
         <ul>
           <li>
-            <Link to="/" aria-label="Home" activeStyle={{ color: "#006ebc" }}>
+            <Link to="/" aria-label="Home" activeStyle={{ color: "#1ca1ff" }}>
               Home
             </Link>
           </li>
@@ -66,7 +66,7 @@ const NavItems = () => {
             <Link
               to="/about"
               aria-label="About"
-              activeStyle={{ color: "#006ebc" }}
+              activeStyle={{ color: "#1ca1ff" }}
             >
               About
             </Link>
@@ -75,7 +75,7 @@ const NavItems = () => {
             <Link
               to="/find-buddy"
               aria-label="Find a buddy"
-              activeStyle={{ color: "#006ebc" }}
+              activeStyle={{ color: "#1ca1ff" }}
             >
               Find a buddy
             </Link>
@@ -84,40 +84,19 @@ const NavItems = () => {
             <Link
               to="/contact"
               aria-label="Contact"
-              activeStyle={{ color: "#006ebc" }}
+              activeStyle={{ color: "#1ca1ff" }}
             >
               Contact
             </Link>
           </li>
-          {context.user && (
-            <li>
-              <Profile
-                src={context.user.photoURL}
-                onClick={() => {
-                  firebase
-                    .auth()
-                    .signOut()
-                    .then(
-                      function() {
-                        navigate("/");
-                        context.setUser(false);
-                      },
-                      function(error) {
-                        // An error happened.
-                      }
-                    );
-                }}
-              />
-            </li>
-          )}
+          <UserNav />
           {!context.user && (
-            <a>
+            <LoginButton>
               <li onClick={() => context.setSignin(true)}>LOGIN / SIGNUP</li>
-            </a>
+            </LoginButton>
           )}
         </ul>
       </Items>
-      {context.signin && <SignIn />}
     </>
   );
 };

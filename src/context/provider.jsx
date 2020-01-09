@@ -5,7 +5,9 @@ const Provider = props => {
   const [data, setData] = useState({});
   const [artistName, setArtistName] = useState("");
   const [user, setUser] = useState(false);
+  const [error, setError] = useState(false);
   const [signin, setSignin] = useState(false);
+  const [userMenu, setUserMenu] = useState(false);
 
   const context = {
     data,
@@ -15,7 +17,11 @@ const Provider = props => {
     user,
     setUser,
     signin,
-    setSignin
+    setSignin,
+    error,
+    setError,
+    userMenu,
+    setUserMenu
   };
 
   return (

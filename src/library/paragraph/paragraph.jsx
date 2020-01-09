@@ -4,15 +4,14 @@ import { BLACK } from "../../styles/colors";
 import { WEIGHT, FONT_FAMILY } from "../../styles/typography";
 
 const ParagraphNormal = styled.p`
-  line-height: 1.5rem;
   color: ${BLACK};
-  font-size: 1.1rem;
+  font-size: ${props => props.fontSize};
   font-weight: ${WEIGHT.THIN};
   font-family: ${FONT_FAMILY};
 `;
 
-const Paragraph = ({ children }) => {
-  return <Paragraph>{children}</Paragraph>;
+const Paragraph = ({ children, fontSize = "1.1rem" }) => {
+  return <ParagraphNormal fontSize={fontSize}>{children}</ParagraphNormal>;
 };
 
-export default ParagraphNormal;
+export default Paragraph;

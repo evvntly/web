@@ -5,6 +5,7 @@ import Footer from "../footer/Footer";
 import { FONT_FAMILY, WEIGHT } from "../../styles/typography";
 import { myContext } from "../../context/provider";
 import { FirebaseContext } from "gatsby-plugin-firebase";
+import SignIn from "../signin";
 
 const Container = styled.div``;
 
@@ -39,6 +40,7 @@ const LayoutPage = ({ children }) => {
         <div>{children}</div>
       </Container>
       <Footer />
+      {context.signin && <SignIn />}
     </>
   );
 };

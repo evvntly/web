@@ -3,7 +3,7 @@ import LayoutPage from "../components/layout/layout-page";
 import Heading from "../library/headings/Heading";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
-import ParagraphNormal from "../library/paragraph/paragraph";
+import Paragraph from "../library/paragraph/paragraph";
 import Banner from "../library/banner";
 
 const Main = styled.div`
@@ -32,7 +32,7 @@ const Contact = () => {
         <Container>
           <Main>
             <Heading title="Contact us" />
-            <ParagraphNormal>Coming Soon</ParagraphNormal>
+            <Paragraph>Coming Soon</Paragraph>
           </Main>
         </Container>
       </LayoutPage>

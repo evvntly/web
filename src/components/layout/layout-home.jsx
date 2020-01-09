@@ -6,6 +6,7 @@ import Video from "../video";
 import { FONT_FAMILY, WEIGHT } from "../../styles/typography";
 import { FirebaseContext } from "gatsby-plugin-firebase";
 import { myContext } from "../../context/provider";
+import SignIn from "../signin";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -46,6 +47,7 @@ const LayoutHome = ({ children }) => {
       </Main>
       <Content>{children}</Content>
       <Footer />
+      {context.signin && <SignIn />}
     </>
   );
 };

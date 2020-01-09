@@ -2,7 +2,23 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { FirebaseContext } from "gatsby-plugin-firebase";
 import { myContext } from "../../context/provider";
-import { navigate } from "gatsby";
+import Banner from "../../library/banner";
+import Paragraph from "../../library/paragraph/paragraph";
+import { FACEBOOK_BLUE, FACEBOOK_BLUE_HOVER, WHITE } from "../../styles/colors";
+import Facebook from "../../assets/svgs/fb.svg";
+import { FONT_FAMILY } from "../../styles/typography";
+
+const FacebookIcon = styled(Facebook)`
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 const Overlay = styled.div`
   position: absolute;
@@ -27,6 +43,26 @@ const Container = styled.div`
   bottom: 0;
 `;
 
+const Close = styled.div`
+  cursor: pointer;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: ${WHITE};
+  height: 30px;
+  width: 30px;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: ${FONT_FAMILY};
+`;
+
+const Content = styled.div`
+  padding: 10px 25px;
+  text-align: center;
+`;
+
 const ModalContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -36,11 +72,28 @@ const ModalContainer = styled.div`
 `;
 
 const Modal = styled.div`
-  height: 500px;
-  width: 500px;
+  border-radius: 5px;
+  height: auto;
+  max-width: 500px;
   background: white;
   z-index: 5;
   position: relative;
+  @media (max-width: 769px) and (min-width: 320px) {
+    width: 340px;
+  }
+`;
+
+const Button = styled.button`
+  background: ${FACEBOOK_BLUE};
+  color: ${WHITE};
+  border-color: ${FACEBOOK_BLUE};
+  padding: 15px 50px;
+  font-size: 15px;
+  cursor: pointer;
+  margin: 0 0 10px 0;
+  &:hover {
+    background: ${FACEBOOK_BLUE_HOVER};
+  }
 `;
 
 const SignIn = () => {
@@ -57,45 +110,59 @@ const SignIn = () => {
       })
       .then(() => context.setSignin(false))
       .catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // The email of the user's account used.
-        var email = error.email;
-        // The firebase.auth.AuthCredential type that was used.
-        var credential = error.credential;
-        // ...
+        context.setError(error);
       });
   };
 
-  const onLogoutClick = () => {
-    firebase
-      .auth()
-      .signOut()
-      .then(
-        function() {
-          navigate("/");
-        },
-        function(error) {
-          // An error happened.
-        }
-      );
-  };
-
-  console.log("test", context.user);
+  const images = [
+    "basketball",
+    "moshpit",
+    "hockey",
+    "football",
+    "baseball",
+    "concert"
+  ];
+  const selectRandomImage = images[Math.floor(Math.random() * images.length)];
 
   return (
     <Container>
       <ModalContainer>
         <Modal>
-          {!context.user && (
-            <button onClick={() => onLoginClick()}>Login</button>
-          )}
-          <div onClick={() => context.setSignin(false)}>close</div>
+          <Banner
+            img={selectRandomImage}
+            height={175}
+            title="You're one step closer to awesome!"
+            overlay={true}
+          />
+          <Content>
+            <Paragraph fontSize="1.5rem">
+              Login for free and start searching for your event buddy.
+            </Paragraph>
+            {!context.user && (
+              <Button onClick={() => onLoginClick()}>
+                <ButtonContainer>
+                  <FacebookIcon /> <span>Login with Facebook</span>
+                </ButtonContainer>
+              </Button>
+            )}
+            <Paragraph fontSize="0.9rem">
+              * Currently we only allow users to sign up with Facebook. We want
+              to keep this site safe so we try to verify our users as much as
+              possible.
+            </Paragraph>
+            <Paragraph fontSize="0.9rem">
+              * Events only listed in the USA for now... sorry{" "}
+              <span role="img" aria-label="crying">
+                😭
+              </span>
+            </Paragraph>
+          </Content>
+          <Close onClick={() => context.setSignin(false)}>
+            <div>X</div>
+          </Close>
         </Modal>
       </ModalContainer>
-
-      <Overlay />
+      <Overlay onClick={() => context.setSignin(false)} />
     </Container>
   );
 };

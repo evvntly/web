@@ -12,16 +12,18 @@
     "serve": "gatsby serve",
     "test": "jest",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "lint:js": "eslint --ext .js,.jsx ."
   },
   "dependencies": {
+    "eslint-config-gatsby-standard": "^2.2.0",
     "eslint-plugin-flowtype": "^4.5.3",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react-hooks": "^2.3.0",
     "firebase": "^7.6.1",
     "gatsby-plugin-firebase": "^0.1.7",
-    "moment": "^2.24.0",
-    "sharp": "git+https://github.com/lovell/sharp.git"
+    "gatsby-plugin-react-svg": "^3.0.0",
+    "moment": "^2.24.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.0",

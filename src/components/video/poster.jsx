@@ -8,7 +8,7 @@ const PosterImage = ({ className, children }) => (
   <StaticQuery
     query={graphql`
       query {
-        desktop: file(relativePath: { eq: "poster.jpg" }) {
+        desktop: file(relativePath: { eq: "bg.png" }) {
           childImageSharp {
             fluid(quality: 90, maxWidth: 1920) {
               ...GatsbyImageSharpFluid_withWebp

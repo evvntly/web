@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { isMobile } from "react-device-detect";
 import { FONT_FAMILY } from "../../styles/typography";
 import { BLACK, WHITE } from "../../styles/colors";
 import PosterImage from "./poster";
@@ -104,36 +103,37 @@ const Video = () => {
     )
       .then(response => response.json())
       .then(data => context.setData(data))
-      .then(navigate("/find-buddy/"))
+      .then(() => navigate("/find-buddy/"))
+      // eslint-disable-next-line no-console
       .catch(err => console.log(err));
   };
+
+  const videos = [
+    "https://media.istockphoto.com/videos/slomo-of-a-football-being-caught-by-receiver-video-id871040454",
+    "https://media.istockphoto.com/videos/stage-diving-video-id670497036",
+    "https://media.istockphoto.com/videos/park-at-night-establishing-shot-video-id1160668031",
+    "https://media.istockphoto.com/videos/the-puck-flies-to-gate-video-id483261099",
+    "https://media.istockphoto.com/videos/future-nba-champion-video-id636326226"
+  ];
+  const selectRandomVideo = videos[Math.floor(Math.random() * videos.length)];
+
   return (
     <>
       <PosterImage>
         <BackgroundVideo autoPlay playsInline muted loop>
-          {!isMobile ? (
-            <source
-              src="https://media.istockphoto.com/videos/stage-diving-video-id670497036"
-              type="video/mp4"
-            />
-          ) : (
-            <source
-              src="https://media.istockphoto.com/videos/stage-diving-video-id670497036"
-              type="video/mp4"
-            />
-          )}
+          <source src={selectRandomVideo} type="video/mp4" />
         </BackgroundVideo>
       </PosterImage>
       <Overlay />
       <Content>
-        <h1>Looking for a concert / gig buddy?</h1>
+        <h1>Looking for a event / gig / sports game buddy?</h1>
         <h2>Stop searching and start connecting!</h2>
         <Input>
           <TextInput
             onChange={e => {
               context.setArtistName(e.target.value);
             }}
-            placeholder="Enter Artist Name"
+            placeholder="Enter artist / event / sports team..."
           />
         </Input>
         <ButtonSecondary onClick={() => onButtonClick()}>

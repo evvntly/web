@@ -4,7 +4,7 @@ import LayoutPage from "../components/layout/layout-page";
 import Heading from "../library/headings/Heading";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
-import ParagraphNormal from "../library/paragraph/paragraph";
+import Paragraph from "../library/paragraph/paragraph";
 import Banner from "../library/banner";
 import { myContext } from "../context/provider";
 
@@ -23,7 +23,7 @@ const Container = styled.div`
 
 const FindBuddy = () => {
   const context = useContext(myContext);
-  console.log(context.user);
+  console.log("user", context.user);
   return (
     <>
       <Helmet>
@@ -35,10 +35,10 @@ const FindBuddy = () => {
         <Banner img="moshpit" />
         <Container>
           <Main>
-            <Heading title="Find your concert buddy" />
-            <ParagraphNormal>{`Upcoming concerts for ${
+            <Heading title="Find your event buddy" />
+            <Paragraph>{`Upcoming events for ${
               context.artistName
-            } 👇👇👇👇`}</ParagraphNormal>
+            } 👇👇👇👇`}</Paragraph>
             {Object.keys(context.data).length !== 0 &&
               context.data.events.length === 0 && (
                 <div>{`Sorry no ${context.artistName} events near you`}</div>
@@ -63,10 +63,18 @@ const FindBuddy = () => {
                     {item.venue.name}, {item.venue.address},{" "}
                     {item.venue.display_location}
                   </p>
-                  <div>
-                    <img src={item.performers[0].image} />
-                  </div>
-                  <button onClick={() => alert("find buddy")}>
+                  {item.performers[0].image && (
+                    <div>
+                      <img src={item.performers[0].image} alt={item.title} />
+                    </div>
+                  )}
+                  <button
+                    onClick={() =>
+                      context.user
+                        ? alert("find buddy")
+                        : context.setSignin(true)
+                    }
+                  >
                     Find buddy
                   </button>
                 </div>

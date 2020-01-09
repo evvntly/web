@@ -1,0 +1,14 @@
+{
+  "extends": ["gatsby-standard", "plugin:react/recommended", "eslint:recommended", "plugin:flowtype/recommended"],
+  "rules": {
+    "no-unsafe-finally": "off"
+  },
+
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js",".jsx"]
+      }
+    }
+  }
+}
