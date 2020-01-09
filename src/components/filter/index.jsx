@@ -4,45 +4,67 @@ import { BLACK } from "../../styles/colors";
 import TextInput from "../../library/inputs/text";
 import SelectInput from "../../library/inputs/select";
 import { myContext } from "../../context/provider";
+import { FONT_FAMILY } from "../../styles/typography";
 
 const Container = styled.div`
   margin: 25px 0;
   padding: 25px 35px;
   background: #4a4a4a;
+  @media (max-width: 769px) and (min-width: 320px) {
+    padding: 10px 20px;
+  }
+`;
+
+const InputContainer = styled.div`
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  @media (max-width: 769px) and (min-width: 320px) {
+    flex-direction: column;
+  }
 `;
 
 const ButtonSecondary = styled.div`
   cursor: pointer;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: ${FONT_FAMILY};
   font-weight: normal;
-  border-radius: 4px;
   border: 2px solid #f0bb48;
-  padding: 10px 40px;
-  margin-top: 30px;
+  padding: 0 40px;
   color: ${BLACK};
   background: #f0bb48;
   :hover {
     background: transparent;
     color: #f0bb48;
   }
+  @media (max-width: 769px) and (min-width: 320px) {
+    margin: 10px 0;
+  }
 `;
 
-const ButtonPrimary = styled.div`
-  cursor: pointer;
-  font-weight: normal;
-  border-radius: 4px;
-  border: 2px solid #f0bb48;
-  padding: 10px 40px;
-  margin-top: 30px;
-  color: #f0bb48;
-  background: transparent;
-  :hover {
-    background: #f0bb48;
-    color: ${BLACK};
+const StyledTextInput = styled.div`
+  margin-right: 25px;
+  width: 80%;
+  @media (max-width: 769px) and (min-width: 320px) {
+    width: 100%;
+    margin: 10px 0;
+  }
+`;
+
+const StyledSelect = styled.div`
+  width: 20%;
+  margin-right: 25px;
+  @media (max-width: 769px) and (min-width: 320px) {
+    width: 100%;
+    margin: 10px 0;
   }
 `;
 
 const selectData = [
-  { value: 50, name: "50 Miles" },
+  { value: 50, name: "Near Me (50 Miles)" },
   { value: 100, name: "100 Miles" },
   { value: 250, name: "250 Miles" },
   { value: 500, name: "500 Miles" },
@@ -67,27 +89,34 @@ const Filter = () => {
   };
   const onClearClick = () => {
     context.setData({});
-    context.setRadius(50);
     context.setArtistName("");
   };
 
   return (
     <Container>
-      <TextInput
-        value={context.artistName ? context.artistName : ""}
-        onChange={e => {
-          context.setArtistName(e.target.value);
-        }}
-        placeholder="Enter artist / event / sports team..."
-      />
-      <SelectInput
-        options={selectData}
-        onChange={e => {
-          context.setRadius(e.target.value);
-        }}
-      />
-      <ButtonSecondary onClick={() => onButtonClick()}>Search</ButtonSecondary>
-      <ButtonPrimary onClick={() => onClearClick()}>Clear All</ButtonPrimary>
+      <InputContainer>
+        <StyledTextInput>
+          <TextInput
+            onClear={() => onClearClick()}
+            value={context.artistName ? context.artistName : ""}
+            onChange={e => {
+              context.setArtistName(e.target.value);
+            }}
+            placeholder="Enter artist / event / sports team..."
+          />
+        </StyledTextInput>
+        <StyledSelect>
+          <SelectInput
+            options={selectData}
+            onChange={e => {
+              context.setRadius(e.target.value);
+            }}
+          />
+        </StyledSelect>
+        <ButtonSecondary onClick={() => onButtonClick()}>
+          Search
+        </ButtonSecondary>
+      </InputContainer>
     </Container>
   );
 };

@@ -8,7 +8,10 @@ import { FirebaseContext } from "gatsby-plugin-firebase";
 import SignIn from "../signin";
 import { Notice } from "./layout-home";
 
-const Container = styled.div``;
+const Container = styled.div`
+  position: relative;
+  min-height: 100vh;
+`;
 
 const GlobalStyle = createGlobalStyle`
   body {

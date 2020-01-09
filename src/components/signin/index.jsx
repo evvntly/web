@@ -7,6 +7,7 @@ import Paragraph from "../../library/paragraph/paragraph";
 import { FACEBOOK_BLUE, FACEBOOK_BLUE_HOVER, WHITE } from "../../styles/colors";
 import Facebook from "../../assets/svgs/fb.svg";
 import { FONT_FAMILY } from "../../styles/typography";
+import { isMobile } from "react-device-detect";
 
 const FacebookIcon = styled(Facebook)`
   width: 20px;
@@ -98,11 +99,13 @@ const Button = styled.button`
 `;
 
 const SignIn = () => {
+  const context = useContext(myContext);
+
   useEffect(() => {
     window.scrollTo(0, 0);
+    if (isMobile) context.setShowHamburger(false);
   }, []);
 
-  const context = useContext(myContext);
   const firebase = React.useContext(FirebaseContext);
   const provider = firebase && new firebase.auth.FacebookAuthProvider();
 
@@ -137,10 +140,9 @@ const SignIn = () => {
             img={selectRandomImage}
             height={175}
             title="You're one step closer to awesome!"
-            overlay={true}
           />
           <Content>
-            <Paragraph fontSize="1.5rem">
+            <Paragraph fontSize="1.2rem">
               Login for free and start searching for your event buddy.
             </Paragraph>
             {!context.user && (

@@ -65,6 +65,7 @@ const MobileNav = styled.nav`
   @media (min-width: 769px) {
     display: none;
   }
+  box-shadow: #cccccc 1px 1px 5px;
   position: sticky;
   padding: 0 10px;
   box-sizing: border-box;
@@ -80,6 +81,7 @@ const MobileNav = styled.nav`
 `;
 
 const MobileItems = styled.div`
+  top: 0;
   position: absolute;
   z-index: 1;
   width: 100%;
@@ -139,7 +141,6 @@ const CloseIcon = styled.div`
 
 const Nav = () => {
   const context = useContext(myContext);
-  const [showHamburger, setShowHamburger] = useState(false);
   return (
     <>
       <Navigation showNotice={!context.withinUs}>
@@ -158,17 +159,17 @@ const Nav = () => {
         </Link>
         <Hamburger
           onClick={() => {
-            setShowHamburger(!showHamburger);
+            context.setShowHamburger(!context.showHamburger);
           }}
         >
           <HamburgerIcon />
         </Hamburger>
       </MobileNav>
-      {showHamburger && (
+      {context.showHamburger && (
         <MobileItems>
           <CloseIcon
             onClick={() => {
-              setShowHamburger(!showHamburger);
+              context.setShowHamburger(!context.showHamburger);
             }}
           />
           <NavItems />

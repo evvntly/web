@@ -1,11 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { SILVER, RED } from "../../styles/colors";
+import { SILVER, RED, BLACK } from "../../styles/colors";
 import { WEIGHT, FONT_FAMILY } from "../../styles/typography";
 
 const InputWrapper = styled.div`
   width: 100%;
+  position: relative;
 `;
 
 const Input = styled.input`
@@ -37,6 +38,30 @@ const Error = styled.p`
   font-weight: ${WEIGHT.THIN};
 `;
 
+const Clear = styled.div`
+  cursor: pointer;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  width: 20px;
+  height: 50px;
+  &:before,
+  &:after {
+    position: absolute;
+    left: 15px;
+    content: " ";
+    height: 20px;
+    width: 2px;
+    background-color: ${BLACK};
+  }
+  &:before {
+    transform: rotate(45deg);
+  }
+  &:after {
+    transform: rotate(-45deg);
+  }
+`;
+
 const TextInput = ({
   title,
   placeholder,
@@ -46,7 +71,8 @@ const TextInput = ({
   required,
   onFocus,
   onChange,
-  value
+  value,
+  onClear
 }) => {
   return (
     <InputWrapper>
@@ -61,6 +87,7 @@ const TextInput = ({
         error={error ? true : false}
         value={value}
       />
+      {value && <Clear onClick={onClear} />}
       {error && <Error>{error}</Error>}
     </InputWrapper>
   );

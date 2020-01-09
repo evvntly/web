@@ -120,7 +120,10 @@ const Video = () => {
     )
       .then(response => response.json())
       .then(data => context.setData(data))
-      .then(() => navigate("/browse-events/"))
+      .then(() => {
+        navigate("/browse-events/");
+        context.setRadius(50);
+      })
       // eslint-disable-next-line no-console
       .catch(err => console.log(err));
   };

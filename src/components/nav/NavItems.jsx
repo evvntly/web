@@ -96,7 +96,11 @@ const NavItems = () => {
   return (
     <>
       <Items>
-        <ul>
+        <ul
+          onClick={() => {
+            if (isMobile) context.setShowHamburger(false);
+          }}
+        >
           <li>
             <Link to="/" aria-label="Home" activeStyle={{ color: "#f0bb48" }}>
               Home

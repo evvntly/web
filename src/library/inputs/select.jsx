@@ -15,12 +15,14 @@ const Title = styled.p`
 
 const Select = styled.select`
   width: 100%;
-  height: 40px;
-  border: 1px solid #cccccc;
-  border-radius: 0;
+  height: 50px;
+  -webkit-border-radius: 0;
+  border: 0;
+  outline: 1px solid grey;
+  outline-offset: -1px;
   padding-left: 5px;
   background: white;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: ${WEIGHT.THIN};
 `;
 

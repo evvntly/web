@@ -10,6 +10,9 @@ const Title = styled.h2`
   padding: 0;
   margin: 0;
   font-size: 25px;
+  @media (max-width: 769px) and (min-width: 320px) {
+    font-size: 20px;
+  }
   position: relative;
   z-index: 1;
   font-family: ${FONT_FAMILY};
