@@ -2,16 +2,19 @@ import React from "react";
 import styled from "styled-components";
 import { WHITE, SILVER } from "../../styles/colors";
 import { FONT_FAMILY } from "../../styles/typography";
+import { Link } from "gatsby";
 
 const Navigation = styled.footer`
-  height: 50px;
+  min-height: 50px;
   width: 100%;
   background: black;
   z-index: 1;
   font-family: ${FONT_FAMILY};
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 10px 0;
   div {
     color: ${SILVER};
     font-size: 0.8rem;
@@ -42,6 +45,15 @@ const Footer = () => {
         >
           @johnnyxbell
         </a>
+      </div>
+      <div>
+        <Link to="/privacy" aria-label="Privacy">
+          Privacy
+        </Link>{" "}
+        |{" "}
+        <Link to="/contact" aria-label="Contact">
+          Contact
+        </Link>
       </div>
     </Navigation>
   );

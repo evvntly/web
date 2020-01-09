@@ -59,7 +59,7 @@ const ButtonPrimary = styled.div`
   }
 `;
 
-const FindBuddy = () => {
+const BrowseEvents = () => {
   const context = useContext(myContext);
   const onButtonClick = () => {
     fetch(
@@ -178,4 +178,4 @@ const FindBuddy = () => {
   );
 };
 
-export default FindBuddy;
+export default BrowseEvents;

@@ -2,8 +2,9 @@ import React, { useContext, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { myContext } from "../../context/provider";
 import { WHITE } from "../../styles/colors";
-import { navigate } from "gatsby";
+import { Link, navigate } from "gatsby";
 import { FirebaseContext } from "gatsby-plugin-firebase";
+import { isMobile } from "react-device-detect";
 
 const Container = styled.div`
   background: ${WHITE};
@@ -11,9 +12,16 @@ const Container = styled.div`
   position: absolute;
   width: 220px;
   left: -205px;
-  top: 65px;
+  top: 60px;
   text-align: right;
-  padding: 0px 20px;
+  padding: 0 20px;
+  a {
+    color: black !important;
+    text-transform: none !important;
+    &:hover {
+      color: #f0bb48 !important;
+    }
+  }
   ul {
     justify-content: flex-end;
     flex-direction: column;
@@ -28,10 +36,10 @@ const Container = styled.div`
 `;
 
 const Profile = styled.img`
-  width: 45px;
-  height: 45px;
-  border-radius: 45px;
-  border: 3px solid #ffffff;
+  width: 35px;
+  height: 35px;
+  border-radius: 35px;
+  border: 2px solid #ffffff;
   cursor: pointer;
 `;
 
@@ -79,13 +87,23 @@ const UserNav = () => {
           <li style={{ position: "relative" }}>
             <Profile
               src={context.user.photoURL}
-              onClick={() => context.setUserMenu(!context.userMenu)}
+              onClick={() =>
+                !isMobile
+                  ? context.setUserMenu(!context.userMenu)
+                  : navigate("/my-profile")
+              }
             />
             {context.userMenu && (
               <Container>
                 <ul>
                   <li>{`G'day ${context.user.displayName}, you legend!`}</li>
-                  <li style={{ cursor: "pointer" }}>My Profile</li>
+                  <Link
+                    onClick={() => context.setUserMenu(false)}
+                    to="/my-profile"
+                    aria-label="My Profile"
+                  >
+                    <li>My Profile</li>
+                  </Link>
                   <li
                     style={{ cursor: "pointer" }}
                     onClick={() => onSignoutClick()}

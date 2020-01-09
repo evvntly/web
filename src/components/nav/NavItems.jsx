@@ -1,16 +1,37 @@
 import React, { useContext } from "react";
-import { Link } from "gatsby";
+import { Link, navigate } from "gatsby";
 import styled from "styled-components";
 import { WHITE } from "../../styles/colors";
 import { FONT_FAMILY, WEIGHT } from "../../styles/typography";
 import { myContext } from "../../context/provider";
 import UserNav from "./user-nav";
+import User from "../../assets/svgs/user.svg";
+import { isMobile } from "react-device-detect";
+import { FirebaseContext } from "gatsby-plugin-firebase";
 
 const LoginButton = styled.div`
   cursor: pointer;
   color: ${WHITE};
   &:hover {
     color: #f0bb48;
+  }
+`;
+
+const UserIcon = styled(User)`
+  fill: ${WHITE};
+  height: 24px;
+  width: 24px;
+  margin-right: 10px;
+`;
+
+const LoginContainer = styled.div`
+  display: flex;
+  justify-items: center;
+  align-content: center;
+  &:hover {
+    svg {
+      fill: #f0bb48;
+    }
   }
 `;
 
@@ -53,6 +74,24 @@ const Items = styled.nav`
 
 const NavItems = () => {
   const context = useContext(myContext);
+  const firebase = React.useContext(FirebaseContext);
+
+  const onSignoutClick = () => {
+    firebase
+      .auth()
+      .signOut()
+      .then(
+        () => {
+          navigate("/");
+          context.setUser(false);
+          context.setUserMenu(false);
+        },
+        error => {
+          // eslint-disable-next-line no-console
+          console.log(error);
+        }
+      );
+  };
 
   return (
     <>
@@ -65,6 +104,15 @@ const NavItems = () => {
           </li>
           <li>
             <Link
+              to="/browse-events"
+              aria-label="Browse Events"
+              activeStyle={{ color: "#f0bb48" }}
+            >
+              Browse Events
+            </Link>
+          </li>
+          <li>
+            <Link
               to="/about"
               aria-label="About"
               activeStyle={{ color: "#f0bb48" }}
@@ -72,30 +120,24 @@ const NavItems = () => {
               About
             </Link>
           </li>
-          <li>
-            <Link
-              to="/find-buddy"
-              aria-label="Find a buddy"
-              activeStyle={{ color: "#f0bb48" }}
-            >
-              Find a buddy
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/contact"
-              aria-label="Contact"
-              activeStyle={{ color: "#f0bb48" }}
-            >
-              Contact
-            </Link>
-          </li>
-          <UserNav />
+          {isMobile && context.user && (
+            <li>
+              <Link to="/" aria-label="Logout" onClick={() => onSignoutClick()}>
+                Sign Out
+              </Link>
+            </li>
+          )}
           {!context.user && (
             <LoginButton>
-              <li onClick={() => context.setSignin(true)}>LOGIN / SIGNUP</li>
+              <li onClick={() => context.setSignin(true)}>
+                <LoginContainer>
+                  <UserIcon />
+                  LOGIN / SIGNUP
+                </LoginContainer>
+              </li>
             </LoginButton>
           )}
+          <UserNav />
         </ul>
       </Items>
     </>

@@ -19,19 +19,17 @@ const Container = styled.div`
   margin: 25px 0;
 `;
 
-const Contact = () => {
+const MyProfile = () => {
   return (
     <>
       <Helmet>
-        <title>Contact</title>
-        <link rel="canonical" href="https://concertbuddy.io/contact" />
-        <meta name="description" content="Find a concert buddy" />
+        <title>My Profile</title>
       </Helmet>
       <LayoutPage>
         <Banner img="moshpit" />
         <Container>
           <Main>
-            <Heading title="Contact" />
+            <Heading title="My Profile" />
             <Paragraph>Coming Soon</Paragraph>
           </Main>
         </Container>
@@ -40,4 +38,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default MyProfile;

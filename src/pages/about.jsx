@@ -23,7 +23,7 @@ const About = () => {
   return (
     <>
       <Helmet>
-        <title>About Us</title>
+        <title>About</title>
         <link rel="canonical" href="https://concertbuddy.io/about" />
         <meta name="description" content="Find a concert buddy" />
       </Helmet>
@@ -31,7 +31,7 @@ const About = () => {
         <Banner img="moshpit" />
         <Container>
           <Main>
-            <Heading title="About us" />
+            <Heading title="About" />
             <Paragraph>Coming soon...</Paragraph>
             {/*<Paragraph>*/}
             {/*  Hi, welcome to concert buddy where we help connect concert goers*/}

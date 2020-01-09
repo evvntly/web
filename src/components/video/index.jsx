@@ -127,7 +127,7 @@ const Video = () => {
     )
       .then(response => response.json())
       .then(data => context.setData(data))
-      .then(() => navigate("/find-buddy/"))
+      .then(() => navigate("/browse-events/"))
       // eslint-disable-next-line no-console
       .catch(err => console.log(err));
   };

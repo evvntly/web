@@ -32,7 +32,7 @@ const Navigation = styled.nav`
   li {
     list-style-type: none;
     font-weight: ${WEIGHT.NORMAL};
-    margin-right: 30px;
+    margin-right: 25px;
     &:last-child {
       margin: 0;
     }
@@ -55,6 +55,7 @@ const Hamburger = styled.div`
 
 const LogoIcon = styled(Logo)`
   height: 50px;
+  width: 20px;
 `;
 
 const MobileNav = styled.nav`
