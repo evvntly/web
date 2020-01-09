@@ -1,9 +1,8 @@
 export const ipCheck = setIplocation => {
-  fetch("//ip-api.com/json/")
+  fetch("https://ipapi.co/json/")
     .then(response => response.json())
     .then(data => {
-      if (data.status && data.status === "success")
-        setIplocation(data.countryCode);
+      setIplocation(data.country);
     })
     // eslint-disable-next-line no-console
     .catch(err => console.log(err));
