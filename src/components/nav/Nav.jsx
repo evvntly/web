@@ -65,10 +65,10 @@ const MobileNav = styled.nav`
   @media (min-width: 769px) {
     display: none;
   }
+  position: sticky;
   padding: 0 10px;
   box-sizing: border-box;
   margin: 0;
-  position: absolute;
   top: 0;
   height: 50px;
   width: 100%;

@@ -7,7 +7,7 @@ import { myContext } from "../../context/provider";
 import { navigate } from "gatsby";
 
 const BackgroundVideo = styled.video`
-  position: fixed;
+  position: absolute;
   right: 0;
   bottom: 0;
   min-width: 100%;
