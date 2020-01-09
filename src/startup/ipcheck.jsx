@@ -1,5 +1,5 @@
 export const ipCheck = setIplocation => {
-  fetch("http://ip-api.com/json/")
+  fetch("//ip-api.com/json/")
     .then(response => response.json())
     .then(data => {
       if (data.status && data.status === "success")
