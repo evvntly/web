@@ -1,1 +1,1 @@
-export const VERSION = "Master";
+export const VERSION = "master";
