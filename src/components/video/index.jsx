@@ -28,7 +28,7 @@ const Overlay = styled.div`
   left: 0;
   right: 0;
   background: ${BLACK};
-  opacity: 0.4;
+  opacity: 0.5;
 `;
 
 const Input = styled.div`
@@ -44,6 +44,9 @@ const Content = styled.div`
   transform: translate(-50%, -50%);
   font-family: ${FONT_FAMILY};
   color: ${WHITE};
+  @media (max-width: 769px) and (min-width: 320px) {
+    width: 90%;
+  }
   h1 {
     padding: 0;
     font-weight: bold;
@@ -52,8 +55,8 @@ const Content = styled.div`
     margin: 0 auto 30px auto;
     line-height: 50px;
     @media (max-width: 769px) and (min-width: 320px) {
-      font-size: 20px;
-      line-height: 25px;
+      font-size: 30px;
+      line-height: 35px;
     }
   }
   h2 {
@@ -64,35 +67,55 @@ const Content = styled.div`
     max-width: 650px;
     text-align: center;
     @media (max-width: 769px) and (min-width: 320px) {
-      font-size: 15px;
+      font-size: 20px;
     }
   }
 `;
 
-const ButtonSecondary = styled.div`
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  @media (max-width: 769px) and (min-width: 320px) {
+    flex-direction: column;
+  }
+`;
+
+const ButtonPrimary = styled.div`
   cursor: pointer;
   font-weight: normal;
   border-radius: 4px;
-  margin-left: 20px;
-  @media (max-width: 769px) and (min-width: 320px) {
-    margin-left: 0;
-    margin-top: 25px;
-  }
-  border: 2px solid #006ebc;
+  border: 2px solid #f0bb48;
   padding: 10px 40px;
   margin-top: 50px;
-  display: inline-block;
-  color: ${WHITE};
-  background: #006ebc;
+  color: #f0bb48;
+  background: transparent;
+  :hover {
+    background: #f0bb48;
+    color: ${BLACK};
+  }
+`;
+
+const ButtonSecondary = styled.div`
+  margin-right: 20px;
+  @media (max-width: 769px) and (min-width: 320px) {
+    margin-right: 0;
+  }
+  cursor: pointer;
+  font-weight: normal;
+  border-radius: 4px;
+  border: 2px solid #f0bb48;
+  padding: 10px 40px;
+  margin-top: 50px;
+  color: ${BLACK};
+  background: #f0bb48;
   :hover {
     background: transparent;
-    color: #006ebc;
+    color: #f0bb48;
   }
 `;
 
 const Video = () => {
   const context = useContext(myContext);
-  console.log(context);
   const onButtonClick = () => {
     fetch(
       `https://api.seatgeek.com/2/events?q=${context.artistName
@@ -136,9 +159,14 @@ const Video = () => {
             placeholder="Enter artist / event / sports team..."
           />
         </Input>
-        <ButtonSecondary onClick={() => onButtonClick()}>
-          Find your buddy
-        </ButtonSecondary>
+        <ButtonWrapper>
+          <ButtonSecondary onClick={() => onButtonClick()}>
+            Find your buddy
+          </ButtonSecondary>
+          <ButtonPrimary onClick={() => context.setSignin(true)}>
+            Signup!
+          </ButtonPrimary>
+        </ButtonWrapper>
       </Content>
     </>
   );

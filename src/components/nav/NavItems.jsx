@@ -10,7 +10,7 @@ const LoginButton = styled.div`
   cursor: pointer;
   color: ${WHITE};
   &:hover {
-    color: #1ca1ff;
+    color: #f0bb48;
   }
 `;
 
@@ -24,7 +24,7 @@ const Items = styled.nav`
     text-decoration: none;
     text-transform: uppercase;
     :hover {
-      color: #1ca1ff;
+      color: #f0bb48;
     }
   }
   ul {
@@ -42,6 +42,7 @@ const Items = styled.nav`
   li {
     list-style-type: none;
     font-weight: ${WEIGHT.NORMAL};
+    font-size: 16px;
     @media (max-width: 769px) and (min-width: 320px) {
       font-family: ${FONT_FAMILY};
       font-size: 20px;
@@ -58,7 +59,7 @@ const NavItems = () => {
       <Items>
         <ul>
           <li>
-            <Link to="/" aria-label="Home" activeStyle={{ color: "#1ca1ff" }}>
+            <Link to="/" aria-label="Home" activeStyle={{ color: "#f0bb48" }}>
               Home
             </Link>
           </li>
@@ -66,7 +67,7 @@ const NavItems = () => {
             <Link
               to="/about"
               aria-label="About"
-              activeStyle={{ color: "#1ca1ff" }}
+              activeStyle={{ color: "#f0bb48" }}
             >
               About
             </Link>
@@ -75,7 +76,7 @@ const NavItems = () => {
             <Link
               to="/find-buddy"
               aria-label="Find a buddy"
-              activeStyle={{ color: "#1ca1ff" }}
+              activeStyle={{ color: "#f0bb48" }}
             >
               Find a buddy
             </Link>
@@ -84,7 +85,7 @@ const NavItems = () => {
             <Link
               to="/contact"
               aria-label="Contact"
-              activeStyle={{ color: "#1ca1ff" }}
+              activeStyle={{ color: "#f0bb48" }}
             >
               Contact
             </Link>

@@ -12,7 +12,7 @@ const Navigation = styled.nav`
   }
   padding: 0;
   margin: 0;
-  position: absolute;
+  position: fixed;
   top: 0;
   width: 100%;
   background: ${GREY};
@@ -105,6 +105,10 @@ const HamburgerIcon = styled.div`
 
 const MobileLogo = styled.div`
   padding-top: 8px;
+  svg {
+    width: 20px;
+    height: 45px;
+  }
 `;
 
 const CloseIcon = styled.div`
@@ -144,7 +148,9 @@ const Nav = () => {
       </Navigation>
       <MobileNav>
         <Link to="/" aria-label="Concert Buddy">
-          <MobileLogo>Logo</MobileLogo>
+          <MobileLogo>
+            <LogoIcon />
+          </MobileLogo>
         </Link>
         <Hamburger
           onClick={() => {
