@@ -21,7 +21,7 @@ const UserIcon = styled(User)`
   fill: ${WHITE};
   height: 24px;
   width: 24px;
-  margin-right: 10px;
+  margin-left: 10px;
 `;
 
 const LoginContainer = styled.div`
@@ -115,16 +115,7 @@ const NavItems = () => {
               Browse Events
             </Link>
           </li>
-          <li>
-            <Link
-              to="/about"
-              aria-label="About"
-              activeStyle={{ color: "#f0bb48" }}
-            >
-              About
-            </Link>
-          </li>
-          {isMobile && context.user && (
+          {context.user && (
             <li>
               <Link to="/" aria-label="Logout" onClick={() => onSignoutClick()}>
                 Sign Out
@@ -135,8 +126,8 @@ const NavItems = () => {
             <LoginButton>
               <li onClick={() => context.setSignin(true)}>
                 <LoginContainer>
-                  <UserIcon />
                   LOGIN / SIGNUP
+                  <UserIcon />
                 </LoginContainer>
               </li>
             </LoginButton>

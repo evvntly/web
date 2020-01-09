@@ -11,7 +11,7 @@ const Provider = props => {
   const [userMenu, setUserMenu] = useState(false);
   const [ipLocation, setIplocation] = useState("US");
   const [radius, setRadius] = useState(50);
-  const [itemsPerPage, setItemsPerPage] = useState(25);
+  const [itemsPerPage, setItemsPerPage] = useState(27);
   const [showHamburger, setShowHamburger] = useState(false);
 
   useEffect(() => {

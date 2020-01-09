@@ -7,10 +7,9 @@ import styled from "styled-components";
 import Paragraph from "../library/paragraph/paragraph";
 import Banner from "../library/banner";
 import { myContext } from "../context/provider";
-import TextInput from "../library/inputs/text";
-import { BLACK } from "../styles/colors";
-import SelectInput from "../library/inputs/select";
 import Filter from "../components/filter";
+import { FONT_FAMILY } from "../styles/typography";
+import { BLACK } from "../styles/colors";
 
 const Main = styled.div`
   max-width: 1000px;
@@ -23,6 +22,71 @@ const Main = styled.div`
 
 const Container = styled.div`
   margin: 25px 0;
+`;
+
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  @media (max-width: 769px) and (min-width: 320px) {
+    grid-template-columns: 1fr;
+  }
+  grid-gap: 20px;
+`;
+
+const Item = styled.div`
+  border: 1px solid #ccc;
+  border-radius: 4px;
+`;
+
+const Content = styled.div`
+  padding: 10px;
+`;
+
+const Center = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+`;
+
+const ButtonSecondary = styled.div`
+  cursor: pointer;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: ${FONT_FAMILY};
+  font-weight: normal;
+  border: 2px solid #f0bb48;
+  padding: 0 40px;
+  color: ${BLACK};
+  background: #f0bb48;
+  width: max-content;
+  :hover {
+    background: transparent;
+    color: #f0bb48;
+  }
+  @media (max-width: 769px) and (min-width: 320px) {
+    margin: 10px 0;
+  }
+`;
+
+const EventImage = styled.img`
+  object-fit: cover;
+  width: 100%;
+  height: 150px;
+`;
+
+const NoImage = styled.div`
+  width: 100%;
+  height: 150px;
+  background: #ccc;
+  font-family: ${FONT_FAMILY};
+  color: #dddddd;
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  justify-content: center;
 `;
 
 const BrowseEvents = () => {
@@ -76,52 +140,57 @@ const BrowseEvents = () => {
               context.data.events.length === 0 && (
                 <div>{`Sorry no ${context.artistName} events near you`}</div>
               )}
-            {context.data &&
-              Object.keys(context.data).length !== 0 &&
-              context.data.events.map(item => (
-                <div
-                  style={{
-                    padding: "10px",
-                    margin: "20px 0",
-                    border: "1px solid black"
-                  }}
-                  key={item.id}
-                >
-                  <p>
-                    {moment(item.datetime_local).format("dddd")},{" "}
-                    {moment(item.datetime_local).format("MMMM Do YYYY, h:mma")}
-                  </p>
-                  <p>{item.title}</p>
-                  <p>
-                    {item.venue.name}, {item.venue.address},{" "}
-                    {item.venue.display_location}
-                  </p>
-                  {item.performers[0].image && (
-                    <div>
-                      <img src={item.performers[0].image} alt={item.title} />
-                    </div>
-                  )}
-                  <button
-                    onClick={() =>
-                      context.user
-                        ? alert("find buddy")
-                        : context.setSignin(true)
-                    }
-                  >
-                    Find buddy
-                  </button>
-                </div>
-              ))}
+            <Grid>
+              {context.data &&
+                Object.keys(context.data).length !== 0 &&
+                context.data.events.map(item => (
+                  <Item key={item.id}>
+                    {item.performers[0].image ? (
+                      <EventImage
+                        src={item.performers[0].image}
+                        alt={item.title}
+                      />
+                    ) : (
+                      <NoImage>No Image</NoImage>
+                    )}
+                    <Content>
+                      <Paragraph>
+                        🗓
+                        {moment(item.datetime_local).format("dddd")},{" "}
+                        {moment(item.datetime_local).format(
+                          "MMMM Do YYYY, h:mma"
+                        )}
+                      </Paragraph>
+                      <Paragraph>{item.title}</Paragraph>
+                      <Paragraph>
+                        {item.venue.name}, {item.venue.address},{" "}
+                        {item.venue.display_location}
+                      </Paragraph>
+                      <button
+                        onClick={() =>
+                          context.user
+                            ? alert("find buddy")
+                            : context.setSignin(true)
+                        }
+                      >
+                        Find buddy
+                      </button>
+                    </Content>
+                  </Item>
+                ))}
+            </Grid>
             {context.data &&
               Object.keys(context.data).length !== 0 &&
               context.data.meta.total >= context.data.meta.per_page && (
-                <button
-                  onClick={() =>
-                    context.setItemsPerPage(context.itemsPerPage + 25)
-                  }
-                >
-                  Load More
-                </button>
+                <Center>
+                  <ButtonSecondary
+                    onClick={() =>
+                      context.setItemsPerPage(context.itemsPerPage + 25)
+                    }
+                  >
+                    Load More
+                  </ButtonSecondary>
+                </Center>
               )}
           </Main>
         </Container>

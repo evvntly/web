@@ -54,6 +54,10 @@ const Footer = () => {
         |{" "}
         <Link to="/contact" aria-label="Contact">
           Contact
+        </Link>{" "}
+        |{" "}
+        <Link to="/about" aria-label="About">
+          About
         </Link>
       </div>
     </Navigation>
