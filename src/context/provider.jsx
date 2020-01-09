@@ -10,6 +10,8 @@ const Provider = props => {
   const [signin, setSignin] = useState(false);
   const [userMenu, setUserMenu] = useState(false);
   const [ipLocation, setIplocation] = useState("US");
+  const [radius, setRadius] = useState(50);
+  const [itemsPerPage, setItemsPerPage] = useState(25);
 
   useEffect(() => {
     ipCheck(setIplocation);
@@ -30,7 +32,11 @@ const Provider = props => {
     setError,
     userMenu,
     setUserMenu,
-    withinUs
+    withinUs,
+    radius,
+    setRadius,
+    itemsPerPage,
+    setItemsPerPage
   };
 
   return (
