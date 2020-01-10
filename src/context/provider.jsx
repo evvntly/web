@@ -13,6 +13,7 @@ const Provider = props => {
   const [radius, setRadius] = useState(50);
   const [itemsPerPage, setItemsPerPage] = useState(27);
   const [showHamburger, setShowHamburger] = useState(false);
+  const [location, setLocation] = useState(false);
 
   useEffect(() => {
     ipCheck(setIplocation);
@@ -39,7 +40,9 @@ const Provider = props => {
     itemsPerPage,
     setItemsPerPage,
     showHamburger,
-    setShowHamburger
+    setShowHamburger,
+    location,
+    setLocation
   };
 
   return (

@@ -13,7 +13,7 @@ const Input = styled.input`
   border: ${props =>
     props.error ? `1px solid ${RED}` : `1px solid ${SILVER}`};
   font-family: ${FONT_FAMILY};
-  padding: 10px 10px;
+  padding: 10px 30px 10px 10px;
   font-size: 16px;
   font-weight: ${WEIGHT.THIN};
   width: 100%;
@@ -42,7 +42,7 @@ const Clear = styled.div`
   cursor: pointer;
   position: absolute;
   right: 15px;
-  top: 15px;
+  top: 18px;
   width: 20px;
   height: 50px;
   &:before,
@@ -50,9 +50,9 @@ const Clear = styled.div`
     position: absolute;
     left: 15px;
     content: " ";
-    height: 20px;
+    height: 15px;
     width: 2px;
-    background-color: ${BLACK};
+    background-color: #ccc;
   }
   &:before {
     transform: rotate(45deg);

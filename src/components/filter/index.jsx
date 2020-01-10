@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
+import AlgoliaPlaces from "algolia-places-react";
 import styled from "styled-components";
 import { BLACK } from "../../styles/colors";
 import TextInput from "../../library/inputs/text";
 import SelectInput from "../../library/inputs/select";
 import { myContext } from "../../context/provider";
-import { FONT_FAMILY } from "../../styles/typography";
+import { FONT_FAMILY, WEIGHT } from "../../styles/typography";
 
 const Container = styled.div`
   margin: 25px 0;
@@ -26,7 +27,8 @@ const InputContainer = styled.div`
 
 const ButtonSecondary = styled.div`
   cursor: pointer;
-  height: 48px;
+  height: 40px;
+  width: 10%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -45,18 +47,41 @@ const ButtonSecondary = styled.div`
   }
 `;
 
-const StyledTextInput = styled.div`
-  margin-right: 25px;
-  width: 80%;
+const AlogilaContainer = styled.div`
+  margin-right: 20px;
+  width: 30%;
+  font-family: ${FONT_FAMILY};
+  input {
+    height: 50px;
+    border-radius: 0;
+    font-size: 16px;
+    font-weight: ${WEIGHT.THIN};
+  }
   @media (max-width: 769px) and (min-width: 320px) {
     width: 100%;
     margin: 10px 0;
   }
 `;
 
+const StyledTextInput = styled.div`
+  margin-right: 20px;
+  width: 50%;
+  @media (max-width: 769px) and (min-width: 320px) {
+    width: 100%;
+    margin: 10px 0;
+  }
+`;
+
+const StyledButton = styled.div`
+  margin-top: 15px;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+`;
+
 const StyledSelect = styled.div`
   width: 20%;
-  margin-right: 25px;
   @media (max-width: 769px) and (min-width: 320px) {
     width: 100%;
     margin: 10px 0;
@@ -64,7 +89,7 @@ const StyledSelect = styled.div`
 `;
 
 const selectData = [
-  { value: 50, name: "Near Me (50 Miles)" },
+  { value: 50, name: "Close (50 Miles)" },
   { value: 100, name: "100 Miles" },
   { value: 250, name: "250 Miles" },
   { value: 500, name: "500 Miles" },
@@ -74,13 +99,18 @@ const selectData = [
 
 const Filter = () => {
   const context = useContext(myContext);
+  const lat = context.location && context.location.latlng.lat;
+  const lon = context.location && context.location.latlng.lng;
+
   const onButtonClick = () => {
     fetch(
       `https://api.seatgeek.com/2/events?q=${context.artistName
         .replace(/\s+/g, "-")
         .toLowerCase()}&range=${context.radius}mi&per_page=${
         context.itemsPerPage
-      }&geoip=true&client_id=${process.env.GATSBY_API_KEY}`
+      }&geoip=true${
+        context.location ? `&lat=${lat}&lon=${lon}` : ""
+      }&client_id=${process.env.GATSBY_API_KEY}`
     )
       .then(response => response.json())
       .then(data => context.setData(data))
@@ -91,6 +121,8 @@ const Filter = () => {
     context.setData({});
     context.setArtistName("");
   };
+
+  console.log(context);
 
   return (
     <Container>
@@ -105,6 +137,31 @@ const Filter = () => {
             placeholder="Enter artist / event / sports team..."
           />
         </StyledTextInput>
+        {!context.location ? (
+          <AlogilaContainer>
+            <AlgoliaPlaces
+              placeholder="Locations, e.g. New York"
+              options={{
+                appId: process.env.GATSBY_ALGOLIA_APP_ID,
+                apiKey: process.env.GATSBY_ALGOLIA_API,
+                countries: ["us"]
+              }}
+              onChange={({ suggestion }) => context.setLocation(suggestion)}
+              onClear={() => context.setLocation(false)}
+              onError={({ message }) =>
+                // eslint-disable-next-line no-console
+                console.log(message)
+              }
+            />
+          </AlogilaContainer>
+        ) : (
+          <AlogilaContainer>
+            <TextInput
+              onClear={() => context.setLocation(false)}
+              value={context.location && `${context.location.value}`}
+            />
+          </AlogilaContainer>
+        )}
         <StyledSelect>
           <SelectInput
             options={selectData}
@@ -113,10 +170,12 @@ const Filter = () => {
             }}
           />
         </StyledSelect>
+      </InputContainer>
+      <StyledButton>
         <ButtonSecondary onClick={() => onButtonClick()}>
           Search
         </ButtonSecondary>
-      </InputContainer>
+      </StyledButton>
     </Container>
   );
 };

@@ -91,6 +91,8 @@ const NoImage = styled.div`
 
 const BrowseEvents = () => {
   const context = useContext(myContext);
+  const lat = context.location && context.location.latlng.lat;
+  const lon = context.location && context.location.latlng.lng;
 
   useEffect(() => {
     fetch(
@@ -98,13 +100,15 @@ const BrowseEvents = () => {
         .replace(/\s+/g, "-")
         .toLowerCase()}&range=${context.radius}mi&per_page=${
         context.itemsPerPage
-      }&geoip=true&client_id=${process.env.GATSBY_API_KEY}`
+      }&geoip=true${
+        context.location ? `&lat=${lat}&lon=${lon}` : ""
+      }&client_id=${process.env.GATSBY_API_KEY}`
     )
       .then(response => response.json())
       .then(data => context.setData(data))
       // eslint-disable-next-line no-console
       .catch(err => console.log(err));
-  }, [context.radius, context.itemsPerPage]);
+  }, [context.radius, context.itemsPerPage, context.location]);
 
   return (
     <>
@@ -125,17 +129,19 @@ const BrowseEvents = () => {
                 your event buddy by using the filter above.
               </Paragraph>
             )}
-            {context.data && Object.keys(context.data).length !== 0 && (
-              <>
-                <Paragraph>
-                  {`We are currently showing you events ${
-                    context.radius
-                  } miles around your
+            {context.data &&
+              Object.keys(context.data).length !== 0 &&
+              !context.location && (
+                <>
+                  <Paragraph>
+                    {`We are currently showing you events ${
+                      context.radius
+                    } miles around your
                   current location, please use the filter above to refine your
                   search.`}
-                </Paragraph>
-              </>
-            )}
+                  </Paragraph>
+                </>
+              )}
             {Object.keys(context.data).length !== 0 &&
               context.data.events.length === 0 && (
                 <div>{`Sorry no ${context.artistName} events near you`}</div>

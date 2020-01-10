@@ -144,19 +144,19 @@ const Video = () => {
       </BackgroundVideo>
       <Overlay />
       <Content>
-        <h1>Looking for a event / gig / sports game buddy?</h1>
-        <h2>Stop searching and start connecting!</h2>
+        <h1>Looking for events near you or around the US?</h1>
+        <h2>Stop searching and enjoying life!</h2>
         <Input>
           <TextInput
             onChange={e => {
               context.setArtistName(e.target.value);
             }}
-            placeholder="Enter artist / event / sports team..."
+            placeholder="Artist / Event / Sports team... e.g. Golden State Warriors"
           />
         </Input>
         <ButtonWrapper>
           <ButtonSecondary onClick={() => onButtonClick()}>
-            Find your buddy
+            Find Events
           </ButtonSecondary>
           {!context.user && (
             <ButtonPrimary onClick={() => context.setSignin(true)}>
