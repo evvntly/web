@@ -202,6 +202,7 @@ const BrowseEvents = () => {
               )}
           </Main>
         </Container>
+        <button onClick={"_urq.push(['Feedback_Open']);"}>Feedback</button>
       </LayoutPage>
     </>
   );
