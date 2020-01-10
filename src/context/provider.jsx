@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ipCheck } from "../startup/ipcheck";
+import ErrorBoundary from "../components/error-boundry/error-boundry";
 export const myContext = React.createContext();
 
 const Provider = props => {
@@ -50,4 +51,8 @@ const Provider = props => {
   );
 };
 
-export default ({ element }) => <Provider>{element}</Provider>;
+export default ({ element }) => (
+  <ErrorBoundary>
+    <Provider>{element}</Provider>
+  </ErrorBoundary>
+);
