@@ -9,19 +9,18 @@ class ErrorBoundary extends React.Component {
   static getDerivedStateFromError(error) {
     // Update state so the next render will show the fallback UI.
     return { hasError: true };
-    console.log("hi");
   }
 
   componentDidCatch(error, errorInfo) {
     // You can also log the error to an error reporting service
     if (process.env.NODE_ENV === "production") {
       this.setState({ error });
-      window.Sentry.configureScope(scope => {
+      Sentry.configureScope(scope => {
         Object.keys(errorInfo).forEach(key => {
           scope.setExtra(key, errorInfo[key]);
         });
       });
-      window.Sentry.captureException(error);
+      Sentry.captureException(error);
     } else {
       // eslint-disable-next-line no-console
       console.log(error);
