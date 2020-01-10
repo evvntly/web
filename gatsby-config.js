@@ -69,6 +69,14 @@ module.exports = {
         }
       }
     },
+    {
+      resolve: "gatsby-plugin-sentry",
+      options: {
+        dsn: process.env.GATSBY_SENTRY_DSN_URL,
+        environment: process.env.NODE_ENV,
+        enabled: (() => ["production", "stage"].indexOf(process.env.NODE_ENV) !== -1)()
+      }
+    },
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-react-helmet`,

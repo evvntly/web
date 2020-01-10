@@ -25,6 +25,7 @@
     "firebase": "^7.6.1",
     "gatsby-plugin-firebase": "^0.1.7",
     "gatsby-plugin-react-svg": "^3.0.0",
+    "gatsby-plugin-sentry": "^1.0.1",
     "lodash": "^4.17.15",
     "moment": "^2.24.0"
   },
