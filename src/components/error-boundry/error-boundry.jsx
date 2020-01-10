@@ -23,6 +23,7 @@ class ErrorBoundary extends React.Component {
       });
       window.Sentry.captureException(error);
     } else {
+      // eslint-disable-next-line no-console
       console.log(error);
     }
   }

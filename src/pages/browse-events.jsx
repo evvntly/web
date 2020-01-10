@@ -149,41 +149,43 @@ const BrowseEvents = () => {
                 </Paragraph>
               )}
             <Grid>
-              {context.data.events.map(item => (
-                <Item key={item.id}>
-                  {item.performers[0].image ? (
-                    <EventImage
-                      src={item.performers[0].image}
-                      alt={item.title}
-                    />
-                  ) : (
-                    <NoImage>No Image</NoImage>
-                  )}
-                  <Content>
-                    <Paragraph>
-                      🗓
-                      {moment(item.datetime_local).format("dddd")},{" "}
-                      {moment(item.datetime_local).format(
-                        "MMMM Do YYYY, h:mma"
-                      )}
-                    </Paragraph>
-                    <Paragraph>{item.title}</Paragraph>
-                    <Paragraph>
-                      {item.venue.name}, {item.venue.address},{" "}
-                      {item.venue.display_location}
-                    </Paragraph>
-                    <button
-                      onClick={() =>
-                        context.user
-                          ? alert("find buddy")
-                          : context.setSignin(true)
-                      }
-                    >
-                      Find buddy
-                    </button>
-                  </Content>
-                </Item>
-              ))}
+              {context.data &&
+                Object.keys(context.data).length !== 0 &&
+                context.data.events.map(item => (
+                  <Item key={item.id}>
+                    {item.performers[0].image ? (
+                      <EventImage
+                        src={item.performers[0].image}
+                        alt={item.title}
+                      />
+                    ) : (
+                      <NoImage>No Image</NoImage>
+                    )}
+                    <Content>
+                      <Paragraph>
+                        🗓
+                        {moment(item.datetime_local).format("dddd")},{" "}
+                        {moment(item.datetime_local).format(
+                          "MMMM Do YYYY, h:mma"
+                        )}
+                      </Paragraph>
+                      <Paragraph>{item.title}</Paragraph>
+                      <Paragraph>
+                        {item.venue.name}, {item.venue.address},{" "}
+                        {item.venue.display_location}
+                      </Paragraph>
+                      <button
+                        onClick={() =>
+                          context.user
+                            ? alert("find buddy")
+                            : context.setSignin(true)
+                        }
+                      >
+                        Find buddy
+                      </button>
+                    </Content>
+                  </Item>
+                ))}
             </Grid>
             {context.data &&
               Object.keys(context.data).length !== 0 &&
@@ -200,6 +202,7 @@ const BrowseEvents = () => {
               )}
           </Main>
         </Container>
+        <button onClick={() => brokenFuction()}>Hi</button>
       </LayoutPage>
     </>
   );
