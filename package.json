@@ -1,7 +1,7 @@
 {
-  "name": "concert-buddy",
+  "name": "event-finda",
   "private": true,
-  "description": "Concert Buddy",
+  "description": "Event Finda",
   "version": "1.0",
   "license": "MIT",
   "scripts": {
@@ -52,8 +52,6 @@
     "gatsby": "^2.18.18",
     "gatsby-background-image": "^0.8.19",
     "gatsby-plugin-compression-v2": "^0.1.0",
-    "gatsby-plugin-google-gtag": "^1.1.16",
-    "gatsby-plugin-google-tagmanager": "^2.1.17",
     "gatsby-plugin-html-attributes": "^1.0.5",
     "gatsby-plugin-netlify": "^2.1.27",
     "gatsby-plugin-prefetch-google-fonts": "^1.4.1",
