@@ -118,7 +118,7 @@ const BrowseEvents = () => {
         <meta name="description" content="Find a concert buddy" />
       </Helmet>
       <LayoutPage>
-        <Banner img="moshpit" />
+        <Banner img="basketballbanner" />
         <Container>
           <Main>
             <Heading title="Search Events" />

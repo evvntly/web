@@ -8,7 +8,6 @@ const Navigation = styled.footer`
   min-height: 50px;
   width: 100%;
   background: black;
-  z-index: 2;
   position: relative;
   font-family: ${FONT_FAMILY};
   display: flex;

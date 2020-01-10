@@ -33,7 +33,7 @@ const Overlay = styled.div`
 const BackgroundSection = ({
   className,
   img,
-  height = 200,
+  height = 225,
   title,
   overlay = true
 }) => (

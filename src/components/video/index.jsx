@@ -5,6 +5,7 @@ import { BLACK, WHITE } from "../../styles/colors";
 import TextInput from "../../library/inputs/text";
 import { myContext } from "../../context/provider";
 import { navigate } from "gatsby";
+import PosterImage from "./poster";
 
 const BackgroundVideo = styled.video`
   position: absolute;
@@ -128,20 +129,20 @@ const Video = () => {
       .catch(err => console.log(err));
   };
 
-  const videos = [
-    "https://media.istockphoto.com/videos/slomo-of-a-football-being-caught-by-receiver-video-id871040454",
-    "https://media.istockphoto.com/videos/stage-diving-video-id670497036",
-    "https://media.istockphoto.com/videos/park-at-night-establishing-shot-video-id1160668031",
-    "https://media.istockphoto.com/videos/the-puck-flies-to-gate-video-id483261099",
-    "https://media.istockphoto.com/videos/future-nba-champion-video-id636326226"
+  const images = [
+    "basketballhome",
+    "moshpithome",
+    "hockeyhome",
+    "hockey2home",
+    "footballhome",
+    "baseballhome",
+    "theatrehome",
+    "basketballhome"
   ];
-  const selectRandomVideo = videos[Math.floor(Math.random() * videos.length)];
-
+  const selectRandomImage = images[Math.floor(Math.random() * images.length)];
   return (
     <>
-      <BackgroundVideo autoPlay playsInline muted loop>
-        <source src={selectRandomVideo} type="video/mp4" />
-      </BackgroundVideo>
+      <PosterImage img={selectRandomImage} />
       <Overlay />
       <Content>
         <h1>Looking for events near you or around the US?</h1>
