@@ -8,6 +8,7 @@ import { FirebaseContext } from "gatsby-plugin-firebase";
 import { myContext } from "../../context/provider";
 import SignIn from "../signin";
 import { BLACK } from "../../styles/colors";
+import debug from "debug";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -41,6 +42,8 @@ const Content = styled.div``;
 
 const LayoutHome = ({ children }) => {
   const context = useContext(myContext);
+  const log = debug("context");
+  log("context", context);
   const firebase = React.useContext(FirebaseContext);
   useEffect(() => {
     firebase &&

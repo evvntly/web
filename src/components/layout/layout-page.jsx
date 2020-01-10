@@ -7,6 +7,7 @@ import { myContext } from "../../context/provider";
 import { FirebaseContext } from "gatsby-plugin-firebase";
 import SignIn from "../signin";
 import { Notice } from "./layout-home";
+import debug from "debug";
 
 const Container = styled.div`
   position: relative;
@@ -26,6 +27,8 @@ const GlobalStyle = createGlobalStyle`
 
 const LayoutPage = ({ children }) => {
   const context = useContext(myContext);
+  const log = debug("context");
+  log("context", context);
   let firebase = React.useContext(FirebaseContext);
   useEffect(() => {
     firebase &&

@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "algolia-places-react": "^1.5.1",
+    "debug": "^4.1.1",
     "eslint-config-gatsby-standard": "^2.2.0",
     "eslint-plugin-flowtype": "^4.5.3",
     "eslint-plugin-jsx-a11y": "^6.2.3",
