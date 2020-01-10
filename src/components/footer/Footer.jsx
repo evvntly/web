@@ -19,9 +19,11 @@ const Navigation = styled.footer`
     color: ${SILVER};
     font-size: 0.8rem;
   }
-  a {
+  a,
+  span {
     color: ${WHITE};
     text-decoration: none;
+    cursor: pointer;
   }
 `;
 
@@ -57,7 +59,14 @@ const Footer = () => {
         |{" "}
         <Link to="/about" aria-label="About">
           About
-        </Link>
+        </Link>{" "}
+        |{" "}
+        <span
+          aria-label="Feedback & Bugs"
+          onClick={() => window._urq.push(["Feedback_Open"])}
+        >
+          Feedback / Bugs
+        </span>
       </div>
     </Navigation>
   );
