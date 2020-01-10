@@ -144,7 +144,9 @@ const BrowseEvents = () => {
               )}
             {Object.keys(context.data).length !== 0 &&
               context.data.events.length === 0 && (
-                <div>{`Sorry no ${context.artistName} events near you`}</div>
+                <Paragraph>
+                  Sorry no events near you, please refine your search
+                </Paragraph>
               )}
             <Grid>
               {context.data &&

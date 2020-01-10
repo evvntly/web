@@ -122,8 +122,6 @@ const Filter = () => {
     context.setArtistName("");
   };
 
-  console.log(context);
-
   return (
     <Container>
       <InputContainer>
