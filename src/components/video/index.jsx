@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { FONT_FAMILY } from "../../styles/typography";
 import { BLACK, WHITE } from "../../styles/colors";
@@ -6,14 +6,6 @@ import TextInput from "../../library/inputs/text";
 import { myContext } from "../../context/provider";
 import { navigate } from "gatsby";
 import PosterImage from "./poster";
-
-const BackgroundVideo = styled.video`
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  min-width: 100%;
-  min-height: 100%;
-`;
 
 const Overlay = styled.div`
   text-align: center;
@@ -111,6 +103,22 @@ const ButtonSecondary = styled.div`
 
 const Video = () => {
   const context = useContext(myContext);
+  const [image, setImage] = useState(false);
+
+  useEffect(() => {
+    const images = [
+      "basketballhome",
+      "moshpithome",
+      "hockeyhome",
+      "hockey2home",
+      "footballhome",
+      "baseballhome",
+      "theatrehome",
+      "basketballhome"
+    ];
+    setImage(images[Math.floor(Math.random() * images.length)]);
+  }, []);
+
   const onButtonClick = () => {
     fetch(
       `https://api.seatgeek.com/2/events?q=${context.artistName
@@ -129,20 +137,9 @@ const Video = () => {
       .catch(err => console.log(err));
   };
 
-  const images = [
-    "basketballhome",
-    "moshpithome",
-    "hockeyhome",
-    "hockey2home",
-    "footballhome",
-    "baseballhome",
-    "theatrehome",
-    "basketballhome"
-  ];
-  const selectRandomImage = images[Math.floor(Math.random() * images.length)];
   return (
     <>
-      <PosterImage img={selectRandomImage} />
+      <PosterImage img={image} />
       <Overlay />
       <Content>
         <h1>Looking for events near you or around the US?</h1>
