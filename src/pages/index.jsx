@@ -6,11 +6,13 @@ export default () => {
   return (
     <>
       <Helmet>
-        <title>Concert Buddy</title>
+        <title>
+          Event Finda - Search the USA for events to do today, or next week
+        </title>
         <link rel="canonical" href="/" />
         <meta
           name="description"
-          content="Going to a concert or gig solo? Want a buddy to go with? Then you've come to the right place!"
+          content="Looking for events in San Francisco, New York, La? Look no further, find events all across the USA."
         />
       </Helmet>
       <LayoutHome />

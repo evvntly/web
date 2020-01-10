@@ -113,7 +113,7 @@ const BrowseEvents = () => {
   return (
     <>
       <Helmet>
-        <title>Find a buddy</title>
+        <title>Search Events</title>
         <link rel="canonical" href="https://concertbuddy.io/find-buddy" />
         <meta name="description" content="Find a concert buddy" />
       </Helmet>
