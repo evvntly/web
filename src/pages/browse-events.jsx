@@ -202,7 +202,6 @@ const BrowseEvents = () => {
               )}
           </Main>
         </Container>
-        <button onClick={() => brokenFuction()}>Hi</button>
       </LayoutPage>
     </>
   );
