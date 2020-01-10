@@ -43,7 +43,7 @@ const LayoutPage = ({ children }) => {
       <GlobalStyle />
       {!context.withinUs && (
         <Notice>
-          Hey there, search only works within the US. sorry....
+          Hi! Results are limited outside the US.
           <span role="img" aria-label="crying">
             😭
           </span>

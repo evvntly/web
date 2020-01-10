@@ -141,8 +141,7 @@ const Filter = () => {
               placeholder="Locations, e.g. New York"
               options={{
                 appId: process.env.GATSBY_ALGOLIA_APP_ID,
-                apiKey: process.env.GATSBY_ALGOLIA_API,
-                countries: ["us"]
+                apiKey: process.env.GATSBY_ALGOLIA_API
               }}
               onChange={({ suggestion }) => context.setLocation(suggestion)}
               onClear={() => context.setLocation(false)}
