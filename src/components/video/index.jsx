@@ -132,6 +132,14 @@ const Video = () => {
       .then(() => {
         navigate("/browse-events/");
         context.setRadius(50);
+        if (process.env.NODE_ENV === "production") {
+          window.analytics.track("get_search_term", {
+            searchTerm: context.artistName,
+            path: window.location.pathname,
+            url: typeof window !== "undefined" ? window.location.href : null,
+            referrer: typeof document !== "undefined" ? document.referrer : null
+          });
+        }
       })
       // eslint-disable-next-line no-console
       .catch(err => console.log(err));
