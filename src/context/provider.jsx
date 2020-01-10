@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import FullStory, { identify } from "react-fullstory";
 import { ipCheck } from "../startup/ipcheck";
 import ErrorBoundary from "../components/error-boundry/error-boundry";
 export const myContext = React.createContext();
@@ -15,6 +16,15 @@ const Provider = props => {
   const [itemsPerPage, setItemsPerPage] = useState(27);
   const [showHamburger, setShowHamburger] = useState(false);
   const [location, setLocation] = useState(false);
+
+  useEffect(() => {
+    if (user) {
+      identify(user.uid, {
+        displayName: user.displayName,
+        email: user.email
+      });
+    }
+  }, [user]);
 
   useEffect(() => {
     ipCheck(setIplocation);
@@ -53,6 +63,7 @@ const Provider = props => {
 
 export default ({ element }) => (
   <ErrorBoundary>
+    <FullStory org={process.env.GATSBY_FULLSTORY_ORG_ID} />
     <Provider>{element}</Provider>
   </ErrorBoundary>
 );
