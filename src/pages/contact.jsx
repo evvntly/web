@@ -24,8 +24,8 @@ const Contact = () => {
     <>
       <Helmet>
         <title>Contact</title>
-        <link rel="canonical" href="https://concertbuddy.io/contact" />
-        <meta name="description" content="Find a concert buddy" />
+        <link rel="canonical" href="https://eventfinda.io/contact" />
+        <meta name="description" content="Contact Event Finda" />
       </Helmet>
       <LayoutPage>
         <Banner img="moshpit" />

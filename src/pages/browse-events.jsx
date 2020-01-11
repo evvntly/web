@@ -225,8 +225,8 @@ const BrowseEvents = () => {
     <>
       <Helmet>
         <title>Search Events</title>
-        <link rel="canonical" href="https://concertbuddy.io/find-buddy" />
-        <meta name="description" content="Find a concert buddy" />
+        <link rel="canonical" href="https://eventfinda.io/browse-events" />
+        <meta name="description" content="Browse Events" />
       </Helmet>
       <LayoutPage>
         <Banner img="basketballbanner" />

@@ -24,8 +24,8 @@ const Privacy = () => {
     <>
       <Helmet>
         <title>Privacy</title>
-        <link rel="canonical" href="https://concertbuddy.io/privacy" />
-        <meta name="description" content="Find a concert buddy" />
+        <link rel="canonical" href="https://eventfinda.io/privacy" />
+        <meta name="description" content="Privacy Event Finda" />
       </Helmet>
       <LayoutPage>
         <Banner img="moshpit" />

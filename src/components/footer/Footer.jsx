@@ -61,6 +61,10 @@ const Footer = () => {
           About
         </Link>{" "}
         |{" "}
+        <Link to="/Advertise" aria-label="Advertise">
+          Advertise
+        </Link>{" "}
+        |{" "}
         <span
           aria-label="Feedback & Bugs"
           onClick={() => window._urq.push(["Feedback_Open"])}

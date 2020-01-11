@@ -102,9 +102,11 @@ const NavItems = () => {
           }}
         >
           <li>
-            <Link to="/" aria-label="Home" activeStyle={{ color: "#f0bb48" }}>
-              Home
-            </Link>
+            {isMobile && (
+              <Link to="/" aria-label="Home" activeStyle={{ color: "#f0bb48" }}>
+                Home
+              </Link>
+            )}
           </li>
           <li>
             <Link
@@ -115,7 +117,7 @@ const NavItems = () => {
               Browse Events
             </Link>
           </li>
-          {context.user && (
+          {context.user && isMobile && (
             <li>
               <Link to="/" aria-label="Logout" onClick={() => onSignoutClick()}>
                 Sign Out

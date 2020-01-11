@@ -19,20 +19,20 @@ const Container = styled.div`
   margin: 25px 0;
 `;
 
-const About = () => {
+const Advertise = () => {
   return (
     <>
       <Helmet>
-        <title>About</title>
-        <link rel="canonical" href="https://eventfinda.io/about" />
-        <meta name="description" content="Find a concert buddy" />
+        <title>Advertise</title>
+        <link rel="canonical" href="https://eventfinda.io/advertise" />
+        <meta name="description" content="Advertise with event finda" />
       </Helmet>
       <LayoutPage>
         <Banner img="moshpit" />
         <Container>
           <Main>
-            <Heading title="About" />
-            <Paragraph>Coming soon...</Paragraph>
+            <Heading title="Advertise" />
+            <Paragraph>Coming Soon</Paragraph>
           </Main>
         </Container>
       </LayoutPage>
@@ -40,4 +40,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default Advertise;
