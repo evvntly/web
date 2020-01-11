@@ -104,6 +104,13 @@ const UserNav = () => {
                   >
                     <li>My Profile</li>
                   </Link>
+                  <Link
+                    onClick={() => context.setUserMenu(false)}
+                    to="/my-events"
+                    aria-label="My Events"
+                  >
+                    <li>My Events</li>
+                  </Link>
                   <li
                     style={{ cursor: "pointer" }}
                     onClick={() => onSignoutClick()}

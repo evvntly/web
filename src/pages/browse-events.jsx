@@ -10,6 +10,7 @@ import { myContext } from "../context/provider";
 import Filter from "../components/filter";
 import { FONT_FAMILY } from "../styles/typography";
 import { BLACK } from "../styles/colors";
+import { FirebaseContext } from "gatsby-plugin-firebase";
 
 const Main = styled.div`
   max-width: 1000px;
@@ -91,6 +92,7 @@ const NoImage = styled.div`
 
 const BrowseEvents = () => {
   const context = useContext(myContext);
+  const firebase = React.useContext(FirebaseContext);
   const lat = context.location && context.location.latlng.lat;
   const lon = context.location && context.location.latlng.lng;
 
@@ -109,6 +111,40 @@ const BrowseEvents = () => {
       // eslint-disable-next-line no-console
       .catch(err => console.log(err));
   }, [context.radius, context.itemsPerPage, context.location]);
+
+  const onImGoingClick = item => {
+    if (context.user) {
+      const eventRef = firebase.database().ref(`${context.user.uid}/events`);
+      const eventItem = {
+        ...item,
+        notes: "",
+        type: "going"
+      };
+      eventRef.push(eventItem);
+      eventRef.on("value", snapshot => {
+        console.log(snapshot.val());
+      });
+    } else {
+      context.setSignin(true);
+    }
+  };
+
+  const onMaybeClick = item => {
+    if (context.user) {
+      const eventRef = firebase.database().ref(`${context.user.uid}/events`);
+      const eventItem = {
+        ...item,
+        notes: "",
+        type: "maybe"
+      };
+      eventRef.push(eventItem);
+      eventRef.on("value", snapshot => {
+        console.log(snapshot.val());
+      });
+    } else {
+      context.setSignin(true);
+    }
+  };
 
   return (
     <>
@@ -174,14 +210,11 @@ const BrowseEvents = () => {
                         {item.venue.name}, {item.venue.address},{" "}
                         {item.venue.display_location}
                       </Paragraph>
-                      <button
-                        onClick={() =>
-                          context.user
-                            ? alert("find buddy")
-                            : context.setSignin(true)
-                        }
-                      >
-                        Find buddy
+                      <button onClick={() => onImGoingClick(item)}>
+                        I'm Def Going!
+                      </button>
+                      <button onClick={() => onMaybeClick(item)}>
+                        I'm Interested
                       </button>
                     </Content>
                   </Item>
