@@ -93,6 +93,18 @@ const NavItems = () => {
       );
   };
 
+  const onSignUpClick = () => {
+    if (process.env.NODE_ENV === "production") {
+      window.analytics.track("signup_clicked", {
+        position: "navigation",
+        path: window.location.pathname,
+        url: typeof window !== "undefined" ? window.location.href : null,
+        referrer: typeof document !== "undefined" ? document.referrer : null
+      });
+    }
+    context.setSignin(true);
+  };
+
   return (
     <>
       <Items>
@@ -136,7 +148,7 @@ const NavItems = () => {
           )}
           {!context.user && (
             <LoginButton>
-              <li onClick={() => context.setSignin(true)}>
+              <li onClick={() => onSignUpClick()}>
                 <LoginContainer>
                   LOGIN / SIGNUP
                   <UserIcon />

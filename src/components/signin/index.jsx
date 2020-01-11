@@ -104,6 +104,13 @@ const SignIn = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     if (isMobile) context.setShowHamburger(false);
+    if (process.env.NODE_ENV === "production") {
+      window.analytics.track("signup_modal_opened", {
+        path: window.location.pathname,
+        url: typeof window !== "undefined" ? window.location.href : null,
+        referrer: typeof document !== "undefined" ? document.referrer : null
+      });
+    }
   }, []);
 
   const firebase = React.useContext(FirebaseContext);
@@ -115,13 +122,50 @@ const SignIn = () => {
       .signInWithPopup(provider)
       .then(function(result) {
         context.setUser(result);
+        if (
+          process.env.NODE_ENV === "production" &&
+          result.additionalUserInfo.isNewUser
+        ) {
+          window.analytics.track("new_user_account", {
+            userName: result.user.displayName,
+            email: result.user.email,
+            uid: result.user.uid,
+            path: window.location.pathname,
+            url: typeof window !== "undefined" ? window.location.href : null,
+            referrer: typeof document !== "undefined" ? document.referrer : null
+          });
+        }
+        if (
+          process.env.NODE_ENV === "production" &&
+          !result.additionalUserInfo.isNewUser
+        ) {
+          window.analytics.track("returning_user_sign", {
+            userName: result.user.displayName,
+            email: result.user.email,
+            uid: result.user.uid,
+            path: window.location.pathname,
+            url: typeof window !== "undefined" ? window.location.href : null,
+            referrer: typeof document !== "undefined" ? document.referrer : null
+          });
+        }
       })
+
       .then(() => context.setSignin(false))
       .catch(function(error) {
         context.setError(error);
       });
   };
 
+  const onCloseClick = () => {
+    if (process.env.NODE_ENV === "production") {
+      window.analytics.track("signup_modal_closed", {
+        path: window.location.pathname,
+        url: typeof window !== "undefined" ? window.location.href : null,
+        referrer: typeof document !== "undefined" ? document.referrer : null
+      });
+    }
+    context.setSignin(false);
+  };
   const images = [
     "basketball",
     "moshpit",
@@ -158,7 +202,7 @@ const SignIn = () => {
               possible - other signup options coming soon.
             </Paragraph>
           </Content>
-          <Close onClick={() => context.setSignin(false)}>
+          <Close onClick={() => onCloseClick()}>
             <div>X</div>
           </Close>
         </Modal>

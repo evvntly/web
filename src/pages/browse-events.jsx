@@ -301,10 +301,10 @@ const BrowseEvents = () => {
                       ) : (
                         <>
                           <ButtonSecondary onClick={() => onImGoingClick(item)}>
-                            I'm Def Going!
+                            Going
                           </ButtonSecondary>
                           <ButtonPrimary onClick={() => onMaybeClick(item)}>
-                            I'm Interested
+                            Interested
                           </ButtonPrimary>
                         </>
                       )}

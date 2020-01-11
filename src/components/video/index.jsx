@@ -145,6 +145,18 @@ const Video = () => {
       .catch(err => console.log(err));
   };
 
+  const onSignupClick = () => {
+    if (process.env.NODE_ENV === "production") {
+      window.analytics.track("signup_clicked", {
+        position: "cta",
+        path: window.location.pathname,
+        url: typeof window !== "undefined" ? window.location.href : null,
+        referrer: typeof document !== "undefined" ? document.referrer : null
+      });
+    }
+    context.setSignin(true);
+  };
+
   return (
     <>
       <PosterImage img={image} />
@@ -165,7 +177,7 @@ const Video = () => {
             Find Events
           </ButtonSecondary>
           {!context.user && (
-            <ButtonPrimary onClick={() => context.setSignin(true)}>
+            <ButtonPrimary onClick={() => onSignupClick()}>
               Signup!
             </ButtonPrimary>
           )}
