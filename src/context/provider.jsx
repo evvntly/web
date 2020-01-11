@@ -12,7 +12,7 @@ const Provider = props => {
   const [signin, setSignin] = useState(false);
   const [userMenu, setUserMenu] = useState(false);
   const [ipLocation, setIplocation] = useState("US");
-  const [radius, setRadius] = useState(50);
+  const [radius, setRadius] = useState(25);
   const [itemsPerPage, setItemsPerPage] = useState(27);
   const [showHamburger, setShowHamburger] = useState(false);
   const [location, setLocation] = useState(false);

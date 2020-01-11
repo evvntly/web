@@ -101,6 +101,7 @@ const UserNav = () => {
                     onClick={() => context.setUserMenu(false)}
                     to="/my-profile"
                     aria-label="My Profile"
+                    activeStyle={{ color: "#f0bb48" }}
                   >
                     <li>My Profile</li>
                   </Link>
@@ -108,6 +109,7 @@ const UserNav = () => {
                     onClick={() => context.setUserMenu(false)}
                     to="/my-events"
                     aria-label="My Events"
+                    activeStyle={{ color: "#f0bb48" }}
                   >
                     <li>My Events</li>
                   </Link>

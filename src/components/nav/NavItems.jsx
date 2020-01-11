@@ -102,12 +102,11 @@ const NavItems = () => {
           }}
         >
           <li>
-            {isMobile && (
-              <Link to="/" aria-label="Home" activeStyle={{ color: "#f0bb48" }}>
-                Home
-              </Link>
-            )}
+            <Link to="/" aria-label="Home" activeStyle={{ color: "#f0bb48" }}>
+              Home
+            </Link>
           </li>
+
           <li>
             <Link
               to="/browse-events"
@@ -117,6 +116,17 @@ const NavItems = () => {
               Browse Events
             </Link>
           </li>
+          {context.user && (
+            <li>
+              <Link
+                to="/my-events"
+                aria-label="My Events"
+                activeStyle={{ color: "#f0bb48" }}
+              >
+                My Events
+              </Link>
+            </li>
+          )}
           {context.user && isMobile && (
             <li>
               <Link to="/" aria-label="Logout" onClick={() => onSignoutClick()}>

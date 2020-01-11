@@ -240,6 +240,13 @@ const BrowseEvents = () => {
                 your event buddy by using the filter above.
               </Paragraph>
             )}
+
+            {context.data && Object.keys(context.data).length !== 0 && (
+              <Paragraph>{`Showing you ${
+                context.data.meta.total
+              } events`}</Paragraph>
+            )}
+
             {context.data &&
               Object.keys(context.data).length !== 0 &&
               !context.location && (
