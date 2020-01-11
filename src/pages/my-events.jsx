@@ -102,41 +102,40 @@ const MyEvents = () => {
 
   const loadEvents = () => {
     if (context.eventData.events) {
-      return Object.keys(context.eventData.events).map(item => (
-        <Item key={item}>
-          {context.eventData.events[item].performers[0].image ? (
-            <EventImage
-              src={context.eventData.events[item].performers[0].image}
-              alt={context.eventData.events[item].title}
-            />
+      const placeholder = [];
+      Object.keys(context.eventData.events).map(item => {
+        let object = context.eventData.events[item];
+        object.firebaseId = item;
+        placeholder.push(context.eventData.events[item]);
+      });
+      const sortedEvents = placeholder.sort(function(a, b) {
+        return new Date(a.datetime_local) - new Date(b.datetime_local);
+      });
+
+      return sortedEvents.map(item => (
+        <Item key={item.firebaseId}>
+          {item.performers[0].image ? (
+            <EventImage src={item.performers[0].image} alt={item.title} />
           ) : (
             <NoImage>No Image</NoImage>
           )}
           <Content>
-            {context.eventData.events[item].type === "going" ? (
+            {item.type === "going" ? (
               <Paragraph>Def Going!</Paragraph>
             ) : (
               <Paragraph>Interested in going</Paragraph>
             )}
             <Paragraph>
               🗓
-              {moment(context.eventData.events[item].datetime_local).format(
-                "dddd"
-              )}
-              ,{" "}
-              {moment(context.eventData.events[item].datetime_local).format(
-                "MMMM Do YYYY, h:mma"
-              )}
+              {moment(item.datetime_local).format("dddd")},{" "}
+              {moment(item.datetime_local).format("MMMM Do YYYY, h:mma")}
             </Paragraph>
-            <Paragraph>{context.eventData.events[item].title}</Paragraph>
+            <Paragraph>{item.title}</Paragraph>
             <Paragraph>
-              {context.eventData.events[item].venue.name},{" "}
-              {context.eventData.events[item].venue.address},{" "}
-              {context.eventData.events[item].venue.display_location}
+              {item.venue.name}, {item.venue.address},{" "}
+              {item.venue.display_location}
             </Paragraph>
-            <DeleteButton
-              onClick={() => removeEvent(item, context.eventData.events[item])}
-            >
+            <DeleteButton onClick={() => removeEvent(item.firebaseId, item)}>
               Delete Event
             </DeleteButton>
           </Content>
