@@ -37,10 +37,15 @@ const Grid = styled.div`
 const Item = styled.div`
   border: 1px solid #ccc;
   border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 `;
 
 const Content = styled.div`
   padding: 10px;
+  order: 2;
+  flex-grow: 1;
 `;
 
 const Center = styled.div`
@@ -50,7 +55,7 @@ const Center = styled.div`
   margin: 20px 0;
 `;
 
-const ButtonSecondary = styled.div`
+const MoreButton = styled.div`
   cursor: pointer;
   height: 48px;
   display: flex;
@@ -76,6 +81,7 @@ const EventImage = styled.img`
   object-fit: cover;
   width: 100%;
   height: 150px;
+  order: 1;
 `;
 
 const NoImage = styled.div`
@@ -88,6 +94,46 @@ const NoImage = styled.div`
   align-items: center;
   font-size: 20px;
   justify-content: center;
+  order: 1;
+`;
+
+const ButtonWrapper = styled.div`
+  padding: 10px 10px;
+  display: flex;
+  order: 3;
+`;
+
+const ButtonPrimary = styled.button`
+  font-family: ${FONT_FAMILY};
+  font-size: 13px;
+  cursor: pointer;
+  font-weight: normal;
+  border: 2px solid #f0bb48;
+  padding: 10px 0px;
+  color: #f0bb48;
+  background: transparent;
+  width: 100%;
+  :hover {
+    background: #f0bb48;
+    color: ${BLACK};
+  }
+`;
+
+const ButtonSecondary = styled.button`
+  font-family: ${FONT_FAMILY};
+  margin-right: 10px;
+  font-size: 13px;
+  cursor: pointer;
+  font-weight: normal;
+  border: 2px solid #f0bb48;
+  padding: 10px 0px;
+  color: ${BLACK};
+  background: #f0bb48;
+  width: 100%;
+  :hover {
+    background: transparent;
+    color: #f0bb48;
+  }
 `;
 
 const BrowseEvents = () => {
@@ -210,13 +256,15 @@ const BrowseEvents = () => {
                         {item.venue.name}, {item.venue.address},{" "}
                         {item.venue.display_location}
                       </Paragraph>
-                      <button onClick={() => onImGoingClick(item)}>
-                        I'm Def Going!
-                      </button>
-                      <button onClick={() => onMaybeClick(item)}>
-                        I'm Interested
-                      </button>
                     </Content>
+                    <ButtonWrapper>
+                      <ButtonSecondary onClick={() => onImGoingClick(item)}>
+                        I'm Def Going!
+                      </ButtonSecondary>
+                      <ButtonPrimary onClick={() => onMaybeClick(item)}>
+                        I'm Interested
+                      </ButtonPrimary>
+                    </ButtonWrapper>
                   </Item>
                 ))}
             </Grid>
@@ -224,13 +272,13 @@ const BrowseEvents = () => {
               Object.keys(context.data).length !== 0 &&
               context.data.meta.total >= context.data.meta.per_page && (
                 <Center>
-                  <ButtonSecondary
+                  <MoreButton
                     onClick={() =>
                       context.setItemsPerPage(context.itemsPerPage + 25)
                     }
                   >
                     Load More
-                  </ButtonSecondary>
+                  </MoreButton>
                 </Center>
               )}
           </Main>

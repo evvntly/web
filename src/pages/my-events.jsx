@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import LayoutPage from "../components/layout/layout-page";
 import Heading from "../library/headings/Heading";
 import { Helmet } from "react-helmet";
+import { navigate } from "gatsby";
 import styled from "styled-components";
 import Banner from "../library/banner";
 import { myContext } from "../context/provider";
@@ -9,7 +10,6 @@ import { FirebaseContext } from "gatsby-plugin-firebase";
 import Paragraph from "../library/paragraph/paragraph";
 import moment from "moment";
 import { FONT_FAMILY } from "../styles/typography";
-import { BLACK } from "../styles/colors";
 
 const Main = styled.div`
   max-width: 1000px;
@@ -82,6 +82,10 @@ const MyEvents = () => {
       .database()
       .ref(`${context.user.uid}/events/${eventId}`);
     eventRef.remove();
+    if (Object.keys(eventData.events).length === 1) {
+      console.log("last one");
+      navigate("/browse-events");
+    }
   };
 
   const loadEvents = () => {
@@ -122,22 +126,23 @@ const MyEvents = () => {
           </Content>
         </Item>
       ));
-    } else {
-      return <div>No Events Try To Add Some</div>;
     }
   };
 
   return (
     <>
       <Helmet>
-        <title>My Events</title>
+        <title>My Saved Events</title>
       </Helmet>
       <LayoutPage>
         <Banner img="moshpit" />
         <Container>
           <Main>
-            <Heading title="My Events" />
-            <Grid>{loadEvents()}</Grid>
+            <Heading title="My Saved Events" />
+            {eventData.events && <Grid>{loadEvents()}</Grid>}
+            {!eventData.events && (
+              <Paragraph>No events added yet, try to add some</Paragraph>
+            )}
           </Main>
         </Container>
       </LayoutPage>

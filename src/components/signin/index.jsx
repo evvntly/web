@@ -143,7 +143,7 @@ const SignIn = () => {
           />
           <Content>
             <Paragraph fontSize="1.2rem">
-              Login for free and start searching for your event buddy.
+              Login for free to save events and more!
             </Paragraph>
             {!context.user && (
               <Button onClick={() => onLoginClick()}>
