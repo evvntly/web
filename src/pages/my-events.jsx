@@ -121,7 +121,7 @@ const MyEvents = () => {
           )}
           <Content>
             {item.type === "going" ? (
-              <Paragraph>Def Going!</Paragraph>
+              <Paragraph>I'll be there!</Paragraph>
             ) : (
               <Paragraph>Interested in going</Paragraph>
             )}
