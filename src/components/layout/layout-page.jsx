@@ -35,6 +35,14 @@ const LayoutPage = ({ children }) => {
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
           context.setUser(user);
+          firebase
+            .database()
+            .ref(`${context.user.uid}`)
+            .on("value", snapshot => {
+              if (snapshot && snapshot.exists()) {
+                context.setEventData(snapshot.val());
+              }
+            });
         }
       });
   }, [firebase, context.user]);

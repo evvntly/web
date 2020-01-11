@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import LayoutPage from "../components/layout/layout-page";
 import Heading from "../library/headings/Heading";
 import { Helmet } from "react-helmet";
@@ -10,6 +10,7 @@ import { FirebaseContext } from "gatsby-plugin-firebase";
 import Paragraph from "../library/paragraph/paragraph";
 import moment from "moment";
 import { FONT_FAMILY } from "../styles/typography";
+import { BLACK } from "../styles/colors";
 
 const Main = styled.div`
   max-width: 1000px;
@@ -60,69 +61,84 @@ const NoImage = styled.div`
   justify-content: center;
 `;
 
+const DeleteButton = styled.button`
+  font-family: ${FONT_FAMILY};
+  font-size: 13px;
+  cursor: pointer;
+  font-weight: normal;
+  border: 1px solid #f0bb48;
+  border-radius: 4px;
+  padding: 10px 0px;
+  color: #f0bb48;
+  background: transparent;
+  width: 100%;
+  :hover {
+    background: #f0bb48;
+    color: ${BLACK};
+  }
+`;
+
 const MyEvents = () => {
   const context = useContext(myContext);
   const firebase = React.useContext(FirebaseContext);
-  const [eventData, setEventData] = useState(false);
 
-  useEffect(() => {
-    firebase &&
-      firebase
-        .database()
-        .ref(`${context.user.uid}`)
-        .on("value", snapshot => {
-          if (snapshot && snapshot.exists()) {
-            setEventData(snapshot.val());
-          }
-        });
-  }, [firebase]);
-
-  const removeEvent = eventId => {
+  const removeEvent = (eventId, item) => {
+    if (process.env.NODE_ENV === "production") {
+      window.analytics.track("user_deleted_event", {
+        data: item,
+        path: window.location.pathname,
+        url: typeof window !== "undefined" ? window.location.href : null,
+        referrer: typeof document !== "undefined" ? document.referrer : null
+      });
+    }
     const eventRef = firebase
       .database()
       .ref(`${context.user.uid}/events/${eventId}`);
     eventRef.remove();
-    if (Object.keys(eventData.events).length === 1) {
-      console.log("last one");
+    if (Object.keys(context.eventData.events).length === 1) {
       navigate("/browse-events");
     }
   };
 
   const loadEvents = () => {
-    if (eventData.events) {
-      return Object.keys(eventData.events).map(item => (
+    if (context.eventData.events) {
+      return Object.keys(context.eventData.events).map(item => (
         <Item key={item}>
-          {eventData.events[item].performers[0].image ? (
+          {context.eventData.events[item].performers[0].image ? (
             <EventImage
-              src={eventData.events[item].performers[0].image}
-              alt={eventData.events[item].title}
+              src={context.eventData.events[item].performers[0].image}
+              alt={context.eventData.events[item].title}
             />
           ) : (
             <NoImage>No Image</NoImage>
           )}
           <Content>
+            {context.eventData.events[item].type === "going" ? (
+              <Paragraph>Def Going!</Paragraph>
+            ) : (
+              <Paragraph>Interested in going</Paragraph>
+            )}
             <Paragraph>
               🗓
-              {moment(eventData.events[item].datetime_local).format(
+              {moment(context.eventData.events[item].datetime_local).format(
                 "dddd"
-              )},{" "}
-              {moment(eventData.events[item].datetime_local).format(
+              )}
+              ,{" "}
+              {moment(context.eventData.events[item].datetime_local).format(
                 "MMMM Do YYYY, h:mma"
               )}
             </Paragraph>
-            <Paragraph>{eventData.events[item].title}</Paragraph>
+            <Paragraph>{context.eventData.events[item].title}</Paragraph>
             <Paragraph>
-              {eventData.events[item].venue.name},{" "}
-              {eventData.events[item].venue.address},{" "}
-              {eventData.events[item].venue.display_location}
+              {context.eventData.events[item].venue.name},{" "}
+              {context.eventData.events[item].venue.address},{" "}
+              {context.eventData.events[item].venue.display_location}
             </Paragraph>
-            <button onClick={() => removeEvent(item)}>delete</button>
-            {eventData.events[item].type === "going" ? (
-              <div>Def Going!</div>
-            ) : (
-              <div>Interested in going</div>
-            )}
-            <div />
+            <DeleteButton
+              onClick={() => removeEvent(item, context.eventData.events[item])}
+            >
+              Delete Event
+            </DeleteButton>
           </Content>
         </Item>
       ));
@@ -139,8 +155,8 @@ const MyEvents = () => {
         <Container>
           <Main>
             <Heading title="My Saved Events" />
-            {eventData.events && <Grid>{loadEvents()}</Grid>}
-            {!eventData.events && (
+            {context.eventData.events && <Grid>{loadEvents()}</Grid>}
+            {!context.eventData.events && (
               <Paragraph>No events added yet, try to add some</Paragraph>
             )}
           </Main>

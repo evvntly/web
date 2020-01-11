@@ -16,6 +16,7 @@ const Provider = props => {
   const [itemsPerPage, setItemsPerPage] = useState(27);
   const [showHamburger, setShowHamburger] = useState(false);
   const [location, setLocation] = useState(false);
+  const [eventData, setEventData] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -53,7 +54,9 @@ const Provider = props => {
     showHamburger,
     setShowHamburger,
     location,
-    setLocation
+    setLocation,
+    eventData,
+    setEventData
   };
 
   return (

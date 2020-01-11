@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import Nav from "../nav/Nav";
 import Footer from "../footer/Footer";
@@ -50,9 +50,18 @@ const LayoutHome = ({ children }) => {
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
           context.setUser(user);
+          firebase
+            .database()
+            .ref(`${context.user.uid}`)
+            .on("value", snapshot => {
+              if (snapshot && snapshot.exists()) {
+                context.setEventData(snapshot.val());
+              }
+            });
         }
       });
   }, [firebase, context.user]);
+
   return (
     <>
       <GlobalStyle />

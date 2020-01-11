@@ -1,6 +1,7 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import moment from "moment";
 import LayoutPage from "../components/layout/layout-page";
+import { navigate } from "gatsby";
 import Heading from "../library/headings/Heading";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
@@ -52,25 +53,27 @@ const Center = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 20px 0;
+  margin: 50px 0;
 `;
 
 const MoreButton = styled.div`
   cursor: pointer;
-  height: 48px;
+  height: 40px;
   display: flex;
+  font-size: 14px;
   align-items: center;
   justify-content: center;
   font-family: ${FONT_FAMILY};
   font-weight: normal;
-  border: 2px solid #f0bb48;
+  border: 1px solid #f0bb48;
+  border-radius: 20px;
   padding: 0 40px;
-  color: ${BLACK};
-  background: #f0bb48;
+  color: #4e4e4e;
+  background: transparent;
   width: max-content;
   :hover {
-    background: transparent;
-    color: #f0bb48;
+    background: #f0bb48;
+    color: black;
   }
   @media (max-width: 769px) and (min-width: 320px) {
     margin: 10px 0;
@@ -108,7 +111,8 @@ const ButtonPrimary = styled.button`
   font-size: 13px;
   cursor: pointer;
   font-weight: normal;
-  border: 2px solid #f0bb48;
+  border: 1px solid #f0bb48;
+  border-radius: 4px;
   padding: 10px 0px;
   color: #f0bb48;
   background: transparent;
@@ -125,7 +129,8 @@ const ButtonSecondary = styled.button`
   font-size: 13px;
   cursor: pointer;
   font-weight: normal;
-  border: 2px solid #f0bb48;
+  border: 1px solid #f0bb48;
+  border-radius: 4px;
   padding: 10px 0px;
   color: ${BLACK};
   background: #f0bb48;
@@ -141,6 +146,7 @@ const BrowseEvents = () => {
   const firebase = React.useContext(FirebaseContext);
   const lat = context.location && context.location.latlng.lat;
   const lon = context.location && context.location.latlng.lng;
+  const [eventAttendingIds, seteventAttendingIds] = useState([]);
 
   useEffect(() => {
     fetch(
@@ -158,7 +164,26 @@ const BrowseEvents = () => {
       .catch(err => console.log(err));
   }, [context.radius, context.itemsPerPage, context.location]);
 
+  useEffect(() => {
+    if (context.eventData && context.eventData.events) {
+      Object.keys(context.eventData.events).map(i => {
+        seteventAttendingIds([
+          ...eventAttendingIds,
+          context.eventData.events[i].id
+        ]);
+      });
+    }
+  }, [context.eventData]);
+
   const onImGoingClick = item => {
+    if (process.env.NODE_ENV === "production" && context.user) {
+      window.analytics.track("user_going_event", {
+        data: item,
+        path: window.location.pathname,
+        url: typeof window !== "undefined" ? window.location.href : null,
+        referrer: typeof document !== "undefined" ? document.referrer : null
+      });
+    }
     if (context.user) {
       const eventRef = firebase.database().ref(`${context.user.uid}/events`);
       const eventItem = {
@@ -167,15 +192,21 @@ const BrowseEvents = () => {
         type: "going"
       };
       eventRef.push(eventItem);
-      eventRef.on("value", snapshot => {
-        console.log(snapshot.val());
-      });
+      eventRef.on("value", snapshot => {});
     } else {
       context.setSignin(true);
     }
   };
 
   const onMaybeClick = item => {
+    if (process.env.NODE_ENV === "production" && context.user) {
+      window.analytics.track("user_maybe_event", {
+        data: item,
+        path: window.location.pathname,
+        url: typeof window !== "undefined" ? window.location.href : null,
+        referrer: typeof document !== "undefined" ? document.referrer : null
+      });
+    }
     if (context.user) {
       const eventRef = firebase.database().ref(`${context.user.uid}/events`);
       const eventItem = {
@@ -184,9 +215,7 @@ const BrowseEvents = () => {
         type: "maybe"
       };
       eventRef.push(eventItem);
-      eventRef.on("value", snapshot => {
-        console.log(snapshot.val());
-      });
+      eventRef.on("value", snapshot => {});
     } else {
       context.setSignin(true);
     }
@@ -258,12 +287,20 @@ const BrowseEvents = () => {
                       </Paragraph>
                     </Content>
                     <ButtonWrapper>
-                      <ButtonSecondary onClick={() => onImGoingClick(item)}>
-                        I'm Def Going!
-                      </ButtonSecondary>
-                      <ButtonPrimary onClick={() => onMaybeClick(item)}>
-                        I'm Interested
-                      </ButtonPrimary>
+                      {eventAttendingIds.includes(item.id) ? (
+                        <ButtonPrimary onClick={() => navigate("/my-events")}>
+                          You're Attending! 🎉
+                        </ButtonPrimary>
+                      ) : (
+                        <>
+                          <ButtonSecondary onClick={() => onImGoingClick(item)}>
+                            I'm Def Going!
+                          </ButtonSecondary>
+                          <ButtonPrimary onClick={() => onMaybeClick(item)}>
+                            I'm Interested
+                          </ButtonPrimary>
+                        </>
+                      )}
                     </ButtonWrapper>
                   </Item>
                 ))}
