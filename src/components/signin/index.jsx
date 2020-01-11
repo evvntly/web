@@ -155,13 +155,7 @@ const SignIn = () => {
             <Paragraph fontSize="0.9rem">
               * Currently we only allow users to sign up with Facebook. We want
               to keep this site safe so we try to verify our users as much as
-              possible.
-            </Paragraph>
-            <Paragraph fontSize="0.9rem">
-              * Events only listed in the USA for now... sorry{" "}
-              <span role="img" aria-label="crying">
-                😭
-              </span>
+              possible - other signup options coming soon.
             </Paragraph>
           </Content>
           <Close onClick={() => context.setSignin(false)}>
