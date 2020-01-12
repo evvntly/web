@@ -8,3 +8,6 @@ export const RED = "#d13a3a";
 export const GREY = "#34343a";
 export const FACEBOOK_BLUE = "#4267B2";
 export const FACEBOOK_BLUE_HOVER = "#496fba";
+export const TUNDORA = "#4a4a4a";
+export const RONCHI = "#f0bb48";
+export const ALTO = "#DDDDDD";

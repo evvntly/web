@@ -1,8 +1,8 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import LayoutHome from "../components/layout/layout-home";
+import Layout from "../components/layout/layout";
 
-export default () => {
+const Index = () => {
   return (
     <>
       <Helmet>
@@ -15,7 +15,9 @@ export default () => {
           content="Looking for events in San Francisco, New York, La? Look no further, find events all across the USA."
         />
       </Helmet>
-      <LayoutHome />
+      <Layout />
     </>
   );
 };
+
+export default Index;

@@ -1,14 +1,20 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import styled, { createGlobalStyle } from "styled-components";
-import Nav from "../nav/Nav";
-import Footer from "../footer/Footer";
-import Video from "../video";
+import Navigation from "../nav/navigation";
+import Footer from "../footer/footer";
 import { FONT_FAMILY, WEIGHT } from "../../styles/typography";
-import { FirebaseContext } from "gatsby-plugin-firebase";
 import { myContext } from "../../context/provider";
+import { FirebaseContext } from "gatsby-plugin-firebase";
 import SignIn from "../signin";
-import { BLACK } from "../../styles/colors";
 import debug from "debug";
+import PropTypes from "prop-types";
+import { BLACK, RONCHI } from "../../styles/colors";
+import Video from "../home";
+
+const Container = styled.div`
+  position: relative;
+  min-height: 100vh;
+`;
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -21,16 +27,11 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const Main = styled.div`
-  max-height: 100vh;
-  height: 100vh;
-`;
-
-export const Notice = styled.div`
+const Notice = styled.div`
   height: 50px;
-  background: #f0bb48;
+  background: ${RONCHI};
   position: relative;
-  z-index: 100000000000;
+  z-index: 1000;
   line-height: 50px;
   color: ${BLACK};
   font-family: ${FONT_FAMILY};
@@ -38,13 +39,14 @@ export const Notice = styled.div`
   font-size: 13px;
 `;
 
-const Content = styled.div``;
-
-const LayoutHome = ({ children }) => {
+const Layout = ({ children }) => {
   const context = useContext(myContext);
   const log = debug("context");
   log("context", context);
-  const firebase = React.useContext(FirebaseContext);
+  let firebase = React.useContext(FirebaseContext);
+
+  const isHome = window.location.pathname === "/";
+
   useEffect(() => {
     firebase &&
       firebase.auth().onAuthStateChanged(function(user) {
@@ -61,27 +63,28 @@ const LayoutHome = ({ children }) => {
         }
       });
   }, [firebase, context.user]);
-
   return (
     <>
       <GlobalStyle />
-      <Main>
-        {!context.withinUs && (
-          <Notice>
-            Hi! Results are limited outside the US.
-            <span role="img" aria-label="crying">
-              😭
-            </span>
-          </Notice>
-        )}
-        <Nav />
-        <Video />
-      </Main>
-      <Content>{children}</Content>
+      {!context.withinUs && (
+        <Notice>
+          Hi! Results are limited outside the US.
+          <span role="img" aria-label="crying">
+            😭
+          </span>
+        </Notice>
+      )}
+      <Navigation />
+      {isHome && <Video />}
+      {!isHome && <Container>{children}</Container>}
       <Footer />
       {context.signin && <SignIn />}
     </>
   );
 };
 
-export default LayoutHome;
+Layout.propTypes = {
+  children: PropTypes.object
+};
+
+export default Layout;

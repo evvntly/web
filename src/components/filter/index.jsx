@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import AlgoliaPlaces from "algolia-places-react";
 import styled from "styled-components";
-import { BLACK } from "../../styles/colors";
+import { BLACK, RONCHI, TUNDORA } from "../../styles/colors";
 import TextInput from "../../library/inputs/text";
 import SelectInput from "../../library/inputs/select";
 import { myContext } from "../../context/provider";
@@ -10,7 +10,7 @@ import { FONT_FAMILY, WEIGHT } from "../../styles/typography";
 const Container = styled.div`
   margin: 25px 0;
   padding: 25px 35px;
-  background: #4a4a4a;
+  background: ${TUNDORA};
   @media (max-width: 769px) and (min-width: 320px) {
     padding: 10px 20px;
   }
@@ -34,13 +34,13 @@ const ButtonSecondary = styled.div`
   justify-content: center;
   font-family: ${FONT_FAMILY};
   font-weight: normal;
-  border: 2px solid #f0bb48;
+  border: 2px solid ${RONCHI};
   padding: 0 40px;
   color: ${BLACK};
-  background: #f0bb48;
+  background: ${RONCHI};
   :hover {
     background: transparent;
-    color: #f0bb48;
+    color: ${RONCHI};
   }
   @media (max-width: 769px) and (min-width: 320px) {
     margin: 10px 0;

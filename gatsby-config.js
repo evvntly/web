@@ -32,22 +32,6 @@ module.exports = {
       }
     },
     {
-      resolve: `gatsby-plugin-google-gtag`,
-      options: {
-        trackingIds: [
-          "#", // Google Analytics / GA
-          "#" // adwords
-        ],
-        gtagConfig: {
-          anonymize_ip: true,
-          cookie_expires: 0
-        },
-        pluginConfig: {
-          head: true
-        }
-      }
-    },
-    {
       resolve: "gatsby-plugin-firebase",
       options: {
         features: {
@@ -57,12 +41,12 @@ module.exports = {
           storage: false,
           messaging: false,
           functions: true,
-          performance: false,
-        },
-      },
+          performance: false
+        }
+      }
     },
     {
-      resolve: 'gatsby-plugin-react-svg',
+      resolve: "gatsby-plugin-react-svg",
       options: {
         rule: {
           include: /assets/
@@ -74,7 +58,8 @@ module.exports = {
       options: {
         dsn: process.env.GATSBY_SENTRY_DSN_URL,
         environment: process.env.NODE_ENV,
-        enabled: (() => ["production", "stage"].indexOf(process.env.NODE_ENV) !== -1)()
+        enabled: (() =>
+          ["production", "stage"].indexOf(process.env.NODE_ENV) !== -1)()
       }
     },
     `gatsby-plugin-sharp`,

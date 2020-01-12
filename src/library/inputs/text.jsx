@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { SILVER, RED, BLACK } from "../../styles/colors";
+import { SILVER, RED } from "../../styles/colors";
 import { WEIGHT, FONT_FAMILY } from "../../styles/typography";
 
 const InputWrapper = styled.div`
@@ -52,7 +52,7 @@ const Clear = styled.div`
     content: " ";
     height: 15px;
     width: 2px;
-    background-color: #ccc;
+    background-color: ${SILVER};
   }
   &:before {
     transform: rotate(45deg);
@@ -84,7 +84,7 @@ const TextInput = ({
         placeholder={placeholder}
         required={required}
         name={name}
-        error={error ? true : false}
+        error={!!error}
         value={value}
       />
       {value && <Clear onClick={onClear} />}
@@ -100,7 +100,10 @@ TextInput.propTypes = {
   type: PropTypes.string,
   required: PropTypes.bool,
   onFocus: PropTypes.func,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  name: PropTypes.string,
+  value: PropTypes.string,
+  onClear: PropTypes.func
 };
 
 export default TextInput;

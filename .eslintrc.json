@@ -1,10 +1,29 @@
 {
-  "extends": ["gatsby-standard", "plugin:react/recommended", "eslint:recommended", "plugin:flowtype/recommended"],
+  "env": {
+    "node": true,
+    "commonjs": true,
+    "browser": true,
+    "es6": true
+  },
+  "plugins": [
+    "jsx-a11y"
+  ],
+  "extends": ["plugin:react/recommended", "eslint:recommended", "plugin:flowtype/recommended", "plugin:jsx-a11y/recommended"],
   "rules": {
-    "no-unsafe-finally": "off"
+    "no-unsafe-finally": "off",
+    "jsx-a11y/no-noninteractive-element-to-interactive-role": "off"
   },
 
+  "overrides": [
+    {
+      "files": [ "src/**/*.js", "src/**/*.jsx"],
+      "excludedFiles": "*.test.js"
+    }
+  ],
   "settings": {
+    "react": {
+      "version": "detect"
+    },
     "import/resolver": {
       "node": {
         "extensions": [".js",".jsx"]

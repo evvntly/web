@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState, useEffect } from "react";
 import FullStory, { identify } from "react-fullstory";
 import { ipCheck } from "../startup/ipcheck";

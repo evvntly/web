@@ -1,13 +1,13 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Link } from "gatsby";
 import styled from "styled-components";
-import { BLACK, GREY, WHITE } from "../../styles/colors";
+import { BLACK, GREY, SILVER, WHITE } from "../../styles/colors";
 import { FONT_FAMILY, WEIGHT } from "../../styles/typography";
-import NavItems from "./NavItems";
+import NavItems from "./nav-items";
 import Logo from "../../assets/svgs/logo.svg";
 import { myContext } from "../../context/provider";
 
-const Navigation = styled.nav`
+const Nav = styled.nav`
   @media (max-width: 769px) and (min-width: 320px) {
     display: none;
   }
@@ -17,7 +17,7 @@ const Navigation = styled.nav`
   top: 0;
   width: 100%;
   background: ${GREY};
-  box-shadow: #000000 1px 1px 5px;
+  box-shadow: ${BLACK} 1px 1px 5px;
   z-index: 1;
   font-family: ${FONT_FAMILY};
   a {
@@ -65,7 +65,7 @@ const MobileNav = styled.nav`
   @media (min-width: 769px) {
     display: none;
   }
-  box-shadow: #cccccc 1px 1px 5px;
+  box-shadow: ${SILVER} 1px 1px 5px;
   position: sticky;
   padding: 0 10px;
   box-sizing: border-box;
@@ -85,7 +85,7 @@ const MobileItems = styled.div`
   position: absolute;
   z-index: 1;
   width: 100%;
-  background: black;
+  background: ${BLACK};
   height: 100vh;
   padding-top: 50px;
 `;
@@ -129,7 +129,7 @@ const CloseIcon = styled.div`
     content: " ";
     height: 33px;
     width: 4px;
-    background-color: #ccc;
+    background-color: ${SILVER};
   }
   &:before {
     transform: rotate(45deg);
@@ -139,18 +139,18 @@ const CloseIcon = styled.div`
   }
 `;
 
-const Nav = () => {
+const Navigation = () => {
   const context = useContext(myContext);
   return (
     <>
-      <Navigation showNotice={!context.withinUs}>
+      <Nav showNotice={!context.withinUs}>
         <NavWrapper>
           <Link to="/" aria-label="Concert Buddy">
             <LogoIcon />
           </Link>
           <NavItems />
         </NavWrapper>
-      </Navigation>
+      </Nav>
       <MobileNav>
         <Link to="/" aria-label="Concert Buddy">
           <MobileLogo>
@@ -179,4 +179,4 @@ const Nav = () => {
   );
 };
 
-export default Nav;
+export default Navigation;
