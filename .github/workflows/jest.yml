@@ -1,3 +1,13 @@
-name: Jest
+name: Tests
+
 on: pull_request
-  uses: stefanoeb/jest-action@1.0.2
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Run Jest
+        uses: stefanoeb/jest-action@1.0.2ion@1.0.2
