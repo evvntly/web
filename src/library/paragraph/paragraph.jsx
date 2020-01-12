@@ -10,8 +10,12 @@ const ParagraphNormal = styled.p`
   font-family: ${FONT_FAMILY};
 `;
 
-const Paragraph = ({ children, fontSize = "1.1rem" }) => {
-  return <ParagraphNormal fontSize={fontSize}>{children}</ParagraphNormal>;
+const Paragraph = ({ children, fontSize = "1.1rem", customStyle }) => {
+  return (
+    <ParagraphNormal style={customStyle} fontSize={fontSize}>
+      {children}
+    </ParagraphNormal>
+  );
 };
 
 export default Paragraph;

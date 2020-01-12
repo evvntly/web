@@ -103,7 +103,8 @@ const NoImage = styled.div`
 const ButtonWrapper = styled.div`
   padding: 10px 10px;
   display: flex;
-  order: 3;
+  order: 2;
+  margin-top: -55px;
 `;
 
 const ButtonPrimary = styled.button`
@@ -113,9 +114,9 @@ const ButtonPrimary = styled.button`
   font-weight: normal;
   border: 1px solid #f0bb48;
   border-radius: 4px;
-  padding: 10px 0px;
-  color: #f0bb48;
-  background: transparent;
+  padding: 5px 0px;
+  color: black;
+  background: white;
   width: 100%;
   :hover {
     background: #f0bb48;
@@ -131,13 +132,13 @@ const ButtonSecondary = styled.button`
   font-weight: normal;
   border: 1px solid #f0bb48;
   border-radius: 4px;
-  padding: 10px 0px;
+  padding: 5px 0px;
   color: ${BLACK};
   background: #f0bb48;
   width: 100%;
   :hover {
-    background: transparent;
-    color: #f0bb48;
+    background: white;
+    color: black;
   }
 `;
 
@@ -221,6 +222,21 @@ const BrowseEvents = () => {
     }
   };
 
+  const renderDate = item => {
+    const eventDate = new Date(item.datetime_local);
+    const today = new Date();
+    const nextWeek = new Date(today.getTime() + 2 * 24 * 60 * 60 * 1000);
+    if (eventDate < nextWeek) {
+      return <Paragraph>🗓 {moment(eventDate).calendar()}</Paragraph>;
+    } else {
+      return (
+        <Paragraph>
+          🗓 {moment(eventDate).format("MMMM Do YYYY, h:mma")}
+        </Paragraph>
+      );
+    }
+  };
+
   return (
     <>
       <Helmet>
@@ -242,9 +258,7 @@ const BrowseEvents = () => {
             )}
 
             {context.data && Object.keys(context.data).length !== 0 && (
-              <Paragraph>{`Showing you ${
-                context.data.meta.total
-              } events`}</Paragraph>
+              <Paragraph>{`Showing you ${context.data.meta.total} events`}</Paragraph>
             )}
 
             {context.data &&
@@ -252,9 +266,7 @@ const BrowseEvents = () => {
               !context.location && (
                 <>
                   <Paragraph>
-                    {`We are currently showing you events ${
-                      context.radius
-                    } miles around your
+                    {`We are currently showing you events ${context.radius} miles around your
                   current location, please use the filter above to refine your
                   search.`}
                   </Paragraph>
@@ -279,20 +291,6 @@ const BrowseEvents = () => {
                     ) : (
                       <NoImage>No Image</NoImage>
                     )}
-                    <Content>
-                      <Paragraph>
-                        🗓
-                        {moment(item.datetime_local).format("dddd")},{" "}
-                        {moment(item.datetime_local).format(
-                          "MMMM Do YYYY, h:mma"
-                        )}
-                      </Paragraph>
-                      <Paragraph>{item.title}</Paragraph>
-                      <Paragraph>
-                        {item.venue.name}, {item.venue.address},{" "}
-                        {item.venue.display_location}
-                      </Paragraph>
-                    </Content>
                     <ButtonWrapper>
                       {eventAttendingIds.includes(item.id) ? (
                         <ButtonPrimary onClick={() => navigate("/my-events")}>
@@ -301,14 +299,30 @@ const BrowseEvents = () => {
                       ) : (
                         <>
                           <ButtonSecondary onClick={() => onImGoingClick(item)}>
-                            Going
+                            👍🏾 Going
                           </ButtonSecondary>
                           <ButtonPrimary onClick={() => onMaybeClick(item)}>
-                            Interested
+                            🤷🏻‍♀️ Interested
                           </ButtonPrimary>
                         </>
                       )}
                     </ButtonWrapper>
+                    <Content>
+                      <Paragraph
+                        customStyle={{
+                          fontWeight: "bold",
+                          textAlign: "center",
+                          lineHeight: "1.3rem"
+                        }}
+                      >
+                        {item.title}
+                      </Paragraph>
+                      {renderDate(item)}
+                      <Paragraph>
+                        <strong>{item.venue.name}</strong> <br />{" "}
+                        {item.venue.address}, {item.venue.display_location}
+                      </Paragraph>
+                    </Content>
                   </Item>
                 ))}
             </Grid>
