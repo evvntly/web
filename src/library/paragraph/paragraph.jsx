@@ -20,9 +20,9 @@ const Paragraph = ({ children, fontSize = "1.1rem", customStyle }) => {
 };
 
 Paragraph.propTypes = {
-  customStyle: PropTypes.string,
+  customStyle: PropTypes.object,
   fontSize: PropTypes.string,
-  children: PropTypes.object
+  children: PropTypes.any
 };
 
 export default Paragraph;

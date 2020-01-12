@@ -20,9 +20,9 @@ const SelectInput = ({ options, onChange }) => {
   return (
     <Select onChange={onChange}>
       {options.map(item => (
-        <>
-          <option value={item.value}>{item.name}</option>
-        </>
+        <option key={item.value} value={item.value}>
+          {item.name}
+        </option>
       ))}
     </Select>
   );

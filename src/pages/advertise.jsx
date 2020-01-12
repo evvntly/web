@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../components/layout/layout";
-import Heading from "../library/headings/Heading";
+import Heading from "../library/headings/heading";
 import { Helmet } from "react-helmet";
 import Paragraph from "../library/paragraph/paragraph";
 import Banner from "../library/banner";

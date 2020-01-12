@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import Layout from "../components/layout/layout";
-import Heading from "../library/headings/Heading";
+import Heading from "../library/headings/heading";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import Paragraph from "../library/paragraph/paragraph";

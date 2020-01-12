@@ -47,11 +47,7 @@ const BackgroundSection = ({
               name
               childImageSharp {
                 fluid(quality: 90, maxWidth: 1920) {
-                  base64
-                  src
-                  srcSet
-                  srcWebp
-                  srcSetWebp
+                  ...GatsbyImageSharpFluid
                 }
               }
             }
