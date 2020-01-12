@@ -18,6 +18,7 @@ const Provider = props => {
   const [showHamburger, setShowHamburger] = useState(false);
   const [location, setLocation] = useState(false);
   const [eventData, setEventData] = useState(false);
+  const [emailInUse, setEmailInUse] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -57,7 +58,9 @@ const Provider = props => {
     location,
     setLocation,
     eventData,
-    setEventData
+    setEventData,
+    emailInUse,
+    setEmailInUse
   };
 
   return (

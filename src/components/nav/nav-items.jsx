@@ -77,6 +77,7 @@ const NavItems = () => {
   const firebase = React.useContext(FirebaseContext);
 
   const onSignoutClick = () => {
+    context.setEmailInUse(false);
     firebase
       .auth()
       .signOut()
@@ -109,7 +110,6 @@ const NavItems = () => {
     <>
       <Items>
         <ul
-          tabIndex={0}
           role="button"
           onKeyDown={() => {
             if (isMobile) context.setShowHamburger(false);

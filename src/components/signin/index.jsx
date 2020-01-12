@@ -1,30 +1,15 @@
 import React, { useContext, useEffect } from "react";
+import { Link } from "gatsby";
 import styled from "styled-components";
-import { FirebaseContext } from "gatsby-plugin-firebase";
 import { myContext } from "../../context/provider";
 import Banner from "../../library/banner";
 import Paragraph from "../../library/paragraph/paragraph";
-import {
-  BLACK,
-  FACEBOOK_BLUE,
-  FACEBOOK_BLUE_HOVER,
-  WHITE
-} from "../../styles/colors";
-import Facebook from "../../assets/svgs/fb.svg";
+import { BLACK, RED, TUNDORA, WHITE } from "../../styles/colors";
 import { FONT_FAMILY } from "../../styles/typography";
 import { isMobile } from "react-device-detect";
-
-const FacebookIcon = styled(Facebook)`
-  width: 20px;
-  height: 20px;
-  margin-right: 10px;
-`;
-
-const ButtonContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
+import FacebookAuth from "./facebook";
+import TwitterAuth from "./twitter";
+import GoogleAuth from "./google";
 
 const Overlay = styled.div`
   position: fixed;
@@ -65,9 +50,19 @@ const Close = styled.div`
   font-family: ${FONT_FAMILY};
 `;
 
+const LoginItems = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  margin: auto;
+`;
+
 const Content = styled.div`
   padding: 10px 25px;
   text-align: center;
+  a {
+    color: ${TUNDORA};
+  }
 `;
 
 const ModalContainer = styled.div`
@@ -90,18 +85,11 @@ const Modal = styled.div`
   }
 `;
 
-const Button = styled.button`
-  background: ${FACEBOOK_BLUE};
-  color: ${WHITE};
-  border-color: ${FACEBOOK_BLUE};
-  padding: 15px 50px;
-  font-size: 15px;
-  cursor: pointer;
-  margin: 0 0 10px 0;
-  &:hover {
-    background: ${FACEBOOK_BLUE_HOVER};
-  }
-`;
+const errorMessageStyle = {
+  color: RED,
+  fontSize: ".8rem",
+  margin: "25px 0"
+};
 
 const SignIn = () => {
   const context = useContext(myContext);
@@ -118,49 +106,6 @@ const SignIn = () => {
     }
   }, []);
 
-  const firebase = React.useContext(FirebaseContext);
-  const provider = firebase && new firebase.auth.FacebookAuthProvider();
-
-  const onLoginClick = () => {
-    firebase
-      .auth()
-      .signInWithPopup(provider)
-      .then(function(result) {
-        context.setUser(result);
-        if (
-          process.env.NODE_ENV === "production" &&
-          result.additionalUserInfo.isNewUser
-        ) {
-          window.analytics.track("new_user_account", {
-            userName: result.user.displayName,
-            email: result.user.email,
-            uid: result.user.uid,
-            path: window.location.pathname,
-            url: typeof window !== "undefined" ? window.location.href : null,
-            referrer: typeof document !== "undefined" ? document.referrer : null
-          });
-        }
-        if (
-          process.env.NODE_ENV === "production" &&
-          !result.additionalUserInfo.isNewUser
-        ) {
-          window.analytics.track("returning_user_sign", {
-            userName: result.user.displayName,
-            email: result.user.email,
-            uid: result.user.uid,
-            path: window.location.pathname,
-            url: typeof window !== "undefined" ? window.location.href : null,
-            referrer: typeof document !== "undefined" ? document.referrer : null
-          });
-        }
-      })
-
-      .then(() => context.setSignin(false))
-      .catch(function(error) {
-        context.setError(error);
-      });
-  };
-
   const onCloseClick = () => {
     if (process.env.NODE_ENV === "production") {
       window.analytics.track("signup_modal_closed", {
@@ -169,6 +114,7 @@ const SignIn = () => {
         referrer: typeof document !== "undefined" ? document.referrer : null
       });
     }
+    context.setEmailInUse(false);
     context.setSignin(false);
   };
   const images = [
@@ -191,20 +137,26 @@ const SignIn = () => {
             title="You're one step closer to awesome!"
           />
           <Content>
-            <Paragraph fontSize="1.2rem">
-              Login for free to save events and more!
-            </Paragraph>
+            {!context.emailInUse && (
+              <Paragraph fontSize="1.2rem">
+                Login for free to save events and more!
+              </Paragraph>
+            )}
+            {context.emailInUse && (
+              <Paragraph customStyle={errorMessageStyle}>
+                {context.emailInUse}
+              </Paragraph>
+            )}
             {!context.user && (
-              <Button onClick={() => onLoginClick()}>
-                <ButtonContainer>
-                  <FacebookIcon /> <span>Login with Facebook</span>
-                </ButtonContainer>
-              </Button>
+              <LoginItems>
+                <GoogleAuth />
+                <FacebookAuth />
+                <TwitterAuth />
+              </LoginItems>
             )}
             <Paragraph fontSize="0.9rem">
-              * Currently we only allow users to sign up with Facebook. We want
-              to keep this site safe so we try to verify our users as much as
-              possible - other signup options coming soon.
+              * We do not share you details with anyone, we hate spam too. More
+              info view our <Link to="/privacy">privacy policy</Link>.
             </Paragraph>
           </Content>
           <Close onClick={() => onCloseClick()}>

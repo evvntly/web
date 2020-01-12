@@ -51,6 +51,7 @@ const Layout = ({ children }) => {
   useEffect(() => {
     firebase &&
       firebase.auth().onAuthStateChanged(function(user) {
+        console.log(user);
         if (user) {
           context.setUser(user);
           firebase
