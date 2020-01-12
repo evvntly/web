@@ -10,6 +10,7 @@ import debug from "debug";
 import PropTypes from "prop-types";
 import { BLACK, RONCHI } from "../../styles/colors";
 import Video from "../home";
+import { useWindow } from "../../utils/useWindow";
 
 const Container = styled.div`
   position: relative;
@@ -45,8 +46,7 @@ const Layout = ({ children }) => {
   log("context", context);
   let firebase = React.useContext(FirebaseContext);
 
-  const isHome =
-    typeof window !== "undefined" && window.location.pathname === "/";
+  const isHome = useWindow && window.location.pathname === "/";
 
   useEffect(() => {
     firebase &&
