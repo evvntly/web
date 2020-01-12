@@ -257,6 +257,7 @@ const EventItem = ({ item, isMyEventsPage }) => {
           <strong>{item.venue.name}</strong> <br /> {item.venue.address},{" "}
           {item.venue.display_location}
         </Paragraph>
+        <Paragraph>Add Notes</Paragraph>
       </Content>
     </Item>
   );
