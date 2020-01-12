@@ -1,3 +1,0 @@
-name: Jest
-on: pull_request
-  uses: stefanoeb/jest-action@1.0.2
