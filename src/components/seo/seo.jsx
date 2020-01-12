@@ -96,7 +96,7 @@ Seo.propTypes = {
   pagePath: PropTypes.string,
   postSEO: PropTypes.object,
   pageSEO: PropTypes.bool,
-  customTitle: PropTypes.object
+  customTitle: PropTypes.bool
 };
 
 export default Seo;

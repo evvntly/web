@@ -42,7 +42,7 @@ const PosterImage = ({ className, img }) => (
 
 PosterImage.propTypes = {
   className: PropTypes.string,
-  img: PropTypes.string
+  img: PropTypes.any
 };
 
 const StyledPosterImage = styled(PosterImage)`
