@@ -45,7 +45,8 @@ const Layout = ({ children }) => {
   log("context", context);
   let firebase = React.useContext(FirebaseContext);
 
-  const isHome = location.pathname === "/";
+  const isHome =
+    typeof window !== "undefined" && window.location.pathname === "/";
 
   useEffect(() => {
     firebase &&
