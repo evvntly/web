@@ -8,7 +8,7 @@ import { FirebaseContext } from "gatsby-plugin-firebase";
 import SignIn from "../signin";
 import debug from "debug";
 import PropTypes from "prop-types";
-import { BLACK } from "../../styles/colors";
+import { BLACK, RONCHI } from "../../styles/colors";
 import Video from "../home";
 
 const Container = styled.div`
@@ -29,9 +29,9 @@ const GlobalStyle = createGlobalStyle`
 
 const Notice = styled.div`
   height: 50px;
-  background: #f0bb48;
+  background: ${RONCHI};
   position: relative;
-  z-index: 100000000000;
+  z-index: 1000;
   line-height: 50px;
   color: ${BLACK};
   font-family: ${FONT_FAMILY};

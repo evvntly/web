@@ -52,7 +52,7 @@ const Clear = styled.div`
     content: " ";
     height: 15px;
     width: 2px;
-    background-color: #ccc;
+    background-color: ${SILVER};
   }
   &:before {
     transform: rotate(45deg);

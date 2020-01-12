@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { WHITE, SILVER } from "../../styles/colors";
+import { WHITE, SILVER, BLACK } from "../../styles/colors";
 import { FONT_FAMILY } from "../../styles/typography";
 import { Link } from "gatsby";
 
 const Navigation = styled.footer`
   min-height: 50px;
   width: 100%;
-  background: black;
+  background: ${BLACK};
   position: relative;
   font-family: ${FONT_FAMILY};
   display: flex;

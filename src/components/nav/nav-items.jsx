@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link, navigate } from "gatsby";
 import styled from "styled-components";
-import { WHITE } from "../../styles/colors";
+import { RONCHI, WHITE } from "../../styles/colors";
 import { FONT_FAMILY, WEIGHT } from "../../styles/typography";
 import { myContext } from "../../context/provider";
 import UserNav from "./user-nav";
@@ -13,7 +13,7 @@ const LoginButton = styled.div`
   cursor: pointer;
   color: ${WHITE};
   &:hover {
-    color: #f0bb48;
+    color: ${RONCHI};
   }
 `;
 
@@ -30,7 +30,7 @@ const LoginContainer = styled.div`
   align-content: center;
   &:hover {
     svg {
-      fill: #f0bb48;
+      fill: ${RONCHI};
     }
   }
 `;
@@ -45,7 +45,7 @@ const Items = styled.nav`
     text-decoration: none;
     text-transform: uppercase;
     :hover {
-      color: #f0bb48;
+      color: ${RONCHI};
     }
   }
   ul {
@@ -119,7 +119,7 @@ const NavItems = () => {
           }}
         >
           <li>
-            <Link to="/" aria-label="Home" activeStyle={{ color: "#f0bb48" }}>
+            <Link to="/" aria-label="Home" activeStyle={{ color: RONCHI }}>
               Home
             </Link>
           </li>
@@ -128,7 +128,7 @@ const NavItems = () => {
             <Link
               to="/browse-events"
               aria-label="Browse Events"
-              activeStyle={{ color: "#f0bb48" }}
+              activeStyle={{ color: RONCHI }}
             >
               Browse Events
             </Link>
@@ -138,7 +138,7 @@ const NavItems = () => {
               <Link
                 to="/my-events"
                 aria-label="My Events"
-                activeStyle={{ color: "#f0bb48" }}
+                activeStyle={{ color: RONCHI }}
               >
                 My Events
               </Link>

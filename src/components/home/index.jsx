@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { FONT_FAMILY } from "../../styles/typography";
-import { BLACK, WHITE } from "../../styles/colors";
+import { BLACK, RONCHI, WHITE } from "../../styles/colors";
 import TextInput from "../../library/inputs/text";
 import { myContext } from "../../context/provider";
 import { navigate } from "gatsby";
@@ -71,13 +71,13 @@ const ButtonPrimary = styled.div`
   cursor: pointer;
   font-weight: normal;
   border-radius: 4px;
-  border: 2px solid #f0bb48;
+  border: 2px solid ${RONCHI};
   padding: 10px 40px;
   margin-top: 30px;
-  color: #f0bb48;
+  color: ${RONCHI};
   background: transparent;
   :hover {
-    background: #f0bb48;
+    background: ${RONCHI};
     color: ${BLACK};
   }
 `;
@@ -90,14 +90,14 @@ const ButtonSecondary = styled.div`
   cursor: pointer;
   font-weight: normal;
   border-radius: 4px;
-  border: 2px solid #f0bb48;
+  border: 2px solid ${RONCHI};
   padding: 10px 40px;
   margin-top: 30px;
   color: ${BLACK};
-  background: #f0bb48;
+  background: ${RONCHI};
   :hover {
     background: transparent;
-    color: #f0bb48;
+    color: ${RONCHI};
   }
 `;
 

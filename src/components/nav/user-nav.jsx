@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { myContext } from "../../context/provider";
-import { WHITE } from "../../styles/colors";
+import { BLACK, RONCHI, SILVER, WHITE } from "../../styles/colors";
 import { Link, navigate } from "gatsby";
 import { FirebaseContext } from "gatsby-plugin-firebase";
 import { isMobile } from "react-device-detect";
 
 const Container = styled.div`
   background: ${WHITE};
-  box-shadow: #cccccc 0 0 10px;
+  box-shadow: ${SILVER} 0 0 10px;
   position: absolute;
   width: 220px;
   left: -205px;
@@ -16,10 +16,10 @@ const Container = styled.div`
   text-align: right;
   padding: 0 20px;
   a {
-    color: black !important;
+    color: ${BLACK} !important;
     text-transform: none !important;
     &:hover {
-      color: #f0bb48 !important;
+      color: ${RONCHI} !important;
     }
   }
   ul {
@@ -39,7 +39,7 @@ const Profile = styled.img`
   width: 35px;
   height: 35px;
   border-radius: 35px;
-  border: 2px solid #ffffff;
+  border: 2px solid ${WHITE};
   cursor: pointer;
 `;
 

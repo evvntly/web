@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "gatsby";
 import styled from "styled-components";
-import { BLACK, GREY, WHITE } from "../../styles/colors";
+import { BLACK, GREY, SILVER, WHITE } from "../../styles/colors";
 import { FONT_FAMILY, WEIGHT } from "../../styles/typography";
 import NavItems from "./nav-items";
 import Logo from "../../assets/svgs/logo.svg";
@@ -17,7 +17,7 @@ const Nav = styled.nav`
   top: 0;
   width: 100%;
   background: ${GREY};
-  box-shadow: #000000 1px 1px 5px;
+  box-shadow: ${BLACK} 1px 1px 5px;
   z-index: 1;
   font-family: ${FONT_FAMILY};
   a {
@@ -65,7 +65,7 @@ const MobileNav = styled.nav`
   @media (min-width: 769px) {
     display: none;
   }
-  box-shadow: #cccccc 1px 1px 5px;
+  box-shadow: ${SILVER} 1px 1px 5px;
   position: sticky;
   padding: 0 10px;
   box-sizing: border-box;
@@ -85,7 +85,7 @@ const MobileItems = styled.div`
   position: absolute;
   z-index: 1;
   width: 100%;
-  background: black;
+  background: ${BLACK};
   height: 100vh;
   padding-top: 50px;
 `;
@@ -129,7 +129,7 @@ const CloseIcon = styled.div`
     content: " ";
     height: 33px;
     width: 4px;
-    background-color: #ccc;
+    background-color: ${SILVER};
   }
   &:before {
     transform: rotate(45deg);

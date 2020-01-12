@@ -4,7 +4,12 @@ import { FirebaseContext } from "gatsby-plugin-firebase";
 import { myContext } from "../../context/provider";
 import Banner from "../../library/banner";
 import Paragraph from "../../library/paragraph/paragraph";
-import { FACEBOOK_BLUE, FACEBOOK_BLUE_HOVER, WHITE } from "../../styles/colors";
+import {
+  BLACK,
+  FACEBOOK_BLUE,
+  FACEBOOK_BLUE_HOVER,
+  WHITE
+} from "../../styles/colors";
 import Facebook from "../../assets/svgs/fb.svg";
 import { FONT_FAMILY } from "../../styles/typography";
 import { isMobile } from "react-device-detect";
@@ -25,7 +30,7 @@ const Overlay = styled.div`
   position: fixed;
   height: 100vh;
   width: 100vw;
-  background: #000;
+  background: ${BLACK};
   opacity: 0.6;
   top: 0;
   left: 0;
@@ -77,7 +82,7 @@ const Modal = styled.div`
   border-radius: 5px;
   height: auto;
   max-width: 500px;
-  background: white;
+  background: ${WHITE};
   z-index: 5;
   position: relative;
   @media (max-width: 769px) and (min-width: 320px) {
