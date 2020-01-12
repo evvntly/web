@@ -1,6 +1,6 @@
 name: Tests
 
-on: pull_request
+on: [push]
 
 jobs:
   build:
@@ -10,4 +10,4 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Run Jest
-      - uses: stefanoeb/jest-action@1.0.2ion@1.0.2
+        uses: stefanoeb/jest-action@1.0.2
