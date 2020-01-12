@@ -4,6 +4,7 @@ import styled from "styled-components";
 import BackgroundImage from "gatsby-background-image";
 import { BLACK, WHITE } from "../../styles/colors";
 import { FONT_FAMILY } from "../../styles/typography";
+import PropTypes from "prop-types";
 
 const Title = styled.h2`
   color: ${WHITE};
@@ -60,7 +61,6 @@ const BackgroundSection = ({
     `}
     render={data => {
       let imageData = {};
-      // eslint-disable-next-line
       data.allFile.edges.map(file => {
         if (file.node.name === img) {
           imageData = file.node.childImageSharp.fluid;
@@ -73,8 +73,6 @@ const BackgroundSection = ({
             fluid={imageData}
             Tag="section"
             className={className}
-            overlayColor="#000"
-            backgroundColor={"#000"}
           >
             {title && <Title>{title}</Title>}
             {overlay && <Overlay />}
@@ -84,6 +82,14 @@ const BackgroundSection = ({
     }}
   />
 );
+
+BackgroundSection.propTypes = {
+  className: PropTypes.string,
+  img: PropTypes.string,
+  height: PropTypes.number,
+  title: PropTypes.string,
+  overlay: PropTypes.bool
+};
 
 const StyledBackgroundSection = styled(BackgroundSection)`
   width: 100%;

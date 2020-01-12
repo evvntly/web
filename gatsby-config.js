@@ -32,22 +32,6 @@ module.exports = {
       }
     },
     {
-      resolve: `gatsby-plugin-google-gtag`,
-      options: {
-        trackingIds: [
-          "#", // Google Analytics / GA
-          "#" // adwords
-        ],
-        gtagConfig: {
-          anonymize_ip: true,
-          cookie_expires: 0
-        },
-        pluginConfig: {
-          head: true
-        }
-      }
-    },
-    {
       resolve: "gatsby-plugin-firebase",
       options: {
         features: {

@@ -22,7 +22,8 @@ const Heading = ({ title, color }) => {
 };
 
 Heading.propTypes = {
-  title: PropTypes.string
+  title: PropTypes.string,
+  color: PropTypes.string
 };
 
 export default Heading;

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import LayoutPage from "../components/layout/layout-page";
+import Layout from "../components/layout/layout";
 import Heading from "../library/headings/Heading";
 import { Helmet } from "react-helmet";
 import { navigate } from "gatsby";
@@ -121,7 +121,7 @@ const MyEvents = () => {
           )}
           <Content>
             {item.type === "going" ? (
-              <Paragraph>I'll be there!</Paragraph>
+              <Paragraph>I&apos;ll be there!</Paragraph>
             ) : (
               <Paragraph>Interested in going</Paragraph>
             )}
@@ -149,7 +149,7 @@ const MyEvents = () => {
       <Helmet>
         <title>My Saved Events</title>
       </Helmet>
-      <LayoutPage>
+      <Layout>
         <Banner img="moshpit" />
         <Container>
           <Main>
@@ -160,7 +160,7 @@ const MyEvents = () => {
             )}
           </Main>
         </Container>
-      </LayoutPage>
+      </Layout>
     </>
   );
 };

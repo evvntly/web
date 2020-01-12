@@ -66,8 +66,11 @@ const Footer = () => {
         </Link>{" "}
         |{" "}
         <span
+          tabIndex={0}
+          role="button"
           aria-label="Feedback & Bugs"
           onClick={() => window._urq.push(["Feedback_Open"])}
+          onKeyDown={() => window._urq.push(["Feedback_Open"])}
         >
           Feedback / Bugs
         </span>

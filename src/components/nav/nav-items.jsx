@@ -109,6 +109,11 @@ const NavItems = () => {
     <>
       <Items>
         <ul
+          tabIndex={0}
+          role="button"
+          onKeyDown={() => {
+            if (isMobile) context.setShowHamburger(false);
+          }}
           onClick={() => {
             if (isMobile) context.setShowHamburger(false);
           }}
@@ -148,7 +153,12 @@ const NavItems = () => {
           )}
           {!context.user && (
             <LoginButton>
-              <li onClick={() => onSignUpClick()}>
+              <li
+                tabIndex={0}
+                role="button"
+                onKeyDown={() => onSignUpClick()}
+                onClick={() => onSignUpClick()}
+              >
                 <LoginContainer>
                   LOGIN / SIGNUP
                   <UserIcon />

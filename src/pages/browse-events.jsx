@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import moment from "moment";
-import LayoutPage from "../components/layout/layout-page";
+import Layout from "../components/layout/layout";
 import { navigate } from "gatsby";
 import Heading from "../library/headings/Heading";
 import { Helmet } from "react-helmet";
@@ -193,7 +193,6 @@ const BrowseEvents = () => {
         type: "going"
       };
       eventRef.push(eventItem);
-      eventRef.on("value", snapshot => {});
     } else {
       context.setSignin(true);
     }
@@ -216,7 +215,6 @@ const BrowseEvents = () => {
         type: "maybe"
       };
       eventRef.push(eventItem);
-      eventRef.on("value", snapshot => {});
     } else {
       context.setSignin(true);
     }
@@ -227,11 +225,22 @@ const BrowseEvents = () => {
     const today = new Date();
     const nextWeek = new Date(today.getTime() + 2 * 24 * 60 * 60 * 1000);
     if (eventDate < nextWeek) {
-      return <Paragraph>🗓 {moment(eventDate).calendar()}</Paragraph>;
+      return (
+        <Paragraph>
+          {" "}
+          <span role="img" aria-label="Calendar">
+            🗓
+          </span>{" "}
+          {moment(eventDate).calendar()}
+        </Paragraph>
+      );
     } else {
       return (
         <Paragraph>
-          🗓 {moment(eventDate).format("MMMM Do YYYY, h:mma")}
+          <span role="img" aria-label="Calendar">
+            🗓
+          </span>{" "}
+          {moment(eventDate).format("MMMM Do YYYY, h:mma")}
         </Paragraph>
       );
     }
@@ -244,7 +253,7 @@ const BrowseEvents = () => {
         <link rel="canonical" href="https://eventfinda.io/browse-events" />
         <meta name="description" content="Browse Events" />
       </Helmet>
-      <LayoutPage>
+      <Layout>
         <Banner img="basketballbanner" />
         <Container>
           <Main>
@@ -294,15 +303,25 @@ const BrowseEvents = () => {
                     <ButtonWrapper>
                       {eventAttendingIds.includes(item.id) ? (
                         <ButtonPrimary onClick={() => navigate("/my-events")}>
-                          You're Attending! 🎉
+                          You&apos;re Attending!{" "}
+                          <span role="img" aria-label="Party">
+                            {" "}
+                            🎉
+                          </span>
                         </ButtonPrimary>
                       ) : (
                         <>
                           <ButtonSecondary onClick={() => onImGoingClick(item)}>
-                            👍🏾 Going
+                            <span role="img" aria-label="Thumbs Up">
+                              👍🏾
+                            </span>{" "}
+                            Going
                           </ButtonSecondary>
                           <ButtonPrimary onClick={() => onMaybeClick(item)}>
-                            🤷🏻‍♀️ Interested
+                            <span role="img" aria-label="Shrug">
+                              🤷🏻‍♀️{" "}
+                            </span>
+                            Interested
                           </ButtonPrimary>
                         </>
                       )}
@@ -341,7 +360,7 @@ const BrowseEvents = () => {
               )}
           </Main>
         </Container>
-      </LayoutPage>
+      </Layout>
     </>
   );
 };

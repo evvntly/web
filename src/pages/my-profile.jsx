@@ -1,5 +1,5 @@
 import React from "react";
-import LayoutPage from "../components/layout/layout-page";
+import Layout from "../components/layout/layout";
 import Heading from "../library/headings/Heading";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
@@ -25,7 +25,7 @@ const MyProfile = () => {
       <Helmet>
         <title>My Profile</title>
       </Helmet>
-      <LayoutPage>
+      <Layout>
         <Banner img="moshpit" />
         <Container>
           <Main>
@@ -33,7 +33,7 @@ const MyProfile = () => {
             <Paragraph>Coming Soon</Paragraph>
           </Main>
         </Container>
-      </LayoutPage>
+      </Layout>
     </>
   );
 };

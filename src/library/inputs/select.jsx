@@ -1,17 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { SILVER } from "../../styles/colors";
-import { WEIGHT, FONT_FAMILY } from "../../styles/typography";
-
-const Title = styled.p`
-  color: ${SILVER};
-  font-family: ${FONT_FAMILY};
-  padding: 0;
-  margin: 0 0 10px 0;
-  font-size: 16px;
-  font-weight: ${WEIGHT.THIN};
-`;
+import { WEIGHT } from "../../styles/typography";
 
 const Select = styled.select`
   width: 100%;

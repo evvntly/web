@@ -1,5 +1,5 @@
 import React from "react";
-import LayoutPage from "../components/layout/layout-page";
+import Layout from "../components/layout/layout";
 import Heading from "../library/headings/Heading";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
@@ -27,7 +27,7 @@ const Privacy = () => {
         <link rel="canonical" href="https://eventfinda.io/privacy" />
         <meta name="description" content="Privacy Event Finda" />
       </Helmet>
-      <LayoutPage>
+      <Layout>
         <Banner img="moshpit" />
         <Container>
           <Main>
@@ -35,7 +35,7 @@ const Privacy = () => {
             <Paragraph>Coming Soon</Paragraph>
           </Main>
         </Container>
-      </LayoutPage>
+      </Layout>
     </>
   );
 };

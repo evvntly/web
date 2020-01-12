@@ -1,5 +1,5 @@
 import React from "react";
-import LayoutPage from "../components/layout/layout-page";
+import Layout from "../components/layout/layout";
 import Heading from "../library/headings/Heading";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
@@ -27,7 +27,7 @@ const About = () => {
         <link rel="canonical" href="https://eventfinda.io/about" />
         <meta name="description" content="Find a concert buddy" />
       </Helmet>
-      <LayoutPage>
+      <Layout>
         <Banner img="moshpit" />
         <Container>
           <Main>
@@ -35,7 +35,7 @@ const About = () => {
             <Paragraph>Coming soon...</Paragraph>
           </Main>
         </Container>
-      </LayoutPage>
+      </Layout>
     </>
   );
 };

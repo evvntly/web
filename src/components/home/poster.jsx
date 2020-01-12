@@ -3,6 +3,7 @@ import { graphql, StaticQuery } from "gatsby";
 import styled from "styled-components";
 import BackgroundImage from "gatsby-background-image";
 import { isMobile } from "react-device-detect";
+import PropTypes from "prop-types";
 
 const PosterImage = ({ className, img }) => (
   <StaticQuery
@@ -42,6 +43,11 @@ const PosterImage = ({ className, img }) => (
     }}
   />
 );
+
+PosterImage.propTypes = {
+  className: PropTypes.string,
+  img: PropTypes.string
+};
 
 const StyledPosterImage = styled(PosterImage)`
   position: absolute;

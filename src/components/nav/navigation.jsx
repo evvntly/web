@@ -1,13 +1,13 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Link } from "gatsby";
 import styled from "styled-components";
 import { BLACK, GREY, WHITE } from "../../styles/colors";
 import { FONT_FAMILY, WEIGHT } from "../../styles/typography";
-import NavItems from "./NavItems";
+import NavItems from "./nav-items";
 import Logo from "../../assets/svgs/logo.svg";
 import { myContext } from "../../context/provider";
 
-const Navigation = styled.nav`
+const Nav = styled.nav`
   @media (max-width: 769px) and (min-width: 320px) {
     display: none;
   }
@@ -139,18 +139,18 @@ const CloseIcon = styled.div`
   }
 `;
 
-const Nav = () => {
+const Navigation = () => {
   const context = useContext(myContext);
   return (
     <>
-      <Navigation showNotice={!context.withinUs}>
+      <Nav showNotice={!context.withinUs}>
         <NavWrapper>
           <Link to="/" aria-label="Concert Buddy">
             <LogoIcon />
           </Link>
           <NavItems />
         </NavWrapper>
-      </Navigation>
+      </Nav>
       <MobileNav>
         <Link to="/" aria-label="Concert Buddy">
           <MobileLogo>
@@ -179,4 +179,4 @@ const Nav = () => {
   );
 };
 
-export default Nav;
+export default Navigation;
