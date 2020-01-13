@@ -61,7 +61,7 @@ const Footer = () => {
           About
         </Link>{" "}
         |{" "}
-        <Link to="/Advertise" aria-label="Advertise">
+        <Link to="/advertise" aria-label="Advertise">
           Advertise
         </Link>{" "}
         |{" "}
