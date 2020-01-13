@@ -4,7 +4,7 @@ import config from "../../utils/siteConfig";
 import PropTypes from "prop-types";
 
 const Seo = ({ ...props }) => {
-  const { postNode, pagePath, postSEO, pageSEO } = props;
+  const { postNode, pagePath, pageSEO, loggedInPage = false } = props;
   let title;
   let description;
   let image;
@@ -24,6 +24,11 @@ const Seo = ({ ...props }) => {
   if (pageSEO) {
     title = postNode.title;
     description = postNode.description ? postNode.description : description;
+    pageUrl = config.siteUrl + pagePath;
+  }
+
+  if (loggedInPage) {
+    title = postNode.title;
     pageUrl = config.siteUrl + pagePath;
   }
 
@@ -51,8 +56,8 @@ const Seo = ({ ...props }) => {
   return (
     <Helmet>
       {/* General tags */}
-      <meta name="image" content={image} />
-      <meta name="description" content={description} />
+      {!loggedInPage && <meta name="image" content={image} />}
+      {!loggedInPage && <meta name="description" content={description} />}
 
       {/* Schema.org tags */}
       <script type="application/ld+json">
@@ -60,24 +65,51 @@ const Seo = ({ ...props }) => {
       </script>
 
       {/* OpenGraph tags */}
-      <meta property="og:title" content={title} />
-      {postSEO ? <meta property="og:type" content="article" /> : null}
 
-      <meta property="og:url" content={pageUrl} />
-      <meta property="og:image" content={image} />
-      <meta property="og:image:width" content={imgWidth} />
-      <meta property="og:image:height" content={imgHeight} />
-      <meta property="og:description" content={description} />
+      {!loggedInPage && <meta property="og:title" content={title} />}
+
+      {!loggedInPage && <meta property="og:url" content={pageUrl} />}
+      {!loggedInPage && <meta property="og:image" content={image} />}
+      {!loggedInPage && <meta property="og:image:width" content={imgWidth} />}
+      {!loggedInPage && <meta property="og:image:height" content={imgHeight} />}
+      {!loggedInPage && (
+        <meta property="og:description" content={description} />
+      )}
 
       {/* Twitter Card tags */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta
-        name="twitter:creator"
-        content={config.userTwitter ? config.userTwitter : ""}
+      {!loggedInPage && (
+        <meta name="twitter:card" content="summary_large_image" />
+      )}
+      {!loggedInPage && (
+        <meta
+          name="twitter:creator"
+          content={config.userTwitter ? config.userTwitter : ""}
+        />
+      )}
+      {!loggedInPage && <meta name="twitter:title" content={title} />}
+      {!loggedInPage && <meta name="twitter:image" content={image} />}
+      {!loggedInPage && (
+        <meta name="twitter:description" content={description} />
+      )}
+
+      <link
+        rel="apple-touch-icon"
+        sizes="180x180"
+        href="/apple-touch-icon.png"
       />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:image" content={image} />
-      <meta name="twitter:description" content={description} />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="32x32"
+        href="/favicon-32x32.png"
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="16x16"
+        href="/favicon-16x16.png"
+      />
+      <link rel="manifest" href="/site.webmanifest" />
     </Helmet>
   );
 };
@@ -87,7 +119,8 @@ Seo.propTypes = {
   pagePath: PropTypes.string,
   postSEO: PropTypes.object,
   pageSEO: PropTypes.bool,
-  customTitle: PropTypes.bool
+  customTitle: PropTypes.bool,
+  loggedInPage: PropTypes.bool
 };
 
 export default Seo;

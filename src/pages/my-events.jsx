@@ -8,6 +8,8 @@ import { myContext } from "../context/provider";
 import Paragraph from "../library/paragraph/paragraph";
 import EventItem from "../library/events/event-item";
 import { Container, Main } from "../styles/shared";
+import config from "../utils/siteConfig";
+import Seo from "../components/seo/seo";
 
 const Grid = styled.div`
   display: grid;
@@ -19,6 +21,11 @@ const Grid = styled.div`
 `;
 
 const MyEvents = () => {
+  const postNode = {
+    title: `${config.siteTitle} | My Events`,
+    pagePath: "/my-events"
+  };
+
   const context = useContext(myContext);
 
   useEffect(() => {
@@ -46,8 +53,9 @@ const MyEvents = () => {
   return (
     <>
       <Helmet>
-        <title>My Saved Events</title>
+        <title>{postNode.title}</title>
       </Helmet>
+      <Seo postNode={postNode} pagePath="/my-events" loggedInPage />
       <Layout>
         {context.isAuthPage && context.user && (
           <>

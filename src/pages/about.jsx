@@ -5,15 +5,21 @@ import { Helmet } from "react-helmet";
 import Paragraph from "../library/paragraph/paragraph";
 import Banner from "../library/banner";
 import { Container, Main } from "../styles/shared";
+import config from "../utils/siteConfig";
+import Seo from "../components/seo/seo";
 
 const About = () => {
+  const postNode = {
+    title: `${config.siteTitle} | About`,
+    pagePath: "/about"
+  };
+
   return (
     <>
       <Helmet>
-        <title>About</title>
-        <link rel="canonical" href="https://eventfinda.io/about" />
-        <meta name="description" content="Find a concert buddy" />
+        <title>{postNode.title}</title>
       </Helmet>
+      <Seo postNode={postNode} pagePath="/" pageSEO />
       <Layout>
         <Banner img="moshpit" />
         <Container>

@@ -6,8 +6,15 @@ import Paragraph from "../library/paragraph/paragraph";
 import Banner from "../library/banner";
 import { Container, Main } from "../styles/shared";
 import { myContext } from "../context/provider";
+import config from "../utils/siteConfig";
+import Seo from "../components/seo/seo";
 
 const MyProfile = () => {
+  const postNode = {
+    title: `${config.siteTitle} | My Events`,
+    pagePath: "/my-events"
+  };
+
   const context = useContext(myContext);
 
   useEffect(() => {
@@ -17,8 +24,9 @@ const MyProfile = () => {
   return (
     <>
       <Helmet>
-        <title>My Profile</title>
+        <title>{postNode.title}</title>
       </Helmet>
+      <Seo postNode={postNode} pagePath="/my-profile" loggedInPage />
       <Layout>
         {context.isAuthPage && context.user && (
           <>

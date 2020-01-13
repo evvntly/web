@@ -5,15 +5,20 @@ import { Helmet } from "react-helmet";
 import Paragraph from "../library/paragraph/paragraph";
 import Banner from "../library/banner";
 import { Container, Main } from "../styles/shared";
+import config from "../utils/siteConfig";
+import Seo from "../components/seo/seo";
 
 const Advertise = () => {
+  const postNode = {
+    title: `${config.siteTitle} | Advertise`,
+    pagePath: "/advertise"
+  };
   return (
     <>
       <Helmet>
-        <title>Advertise</title>
-        <link rel="canonical" href="https://eventfinda.io/advertise" />
-        <meta name="description" content="Advertise with event finda" />
+        <title>{postNode.title}</title>
       </Helmet>
+      <Seo postNode={postNode} pagePath="/advertise" pageSEO />
       <Layout>
         <Banner img="moshpit" />
         <Container>
