@@ -1,12 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import { WHITE, BLACK, GREY } from "../../styles/colors";
+import { WHITE, GREY, BLACK } from "../../styles/colors";
 import { FONT_FAMILY } from "../../styles/typography";
 import { Link } from "gatsby";
 import Gatsby from "../../assets/svgs/gatsby.svg";
 import Netlify from "../../assets/svgs/netlify.svg";
+import SeatGeek from "../../assets/svgs/seatgeek.svg";
 
 const Navigation = styled.footer`
+  border-top: 6px solid ${BLACK};
   width: 100%;
   background: ${GREY};
   position: relative;
@@ -37,10 +39,15 @@ const NetlifyLogo = styled(Netlify)`
   margin-bottom: 15px;
 `;
 
+const SeatGeekLogo = styled(SeatGeek)`
+  width: 90px;
+  margin-bottom: 10px;
+`;
+
 const Logos = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 10px 0;
+  margin: 12px 0 0 0;
 `;
 
 const Section = styled.div``;
@@ -88,6 +95,15 @@ const Footer = () => {
                 Advertise
               </Link>
             </li>
+            <li>
+              <a
+                href="https://github.com/johnnyxbell/eventfinda"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                OpenSource - Contribute
+              </a>
+            </li>
           </ul>
         </Section>
         <Section>
@@ -124,6 +140,13 @@ const Footer = () => {
         <Section>
           <Title>Proudly Built With️</Title>
           <Logos>
+            <a
+              href="https://www.seatgeek.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <SeatGeekLogo />
+            </a>
             <a
               href="https://www.netlify.com"
               target="_blank"
