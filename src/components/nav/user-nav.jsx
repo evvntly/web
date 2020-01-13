@@ -5,13 +5,14 @@ import { BLACK, RONCHI, SILVER, WHITE } from "../../styles/colors";
 import { Link, navigate } from "gatsby";
 import { FirebaseContext } from "gatsby-plugin-firebase";
 import { isMobile } from "react-device-detect";
+import Down from "../../assets/svgs/down.svg";
 
 const Container = styled.div`
   background: ${WHITE};
   box-shadow: ${SILVER} 0 0 10px;
   position: absolute;
-  width: 220px;
-  left: -205px;
+  width: 270px;
+  left: -240px;
   top: 60px;
   text-align: right;
   padding: 0 20px;
@@ -35,12 +36,28 @@ const Container = styled.div`
   }
 `;
 
+const DownIcon = styled(Down)`
+  width: 15px;
+  height: 15px;
+  margin-left: 10px;
+  path {
+    fill: ${WHITE};
+  }
+`;
+
 const Profile = styled.img`
   width: 35px;
   height: 35px;
   border-radius: 35px;
   border: 2px solid ${WHITE};
   cursor: pointer;
+`;
+
+const UserContainer = styled.div`
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-items: center;
 `;
 
 const UserNav = () => {
@@ -88,14 +105,16 @@ const UserNav = () => {
       {context.user && (
         <div ref={wrapperRef}>
           <li style={{ position: "relative" }}>
-            <Profile
-              src={context.user.photoURL}
+            <UserContainer
               onClick={() =>
                 !isMobile
                   ? context.setUserMenu(!context.userMenu)
                   : navigate("/my-profile")
               }
-            />
+            >
+              <Profile src={context.user.photoURL} />
+              {!isMobile && <DownIcon />}
+            </UserContainer>
             {context.userMenu && (
               <Container>
                 <ul>
