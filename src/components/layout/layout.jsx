@@ -87,7 +87,11 @@ const Layout = ({ children }) => {
       {!isHome && <Container>{children}</Container>}
       <Footer />
       {context.signin && <SignIn />}
-      {!isMobile && <UserReport />}
+      {!isMobile && (
+        <div>
+          <UserReport />
+        </div>
+      )}
     </>
   );
 };
