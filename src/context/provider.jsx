@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import FullStory, { identify } from "react-fullstory";
 import { ipCheck } from "../startup/ipcheck";
 import ErrorBoundary from "../components/error-boundry/error-boundry";
+import { LOGGEDIN_PATHS } from "../constants/paths";
+import { useWindow } from "../utils/useWindow";
 export const myContext = React.createContext();
 
 const Provider = props => {
@@ -18,6 +20,9 @@ const Provider = props => {
   const [showHamburger, setShowHamburger] = useState(false);
   const [location, setLocation] = useState(false);
   const [eventData, setEventData] = useState(false);
+  const [emailInUse, setEmailInUse] = useState(false);
+  const [userLoading, SetUserLoading] = useState(true);
+  const [isAuthPage, setIsAuthPage] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -57,7 +62,13 @@ const Provider = props => {
     location,
     setLocation,
     eventData,
-    setEventData
+    setEventData,
+    emailInUse,
+    setEmailInUse,
+    userLoading,
+    SetUserLoading,
+    isAuthPage,
+    setIsAuthPage
   };
 
   return (

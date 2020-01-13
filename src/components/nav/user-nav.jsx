@@ -64,6 +64,9 @@ const UserNav = () => {
   const firebase = React.useContext(FirebaseContext);
   const context = useContext(myContext);
   const onSignoutClick = () => {
+    context.setSignin(false);
+    context.setEmailInUse(false);
+    context.setIsAuthPage(false);
     firebase
       .auth()
       .signOut()

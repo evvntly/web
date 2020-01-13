@@ -29,12 +29,13 @@ const Overlay = styled.div`
   right: 0;
   background: ${BLACK};
   opacity: 0.4;
+  z-index: -1;
 `;
 
 const BackgroundSection = ({
   className,
   img,
-  height = 225,
+  height = 290,
   title,
   overlay = true
 }) => (
