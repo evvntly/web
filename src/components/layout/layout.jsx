@@ -13,7 +13,6 @@ import Video from "../home";
 import { useWindow } from "../../utils/useWindow";
 import UserReport from "../user-report";
 import { isMobile } from "react-device-detect";
-import { Helmet } from "react-helmet/es/Helmet";
 
 const Container = styled.div`
   position: relative;
