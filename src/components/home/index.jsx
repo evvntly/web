@@ -7,17 +7,6 @@ import { myContext } from "../../context/provider";
 import { navigate } from "gatsby";
 import PosterImage from "./poster";
 
-const Overlay = styled.div`
-  text-align: center;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  min-width: 100%;
-  min-height: 100%;
-  background: ${BLACK};
-  opacity: 0.5;
-`;
-
 const Input = styled.div`
   margin-top: 30px;
 `;
@@ -160,7 +149,6 @@ const Video = () => {
   return (
     <>
       <PosterImage img={image} />
-      <Overlay />
       <Content>
         <h1>Looking for events near you or around the US?</h1>
         <h2>Stop searching and enjoying life!</h2>
