@@ -72,7 +72,7 @@ const MobileNav = styled.nav`
   top: 0;
   height: 50px;
   width: 100%;
-  background: ${WHITE};
+  background: ${GREY};
   z-index: 1;
   font-family: ${FONT_FAMILY};
   justify-content: space-between;
@@ -102,16 +102,16 @@ const HamburgerIcon = styled.div`
     position: absolute;
     width: 1.4em;
     height: 0.15em;
-    background: ${BLACK};
-    box-shadow: 0 0.5em 0 0 ${BLACK}, 0 1em 0 0 ${BLACK};
+    background: ${WHITE};
+    box-shadow: 0 0.5em 0 0 ${WHITE}, 0 1em 0 0 ${WHITE};
   }
 `;
 
 const MobileLogo = styled.div`
   padding-top: 8px;
   svg {
-    width: 20px;
-    height: 45px;
+    width: 40px;
+    height: 35px;
   }
 `;
 
