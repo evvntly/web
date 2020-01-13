@@ -6,8 +6,130 @@ import moment from "moment";
 import { myContext } from "../../context/provider";
 import { FirebaseContext } from "gatsby-plugin-firebase";
 import { FONT_FAMILY } from "../../styles/typography";
-import { ALTO, BLACK, RONCHI, SILVER, WHITE } from "../../styles/colors";
+import { ALTO, BLACK, RED, RONCHI, SILVER, WHITE } from "../../styles/colors";
 import PropTypes from "prop-types";
+import Trash from "../../assets/svgs/bin.svg";
+// import Notes from "../../assets/svgs/notes.svg";
+import Tick from "../../assets/svgs/tick.svg";
+import Star from "../../assets/svgs/star.svg";
+import Tada from "../../assets/svgs/tada.svg";
+
+const ButtonWrap = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const TrashIcon = styled(Trash)`
+  width: 20px;
+  height: 20px;
+  padding: 0 0 0 5px;
+  opacity: 0.5;
+  cursor: pointer;
+  background: ${WHITE};
+  path {
+    fill: ${RED};
+  }
+`;
+
+// const NotesIcon = styled(Notes)`
+//   width: 20px;
+//   height: 20px;
+//   opacity: 0.5;
+//   padding: 0 5px 0 5px;
+//   cursor: pointer;
+//   path {
+//     fill: ${GREY};
+//   }
+// `;
+
+const UserSettings = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px;
+  order: 4;
+`;
+
+const AttendingSettings = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  top: 90px;
+  position: absolute;
+  width: 100%;
+  opacity: 0.9;
+`;
+
+const TickHeaderIcon = styled(Tick)`
+  width: 20px;
+  height: 20px;
+  padding: 10px;
+  cursor: pointer;
+  background: ${props => (props.fill ? RONCHI : WHITE)};
+  border-radius: 50px;
+  margin-right: 7px;
+  border: ${props =>
+    props.fill ? `1px solid ${RONCHI}` : `1px solid ${BLACK}`};
+  path {
+    fill: ${BLACK};
+  }
+  &:hover {
+    background: ${RONCHI};
+  }
+`;
+
+const StarHeaderIcon = styled(Star)`
+  width: 20px;
+  height: 20px;
+  padding: 10px;
+  cursor: pointer;
+  background: ${props => (props.fill ? RONCHI : WHITE)};
+  border-radius: 50px;
+  border: ${props =>
+    props.fill ? `1px solid ${RONCHI}` : `1px solid ${BLACK}`};
+  path {
+    fill: ${BLACK};
+  }
+  &:hover {
+    background: ${RONCHI};
+  }
+`;
+
+const TickIcon = styled(Tick)`
+  width: 12px;
+  height: 12px;
+  margin-right: 7px;
+  path {
+    fill: ${BLACK};
+  }
+`;
+
+const StarIcon = styled(Star)`
+  width: 12px;
+  height: 12px;
+  margin-right: 7px;
+  path {
+    fill: ${BLACK};
+  }
+`;
+
+const TadaIcon = styled(Tada)`
+  width: 12px;
+  height: 12px;
+  margin-right: 7px;
+  path {
+    fill: ${BLACK};
+  }
+`;
+
+const DateWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+`;
 
 const Item = styled.div`
   border: 1px solid ${SILVER};
@@ -15,12 +137,25 @@ const Item = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  position: relative;
 `;
 
 const Content = styled.div`
-  padding: 10px;
+  padding: 10px 15px;
   order: 2;
   flex-grow: 1;
+`;
+
+const TodayOrTomorrow = styled.div`
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  border-radius: 10px;
+  padding: 3px 10px;
+  font-size: 12px;
+  color: ${BLACK};
+  background: ${RONCHI};
+  opacity: 0.8;
 `;
 
 const EventImage = styled.img`
@@ -44,10 +179,8 @@ const NoImage = styled.div`
 `;
 
 const ButtonWrapper = styled.div`
-  padding: 10px 10px;
   display: flex;
   order: 2;
-  margin-top: -55px;
 `;
 
 const ButtonPrimary = styled.button`
@@ -56,8 +189,7 @@ const ButtonPrimary = styled.button`
   cursor: pointer;
   font-weight: normal;
   border: 1px solid ${RONCHI};
-  border-radius: 4px;
-  padding: 5px 0px;
+  padding: 3px 0px;
   color: ${BLACK};
   background: ${WHITE};
   width: 100%;
@@ -69,13 +201,11 @@ const ButtonPrimary = styled.button`
 
 const ButtonSecondary = styled.button`
   font-family: ${FONT_FAMILY};
-  margin-right: 10px;
   font-size: 13px;
   cursor: pointer;
   font-weight: normal;
   border: 1px solid ${RONCHI};
-  border-radius: 4px;
-  padding: 5px 0px;
+  padding: 3px 0px;
   color: ${BLACK};
   background: ${RONCHI};
   width: 100%;
@@ -85,6 +215,9 @@ const ButtonSecondary = styled.button`
   }
 `;
 
+const truncate = (input, length) =>
+  input.length > length ? `${input.substring(0, length)}...` : input;
+
 const EventItem = ({ item, isMyEventsPage }) => {
   const context = useContext(myContext);
   const firebase = React.useContext(FirebaseContext);
@@ -92,8 +225,31 @@ const EventItem = ({ item, isMyEventsPage }) => {
 
   const TitleStyle = {
     fontWeight: "bold",
-    textAlign: "center",
-    lineHeight: "1.3rem"
+    fontSize: "1.1rem",
+    lineHeight: "1.2rem",
+    margin: "5px 0 0 0"
+  };
+
+  const HeadingStyle = {
+    fontSize: "0.9rem",
+    margin: "10px 0 0 0",
+    lineHeight: "1rem",
+    letterSpacing: "1px",
+    fontWeight: 400
+  };
+
+  const changeToPastEvent = item => {
+    if (context.eventData && context.eventData.events) {
+      const eventDate = new Date(item.datetime_local);
+      const today = new Date();
+      if (eventDate < today) {
+        console.log("past");
+        const eventRef = firebase
+          .database()
+          .ref(`${context.user.uid}/events/${item.firebaseId}`);
+        eventRef.remove();
+      }
+    }
   };
 
   useEffect(() => {
@@ -170,70 +326,68 @@ const EventItem = ({ item, isMyEventsPage }) => {
     }
   };
 
+  const onUpdateToGoingClick = firebaseId => {
+    firebase
+      .database()
+      .ref(`${context.user.uid}/events/${firebaseId}`)
+      .update({ attending: "going" });
+  };
+
+  const onUpdateToMaybeClick = firebaseId => {
+    firebase
+      .database()
+      .ref(`${context.user.uid}/events/${firebaseId}`)
+      .update({ attending: "maybe" });
+  };
+
   const renderDate = item => {
     const eventDate = new Date(item.datetime_local);
     const today = new Date();
-    const nextWeek = new Date(today.getTime() + 2 * 24 * 60 * 60 * 1000);
+    const nextWeek = new Date(today.getTime() + 1.5 * 24 * 60 * 60 * 1000);
     if (eventDate < nextWeek) {
-      return (
-        <Paragraph>
-          {" "}
-          <span role="img" aria-label="Calendar">
-            🗓
-          </span>{" "}
-          {moment(eventDate).calendar()}
-        </Paragraph>
-      );
-    } else {
-      return (
-        <Paragraph>
-          <span role="img" aria-label="Calendar">
-            🗓
-          </span>{" "}
-          {moment(eventDate).format("MMMM Do YYYY, h:mma")}
-        </Paragraph>
-      );
+      return <TodayOrTomorrow>{moment(eventDate).calendar()}</TodayOrTomorrow>;
     }
   };
 
   return (
     <Item key={item.id}>
+      {changeToPastEvent(item)}
       {item.performers[0].image ? (
         <EventImage src={item.performers[0].image} alt={item.title} />
       ) : (
         <NoImage>No Image</NoImage>
       )}
+      {renderDate(item)}
+      {isMyEventsPage && (
+        <AttendingSettings>
+          <TickHeaderIcon
+            onClick={() => onUpdateToGoingClick(item.firebaseId)}
+            fill={item.attending === "going"}
+          />
+          <StarHeaderIcon
+            onClick={() => onUpdateToMaybeClick(item.firebaseId)}
+            fill={item.attending === "maybe"}
+          />
+        </AttendingSettings>
+      )}
       <ButtonWrapper>
-        {isMyEventsPage && (
-          <ButtonPrimary onClick={() => removeEvent(item.firebaseId, item)}>
-            Remove Event{" "}
-            <span role="img" aria-label="Man arms crossed">
-              🙅‍♂️
-            </span>
-          </ButtonPrimary>
-        )}
         {!isMyEventsPage && (
           <>
             {eventAttendingIds.includes(item.id) ? (
-              <ButtonPrimary onClick={() => navigate("/my-events")}>
-                You&apos;re Attending!{" "}
-                <span role="img" aria-label="Party">
-                  {" "}
-                  🎉
-                </span>
-              </ButtonPrimary>
+              <ButtonSecondary onClick={() => navigate("/my-events")}>
+                <TadaIcon />
+                You&apos;re Attending!
+              </ButtonSecondary>
             ) : (
               <>
                 <ButtonSecondary onClick={() => onImGoingClick(item)}>
-                  <span role="img" aria-label="Thumbs Up">
-                    👍🏾
-                  </span>{" "}
-                  Going
+                  <ButtonWrap>
+                    <TickIcon />
+                    Attend
+                  </ButtonWrap>
                 </ButtonSecondary>
                 <ButtonPrimary onClick={() => onMaybeClick(item)}>
-                  <span role="img" aria-label="Shrug">
-                    🤷🏻‍♀️{" "}
-                  </span>
+                  <StarIcon />
                   Interested
                 </ButtonPrimary>
               </>
@@ -242,23 +396,41 @@ const EventItem = ({ item, isMyEventsPage }) => {
         )}
       </ButtonWrapper>
       <Content>
-        {isMyEventsPage && (
-          <>
-            {item.attending === "going" ? (
-              <Paragraph>I&apos;ll be there!</Paragraph>
-            ) : (
-              <Paragraph>Interested in going</Paragraph>
-            )}
-          </>
-        )}
-        <Paragraph customStyle={TitleStyle}>{item.title}</Paragraph>
-        {renderDate(item)}
-        <Paragraph>
-          <strong>{item.venue.name}</strong> <br /> {item.venue.address},{" "}
+        <Paragraph customStyle={HeadingStyle}>
           {item.venue.display_location}
         </Paragraph>
-        {isMyEventsPage && <Paragraph>Add Notes</Paragraph>}
+        <Paragraph customStyle={TitleStyle}>
+          {truncate(item.title, 34)}
+        </Paragraph>
+        <DateWrapper>
+          <div>
+            <Paragraph customStyle={HeadingStyle}>Date</Paragraph>
+            <Paragraph customStyle={{ fontSize: "1rem", margin: "0 0 0 0" }}>
+              {moment(item.datetime_local).format("MMMM Do YYYY")}
+            </Paragraph>
+          </div>
+          <div>
+            <Paragraph customStyle={HeadingStyle}>Time</Paragraph>
+            <Paragraph customStyle={{ fontSize: "1rem", margin: "0 0 0 0" }}>
+              {moment(item.datetime_local).format("LT")}
+            </Paragraph>
+          </div>
+        </DateWrapper>
+        <Paragraph customStyle={HeadingStyle}>Location</Paragraph>
+        <Paragraph customStyle={TitleStyle}>{item.venue.name}</Paragraph>
+        <Paragraph customStyle={{ fontSize: "1rem", margin: "5px 0 0 0" }}>
+          {item.venue.address}, {item.venue.display_location}
+        </Paragraph>
       </Content>
+      {isMyEventsPage && (
+        <UserSettings>
+          {/*<NotesIcon title="Add / View Notes" />*/}
+          <TrashIcon
+            title="Delete Event"
+            onClick={() => removeEvent(item.firebaseId, item)}
+          />
+        </UserSettings>
+      )}
     </Item>
   );
 };
