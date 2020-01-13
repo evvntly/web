@@ -34,13 +34,7 @@ const UserReport = () => {
   };
 
   return (
-    <Container
-      tabIndex={0}
-      role="button"
-      aria-label="Feedback & Bugs"
-      onClick={() => onUserReportClick()}
-      onKeyDown={() => onUserReportClick()}
-    >
+    <Container onClick={() => onUserReportClick()}>
       <UserReportIcon />
     </Container>
   );
