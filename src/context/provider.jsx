@@ -24,8 +24,6 @@ const Provider = props => {
   const [userLoading, SetUserLoading] = useState(true);
   const [isAuthPage, setIsAuthPage] = useState(false);
 
-  console.log(window.location.pathname);
-
   useEffect(() => {
     if (user) {
       identify(user.uid, {

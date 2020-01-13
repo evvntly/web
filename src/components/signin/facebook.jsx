@@ -75,9 +75,7 @@ const FacebookAuth = () => {
         context.setSignin(false);
       })
       .catch(function(error) {
-        console.log("hi");
         context.setEmailInUse(error.message);
-        console.log(context.emailInUse);
       });
   };
   return (

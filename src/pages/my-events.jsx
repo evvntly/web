@@ -43,8 +43,6 @@ const MyEvents = () => {
     }
   };
 
-  console.log(context);
-
   return (
     <>
       <Helmet>

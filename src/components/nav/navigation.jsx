@@ -65,8 +65,7 @@ const MobileNav = styled.nav`
   @media (min-width: 769px) {
     display: none;
   }
-  box-shadow: ${SILVER} 1px 1px 5px;
-  position: sticky;
+  position: absolute;
   padding: 0 10px;
   box-sizing: border-box;
   margin: 0;
