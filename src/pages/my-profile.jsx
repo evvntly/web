@@ -8,6 +8,9 @@ import { Container, Main } from "../styles/shared";
 import { myContext } from "../context/provider";
 import config from "../utils/siteConfig";
 import Seo from "../components/seo/seo";
+import { FirebaseContext } from "gatsby-plugin-firebase";
+import { BLACK, RED, RONCHI, WHITE } from "../styles/colors";
+import Button from "../library/buttons/button";
 
 const MyProfile = () => {
   const postNode = {
@@ -16,10 +19,33 @@ const MyProfile = () => {
   };
 
   const context = useContext(myContext);
+  let firebase = React.useContext(FirebaseContext);
 
   useEffect(() => {
     context.setIsAuthPage(true);
   }, []);
+
+  const onDeleteClick = () => {
+    if (window.confirm("Are you sure? All your events will be deleted.")) {
+      const me = firebase.auth().currentUser;
+      me.delete()
+        .then(function() {
+          context.setUser(false);
+          context.setSignin(false);
+          window.location.href = "/";
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+  };
+
+  const DangerZoneStyle = {
+    color: RED,
+    fontWeight: "bold",
+    fontSize: "1.8rem",
+    margin: 0
+  };
 
   return (
     <>
@@ -34,7 +60,16 @@ const MyProfile = () => {
             <Container>
               <Main>
                 <Heading title="My Profile" />
-                <Paragraph>Coming Soon</Paragraph>
+                <Paragraph customStyle={DangerZoneStyle}>Danger Zone</Paragraph>
+                <Button
+                  height="40px"
+                  fontSize="15px"
+                  borderRadius={2}
+                  textColor={WHITE}
+                  color={RED}
+                  title="Delete my account"
+                  onClick={() => onDeleteClick()}
+                />
               </Main>
             </Container>
           </>
