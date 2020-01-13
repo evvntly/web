@@ -11,6 +11,8 @@ import { FONT_FAMILY } from "../styles/typography";
 import EventItem from "../library/events/event-item";
 import { BLACK, RONCHI, TUNDORA } from "../styles/colors";
 import { Container, Main } from "../styles/shared";
+import config from "../utils/siteConfig";
+import Seo from "../components/seo/seo";
 
 const Grid = styled.div`
   display: grid;
@@ -53,6 +55,11 @@ const MoreButton = styled.div`
 `;
 
 const BrowseEvents = () => {
+  const postNode = {
+    title: `${config.siteTitle} | Browse Events`,
+    pagePath: "/browse-events"
+  };
+
   const context = useContext(myContext);
   const lat = context.location && context.location.latlng.lat;
   const lon = context.location && context.location.latlng.lng;
@@ -76,10 +83,9 @@ const BrowseEvents = () => {
   return (
     <>
       <Helmet>
-        <title>Search Events</title>
-        <link rel="canonical" href="https://eventfinda.io/browse-events" />
-        <meta name="description" content="Browse Events" />
+        <title>{postNode.title}</title>
       </Helmet>
+      <Seo postNode={postNode} pagePath="/browse-events" pageSEO />
       <Layout>
         <Banner img="basketballbanner" />
         <Container>

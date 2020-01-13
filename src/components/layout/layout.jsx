@@ -11,7 +11,9 @@ import PropTypes from "prop-types";
 import { BLACK, RONCHI } from "../../styles/colors";
 import Video from "../home";
 import { useWindow } from "../../utils/useWindow";
-import { LOGGEDIN_PATHS, MY_EVENTS, MY_PROFILE } from "../../constants/paths";
+import UserReport from "../user-report";
+import { isMobile } from "react-device-detect";
+import { Helmet } from "react-helmet/es/Helmet";
 
 const Container = styled.div`
   position: relative;
@@ -85,6 +87,7 @@ const Layout = ({ children }) => {
       {!isHome && <Container>{children}</Container>}
       <Footer />
       {context.signin && <SignIn />}
+      {!isMobile && <UserReport />}
     </>
   );
 };
