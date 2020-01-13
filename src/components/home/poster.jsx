@@ -4,7 +4,7 @@ import styled from "styled-components";
 import BackgroundImage from "gatsby-background-image";
 import PropTypes from "prop-types";
 
-const PosterImage = ({ className, img }) => (
+const PosterImage = ({ className, img, children }) => (
   <StaticQuery
     query={graphql`
       {
@@ -32,7 +32,9 @@ const PosterImage = ({ className, img }) => (
       });
       return (
         <>
-          <BackgroundImage fluid={imageData} className={className} />
+          <BackgroundImage fluid={imageData} className={className}>
+            {children}
+          </BackgroundImage>
         </>
       );
     }}
@@ -41,7 +43,8 @@ const PosterImage = ({ className, img }) => (
 
 PosterImage.propTypes = {
   className: PropTypes.string,
-  img: PropTypes.any
+  img: PropTypes.any,
+  children: PropTypes.array
 };
 
 const StyledPosterImage = styled(PosterImage)`

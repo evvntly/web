@@ -147,31 +147,32 @@ const Video = () => {
   };
 
   return (
-    <>
-      <PosterImage img={image} />
-      <Content>
-        <h1>Looking for events near you or around the US?</h1>
-        <h2>Stop searching and enjoying life!</h2>
-        <Input>
-          <TextInput
-            onChange={e => {
-              context.setArtistName(e.target.value);
-            }}
-            placeholder="Artist / Event / Sports team... e.g. Golden State Warriors"
-          />
-        </Input>
-        <ButtonWrapper>
-          <ButtonSecondary onClick={() => onButtonClick()}>
-            Find Events
-          </ButtonSecondary>
-          {!context.user && (
-            <ButtonPrimary onClick={() => onSignupClick()}>
-              Signup!
-            </ButtonPrimary>
-          )}
-        </ButtonWrapper>
-      </Content>
-    </>
+    <div>
+      <PosterImage img={image}>
+        <Content>
+          <h1>Looking for events near you or around the US?</h1>
+          <h2>Stop searching and enjoying life!</h2>
+          <Input>
+            <TextInput
+              onChange={e => {
+                context.setArtistName(e.target.value);
+              }}
+              placeholder="Artist / Event / Sports team... e.g. Golden State Warriors"
+            />
+          </Input>
+          <ButtonWrapper>
+            <ButtonSecondary onClick={() => onButtonClick()}>
+              Find Events
+            </ButtonSecondary>
+            {!context.user && (
+              <ButtonPrimary onClick={() => onSignupClick()}>
+                Signup!
+              </ButtonPrimary>
+            )}
+          </ButtonWrapper>
+        </Content>
+      </PosterImage>
+    </div>
   );
 };
 
