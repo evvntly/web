@@ -78,6 +78,8 @@ const NavItems = () => {
 
   const onSignoutClick = () => {
     context.setEmailInUse(false);
+    context.setSignin(false);
+    context.setIsAuthPage(false);
     firebase
       .auth()
       .signOut()

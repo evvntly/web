@@ -21,7 +21,7 @@ const Overlay = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 4;
+  z-index: 1;
   backdrop-filter: blur(4px);
 `;
 
@@ -33,6 +33,7 @@ const Container = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
+  z-index: 2;
 `;
 
 const Close = styled.div`
@@ -91,9 +92,14 @@ const errorMessageStyle = {
   margin: "25px 0"
 };
 
+const loggedOutMessageStyle = {
+  color: RED,
+  fontSize: "1.5rem",
+  margin: "25px 0"
+};
+
 const SignIn = () => {
   const context = useContext(myContext);
-
   useEffect(() => {
     window.scrollTo(0, 0);
     if (isMobile) context.setShowHamburger(false);
@@ -105,6 +111,12 @@ const SignIn = () => {
       });
     }
   }, []);
+
+  const onOverlayClick = () => {
+    if (!context.isAuthPage) {
+      context.setSignin(false);
+    }
+  };
 
   const onCloseClick = () => {
     if (process.env.NODE_ENV === "production") {
@@ -128,44 +140,58 @@ const SignIn = () => {
   const selectRandomImage = images[Math.floor(Math.random() * images.length)];
 
   return (
-    <Container>
-      <ModalContainer>
-        <Modal>
-          <Banner
-            img={selectRandomImage}
-            height={175}
-            title="You're one step closer to awesome!"
-          />
-          <Content>
-            {!context.emailInUse && (
-              <Paragraph fontSize="1.2rem">
-                Login for free to save events and more!
-              </Paragraph>
-            )}
-            {context.emailInUse && (
-              <Paragraph customStyle={errorMessageStyle}>
-                {context.emailInUse}
-              </Paragraph>
-            )}
-            {!context.user && (
-              <LoginItems>
-                <GoogleAuth />
-                <FacebookAuth />
-                <TwitterAuth />
-              </LoginItems>
-            )}
-            <Paragraph fontSize="0.9rem">
-              * We do not share you details with anyone, we hate spam too. More
-              info view our <Link to="/privacy">privacy policy</Link>.
-            </Paragraph>
-          </Content>
-          <Close onClick={() => onCloseClick()}>
-            <div>X</div>
-          </Close>
-        </Modal>
-      </ModalContainer>
-      <Overlay onClick={() => context.setSignin(false)} />
-    </Container>
+    <>
+      {!context.user && (
+        <Container>
+          <ModalContainer>
+            <Modal>
+              {!context.isAuthPage && (
+                <Banner
+                  img={selectRandomImage}
+                  height={175}
+                  title="You're one step closer to awesome!"
+                />
+              )}
+              <Content>
+                {!context.emailInUse && !context.isAuthPage && (
+                  <Paragraph fontSize="1.2rem">
+                    Login for free to save events and more!
+                  </Paragraph>
+                )}
+                {context.emailInUse && (
+                  <Paragraph customStyle={errorMessageStyle}>
+                    {context.emailInUse}
+                  </Paragraph>
+                )}
+
+                {context.isAuthPage && (
+                  <Paragraph customStyle={loggedOutMessageStyle}>
+                    You must be signed in to see this page.
+                  </Paragraph>
+                )}
+
+                <LoginItems>
+                  <GoogleAuth />
+                  <FacebookAuth />
+                  <TwitterAuth />
+                </LoginItems>
+
+                <Paragraph fontSize="0.9rem">
+                  * We do not share you details with anyone, we hate spam too.
+                  More info view our <Link to="/privacy">privacy policy</Link>.
+                </Paragraph>
+              </Content>
+              {!context.isAuthPage && (
+                <Close onClick={() => onCloseClick()}>
+                  <div>X</div>
+                </Close>
+              )}
+            </Modal>
+          </ModalContainer>
+          <Overlay onClick={() => onOverlayClick()} />
+        </Container>
+      )}
+    </>
   );
 };
 

@@ -11,6 +11,7 @@ import PropTypes from "prop-types";
 import { BLACK, RONCHI } from "../../styles/colors";
 import Video from "../home";
 import { useWindow } from "../../utils/useWindow";
+import { LOGGEDIN_PATHS, MY_EVENTS, MY_PROFILE } from "../../constants/paths";
 
 const Container = styled.div`
   position: relative;
@@ -49,10 +50,13 @@ const Layout = ({ children }) => {
   const isHome = useWindow && window.location.pathname === "/";
 
   useEffect(() => {
+    if (context.isAuthPage && !context.user) {
+      context.setSignin(true);
+    }
     firebase &&
       firebase.auth().onAuthStateChanged(function(user) {
-        console.log(user);
         if (user) {
+          context.SetUserLoading(false);
           context.setUser(user);
           firebase
             .database()

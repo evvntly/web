@@ -11,14 +11,14 @@ const Nav = styled.nav`
   @media (max-width: 769px) and (min-width: 320px) {
     display: none;
   }
+  z-index: 1;
   padding: 0;
   margin: 0;
-  position: sticky;
+  position: absolute;
   top: 0;
   width: 100%;
   background: ${GREY};
   box-shadow: ${BLACK} 1px 1px 5px;
-  z-index: 1;
   font-family: ${FONT_FAMILY};
   a {
     font-weight: ${WEIGHT.NORMAL};

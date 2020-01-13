@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Layout from "../components/layout/layout";
 import Heading from "../library/headings/heading";
 import { Helmet } from "react-helmet";
@@ -21,6 +21,10 @@ const Grid = styled.div`
 const MyEvents = () => {
   const context = useContext(myContext);
 
+  useEffect(() => {
+    context.setIsAuthPage(true);
+  }, []);
+
   const loadEvents = () => {
     if (context.eventData.events) {
       const placeholder = [];
@@ -39,22 +43,28 @@ const MyEvents = () => {
     }
   };
 
+  console.log(context);
+
   return (
     <>
       <Helmet>
         <title>My Saved Events</title>
       </Helmet>
       <Layout>
-        <Banner img="moshpit" />
-        <Container>
-          <Main>
-            <Heading title="My Saved Events" />
-            {context.eventData.events && <Grid>{loadEvents()}</Grid>}
-            {!context.eventData.events && (
-              <Paragraph>No events added yet, try to add some</Paragraph>
-            )}
-          </Main>
-        </Container>
+        {context.isAuthPage && context.user && (
+          <>
+            <Banner img="moshpit" />
+            <Container>
+              <Main>
+                <Heading title="My Saved Events" />
+                {context.eventData.events && <Grid>{loadEvents()}</Grid>}
+                {!context.eventData.events && (
+                  <Paragraph>No events added yet, try to add some</Paragraph>
+                )}
+              </Main>
+            </Container>
+          </>
+        )}
       </Layout>
     </>
   );

@@ -2,7 +2,6 @@ import React from "react";
 import { graphql, StaticQuery } from "gatsby";
 import styled from "styled-components";
 import BackgroundImage from "gatsby-background-image";
-import { isMobile } from "react-device-detect";
 import PropTypes from "prop-types";
 
 const PosterImage = ({ className, img }) => (
@@ -49,7 +48,6 @@ const StyledPosterImage = styled(PosterImage)`
   position: absolute;
   width: 100vw;
   height: 100vh;
-  margin-top: ${isMobile ? "-50px" : "-70px"};
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
