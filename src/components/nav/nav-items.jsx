@@ -148,6 +148,13 @@ const NavItems = () => {
           )}
           {context.user && isMobile && (
             <li>
+              <Link to="/my-profile" aria-label="My Profile">
+                My Profile
+              </Link>
+            </li>
+          )}
+          {context.user && isMobile && (
+            <li>
               <Link to="/" aria-label="Logout" onClick={() => onSignoutClick()}>
                 Sign Out
               </Link>
