@@ -1,0 +1,12 @@
+/*.png
+  Cache-Control: public, s-max-age=604800
+/*.jpg
+  Cache-Control: public, s-max-age=604800
+/*.mp4
+  Cache-Control: public, s-max-age=604800
+/*.webp
+Cache-Control: public, s-max-age=604800
+/*.css
+  Cache-Control: public, s-max-age=604800
+/*.js
+  Cache-Control: public, s-max-age=604800

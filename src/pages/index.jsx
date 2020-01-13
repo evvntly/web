@@ -6,15 +6,16 @@ import config from "../utils/siteConfig";
 
 const Index = () => {
   const postNode = {
-    title: config.siteTitle
+    title: `${config.siteTitle} | Events in San Francisco, LA, New York and all around the USA. Find events near you`,
+    pagePath: "/"
   };
 
   return (
     <>
       <Helmet>
-        <title>{config.siteTitle}</title>
+        <title>{postNode.title}</title>
       </Helmet>
-      <Seo postNode={postNode} pagePath="/" customTitle />
+      <Seo postNode={postNode} pagePath="/" pageSEO />
       <Layout />
     </>
   );

@@ -4,7 +4,7 @@ import config from "../../utils/siteConfig";
 import PropTypes from "prop-types";
 
 const Seo = ({ ...props }) => {
-  const { postNode, pagePath, postSEO, pageSEO, customTitle } = props;
+  const { postNode, pagePath, postSEO, pageSEO } = props;
   let title;
   let description;
   let image;
@@ -20,20 +20,11 @@ const Seo = ({ ...props }) => {
   imgHeight = config.shareImageHeight;
   pageUrl = config.siteUrl;
 
-  if (customTitle) {
-    title = postNode.title;
-    pageUrl = config.siteUrl + "/" + pagePath + "/";
-  }
-
   // Replace with Page Parameters if post or page
-  if (postSEO || pageSEO) {
+  if (pageSEO) {
     title = postNode.title;
-    description =
-      postNode.metaDescription === null
-        ? postNode.body.childMarkdownRemark.excerpt
-        : postNode.metaDescription.internal.content;
-
-    pageUrl = config.siteUrl + "/" + pagePath + "/";
+    description = postNode.description ? postNode.description : description;
+    pageUrl = config.siteUrl + pagePath;
   }
 
   // Default Website Schema
