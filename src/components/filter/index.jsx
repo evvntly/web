@@ -51,6 +51,9 @@ const AlogilaContainer = styled.div`
   margin-right: 20px;
   width: 30%;
   font-family: ${FONT_FAMILY};
+  button {
+    display: none;
+  }
   input {
     height: 50px;
     border-radius: 0;
