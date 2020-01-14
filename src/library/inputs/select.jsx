@@ -6,8 +6,10 @@ import { WEIGHT } from "../../styles/typography";
 const Select = styled.select`
   width: 100%;
   height: 45px;
+  -webkit-border-radius: 0;
   border-radius: 0;
   border: 0;
+  outline: 1px solid grey;
   outline-offset: -1px;
   padding-left: 5px;
   background: white;
