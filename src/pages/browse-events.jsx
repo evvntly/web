@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from "react";
+import { fetch as fetchPolyfill } from "whatwg-fetch";
 import Layout from "../components/layout/layout";
 import Heading from "../library/headings/heading";
 import { Helmet } from "react-helmet";
@@ -53,7 +54,7 @@ const BrowseEvents = () => {
   const lon = context.location && context.location.latlng.lng;
 
   useEffect(() => {
-    fetch(
+    fetchPolyfill(
       `https://api.seatgeek.com/2/events?q=${context.artistName
         .replace(/\s+/g, "-")
         .toLowerCase()}&range=${context.radius}mi&per_page=${

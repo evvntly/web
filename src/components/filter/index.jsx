@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { fetch as fetchPolyfill } from "whatwg-fetch";
 import AlgoliaPlaces from "algolia-places-react";
 import styled from "styled-components";
 import { BLACK, SILVER, TUNDORA } from "../../styles/colors";
@@ -93,7 +94,7 @@ const Filter = () => {
   const lon = context.location && context.location.latlng.lng;
 
   const onButtonClick = () => {
-    fetch(
+    fetchPolyfill(
       `https://api.seatgeek.com/2/events?q=${context.artistName
         .replace(/\s+/g, "-")
         .toLowerCase()}&range=${context.radius}mi&per_page=${

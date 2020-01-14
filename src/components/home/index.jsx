@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { fetch as fetchPolyfill } from "whatwg-fetch";
 import styled from "styled-components";
 import { FONT_FAMILY } from "../../styles/typography";
 import { BLACK, WHITE } from "../../styles/colors";
@@ -87,7 +88,7 @@ const Video = () => {
   }, []);
 
   const onButtonClick = () => {
-    fetch(
+    fetchPolyfill(
       `https://api.seatgeek.com/2/events?q=${context.artistName
         .replace(/\s+/g, "-")
         .toLowerCase()}&range=25mi&per_page=25&geoip=true&client_id=${
