@@ -1,12 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import {
-  PICTON_BLUE_TRANSPARENT,
-  PICTON_BLUE,
-  WHITE,
-  RONCHI
-} from "../../styles/colors";
+import { WHITE, RONCHI } from "../../styles/colors";
 import { WEIGHT, FONT_FAMILY } from "../../styles/typography";
 import { lighten } from "polished";
 
@@ -43,8 +38,7 @@ const Button = ({
   borderRadius,
   textColor = WHITE,
   height = "40px",
-  fontSize = "16px",
-  ghost = false
+  fontSize = "16px"
 }) => {
   return (
     <ButtonStyle
@@ -56,7 +50,6 @@ const Button = ({
       textColor={textColor}
       height={height}
       fontSize={fontSize}
-      ghost={ghost}
     >
       {title}
     </ButtonStyle>
@@ -67,7 +60,12 @@ Button.propTypes = {
   title: PropTypes.string,
   type: PropTypes.string,
   disabled: PropTypes.bool,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  color: PropTypes.string,
+  borderRadius: PropTypes.number,
+  textColor: PropTypes.string,
+  height: PropTypes.string,
+  fontSize: PropTypes.string
 };
 
 export default Button;

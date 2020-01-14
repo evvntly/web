@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { FONT_FAMILY } from "../../styles/typography";
-import { BLACK, RONCHI, WHITE } from "../../styles/colors";
+import { BLACK, WHITE } from "../../styles/colors";
 import TextInput from "../../library/inputs/text";
 import { myContext } from "../../context/provider";
 import { navigate } from "gatsby";

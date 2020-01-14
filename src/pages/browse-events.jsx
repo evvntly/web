@@ -7,9 +7,7 @@ import Paragraph from "../library/paragraph/paragraph";
 import Banner from "../library/banner";
 import { myContext } from "../context/provider";
 import Filter from "../components/filter";
-import { FONT_FAMILY } from "../styles/typography";
 import EventItem from "../library/events/event-item";
-import { BLACK, RONCHI, TUNDORA } from "../styles/colors";
 import { Container, Main } from "../styles/shared";
 import config from "../utils/siteConfig";
 import Seo from "../components/seo/seo";
@@ -29,30 +27,6 @@ const Center = styled.div`
   align-items: center;
   justify-content: center;
   margin: 50px 0;
-`;
-
-const MoreButton = styled.div`
-  cursor: pointer;
-  height: 40px;
-  display: flex;
-  font-size: 14px;
-  align-items: center;
-  justify-content: center;
-  font-family: ${FONT_FAMILY};
-  font-weight: normal;
-  border: 1px solid ${RONCHI};
-  border-radius: 20px;
-  padding: 0 40px;
-  color: ${TUNDORA};
-  background: transparent;
-  width: max-content;
-  :hover {
-    background: ${RONCHI};
-    color: ${BLACK};
-  }
-  @media (max-width: 769px) and (min-width: 320px) {
-    margin: 10px 0;
-  }
 `;
 
 const BrowseEvents = () => {

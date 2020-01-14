@@ -58,7 +58,13 @@ GhostButton.propTypes = {
   title: PropTypes.string,
   type: PropTypes.string,
   disabled: PropTypes.bool,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  color: PropTypes.string,
+  borderRadius: PropTypes.number,
+  textColor: PropTypes.string,
+  height: PropTypes.string,
+  fontSize: PropTypes.string,
+  width: PropTypes.string
 };
 
 export default GhostButton;

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import AlgoliaPlaces from "algolia-places-react";
 import styled from "styled-components";
-import { BLACK, GREY, SILVER, TUNDORA } from "../../styles/colors";
+import { BLACK, SILVER, TUNDORA } from "../../styles/colors";
 import TextInput from "../../library/inputs/text";
 import SelectInput from "../../library/inputs/select";
 import { myContext } from "../../context/provider";
