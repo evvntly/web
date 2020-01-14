@@ -1,4 +1,6 @@
 import React, { useContext, useEffect } from "react";
+import fetchPonyfill from "fetch-ponyfill";
+const { fetch } = fetchPonyfill();
 import Layout from "../components/layout/layout";
 import Heading from "../library/headings/heading";
 import { Helmet } from "react-helmet";

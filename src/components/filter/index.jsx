@@ -1,4 +1,6 @@
 import React, { useContext } from "react";
+import fetchPonyfill from "fetch-ponyfill";
+const { fetch } = fetchPonyfill();
 import AlgoliaPlaces from "algolia-places-react";
 import styled from "styled-components";
 import { BLACK, SILVER, TUNDORA } from "../../styles/colors";

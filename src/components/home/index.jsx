@@ -1,4 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
+import fetchPonyfill from "fetch-ponyfill";
+const { fetch } = fetchPonyfill();
 import styled from "styled-components";
 import { FONT_FAMILY } from "../../styles/typography";
 import { BLACK, WHITE } from "../../styles/colors";
