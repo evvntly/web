@@ -30,18 +30,6 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const Notice = styled.div`
-  height: 50px;
-  background: ${RONCHI};
-  position: relative;
-  z-index: 1000;
-  line-height: 50px;
-  color: ${BLACK};
-  font-family: ${FONT_FAMILY};
-  text-align: center;
-  font-size: 13px;
-`;
-
 const Layout = ({ children }) => {
   const context = useContext(myContext);
   const log = debug("context");
@@ -73,14 +61,6 @@ const Layout = ({ children }) => {
   return (
     <>
       <GlobalStyle />
-      {!context.withinUs && (
-        <Notice>
-          Hi! Results are limited outside the US.
-          <span role="img" aria-label="crying">
-            😭
-          </span>
-        </Notice>
-      )}
       <Navigation />
       {isHome && <Video />}
       {!isHome && <Container>{children}</Container>}

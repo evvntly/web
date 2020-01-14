@@ -12,6 +12,8 @@ import { Container, Main } from "../styles/shared";
 import config from "../utils/siteConfig";
 import Seo from "../components/seo/seo";
 import GhostButton from "../library/buttons/ghost-button";
+import { BLACK, RONCHI } from "../styles/colors";
+import { FONT_FAMILY } from "../styles/typography";
 
 const Grid = styled.div`
   display: grid;
@@ -20,6 +22,17 @@ const Grid = styled.div`
     grid-template-columns: 1fr;
   }
   grid-gap: 20px;
+`;
+
+const Notice = styled.div`
+  height: auto;
+  background: ${RONCHI};
+  position: relative;
+  padding: 10px 0;
+  color: ${BLACK};
+  font-family: ${FONT_FAMILY};
+  text-align: center;
+  font-size: 13px;
 `;
 
 const Center = styled.div`
@@ -65,6 +78,15 @@ const BrowseEvents = () => {
         <Banner img="basketballbanner" />
         <Container>
           <Main>
+            {!context.withinUs && (
+              <Notice>
+                Hi! Results are limited outside the US.{" "}
+                <span role="img" aria-label="crying">
+                  😭
+                </span>
+              </Notice>
+            )}
+
             <Heading title="Search Events" />
             <Filter />
             {context.data && Object.keys(context.data).length === 0 && (
@@ -75,7 +97,9 @@ const BrowseEvents = () => {
             )}
 
             {context.data && Object.keys(context.data).length !== 0 && (
-              <Paragraph>{`Showing you ${context.data.meta.total} events`}</Paragraph>
+              <Paragraph>{`Showing you ${
+                context.data.meta.total
+              } events`}</Paragraph>
             )}
 
             {context.data &&
@@ -83,7 +107,9 @@ const BrowseEvents = () => {
               !context.location && (
                 <>
                   <Paragraph>
-                    {`We are currently showing you events ${context.radius} miles around your
+                    {`We are currently showing you events ${
+                      context.radius
+                    } miles around your
                   current location, please use the filter above to refine your
                   search.`}
                   </Paragraph>
