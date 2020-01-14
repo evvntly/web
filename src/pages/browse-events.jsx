@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from "react";
-import "whatwg-fetch";
 import Layout from "../components/layout/layout";
 import Heading from "../library/headings/heading";
 import { Helmet } from "react-helmet";
@@ -15,7 +14,6 @@ import Seo from "../components/seo/seo";
 import GhostButton from "../library/buttons/ghost-button";
 import { BLACK, RONCHI } from "../styles/colors";
 import { FONT_FAMILY } from "../styles/typography";
-import { useWindow } from "../utils/useWindow";
 
 const Grid = styled.div`
   display: grid;
@@ -55,20 +53,19 @@ const BrowseEvents = () => {
   const lon = context.location && context.location.latlng.lng;
 
   useEffect(() => {
-    useWindow &&
-      fetch(
-        `https://api.seatgeek.com/2/events?q=${context.artistName
-          .replace(/\s+/g, "-")
-          .toLowerCase()}&range=${context.radius}mi&per_page=${
-          context.itemsPerPage
-        }&geoip=true${
-          context.location ? `&lat=${lat}&lon=${lon}` : ""
-        }&client_id=${process.env.GATSBY_API_KEY}`
-      )
-        .then(response => response.json())
-        .then(data => context.setData(data))
-        // eslint-disable-next-line no-console
-        .catch(err => console.log(err));
+    fetch(
+      `https://api.seatgeek.com/2/events?q=${context.artistName
+        .replace(/\s+/g, "-")
+        .toLowerCase()}&range=${context.radius}mi&per_page=${
+        context.itemsPerPage
+      }&geoip=true${
+        context.location ? `&lat=${lat}&lon=${lon}` : ""
+      }&client_id=${process.env.GATSBY_API_KEY}`
+    )
+      .then(response => response.json())
+      .then(data => context.setData(data))
+      // eslint-disable-next-line no-console
+      .catch(err => console.log(err));
   }, [context.radius, context.itemsPerPage, context.location]);
 
   return (
