@@ -372,9 +372,7 @@ const EventItem = ({ item, isMyEventsPage }) => {
       )}
       {new Date(item.datetime_local) < today ? (
         <ButtonWrapper>
-          <ButtonSecondary onClick={() => navigate("/my-events")}>
-            Event has passed
-          </ButtonSecondary>
+          <ButtonSecondary>Event has passed</ButtonSecondary>
         </ButtonWrapper>
       ) : (
         <ButtonWrapper>
