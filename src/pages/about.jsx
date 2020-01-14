@@ -7,12 +7,38 @@ import Banner from "../library/banner";
 import { Container, Main } from "../styles/shared";
 import config from "../utils/siteConfig";
 import Seo from "../components/seo/seo";
+import styled from "styled-components";
 
 const About = () => {
   const postNode = {
     title: `${config.siteTitle} | About`,
     pagePath: "/about"
   };
+
+  const Column = styled.div`
+    display: flex;
+    @media (max-width: 769px) and (min-width: 320px) {
+      flex-direction: column;
+    }
+  `;
+
+  const Content = styled.div`
+    margin-left: 40px;
+    width: 50%;
+    @media (max-width: 769px) and (min-width: 320px) {
+      width: 100%;
+      margin: 0;
+    }
+  `;
+
+  const ImageContainer = styled.div`
+    width: 50%;
+    margin-top: 20px;
+    @media (max-width: 769px) and (min-width: 320px) {
+      width: 100%;
+      margin: 0;
+    }
+  `;
 
   return (
     <>
@@ -25,7 +51,62 @@ const About = () => {
         <Container>
           <Main>
             <Heading title="About" />
-            <Paragraph>Coming soon...</Paragraph>
+            <Column>
+              <ImageContainer>
+                <Banner img="about" height={500} />
+              </ImageContainer>
+              <Content>
+                <Paragraph>Hi there!</Paragraph>
+                <Paragraph>
+                  Welcome to Event Finda! We help you find events happening near
+                  you or all around the USA. You can search for Sports Events,
+                  Concerts, Musicals, you name it we can hopefully help you find
+                  it.
+                </Paragraph>
+                <Paragraph>
+                  If you create an account you can save the events and keep
+                  track of the upcoming events that you have coming up.
+                </Paragraph>
+                <Paragraph>
+                  We are using the SeatGeek API, so they have a lot of events in
+                  their system.
+                </Paragraph>
+                <Paragraph>
+                  We want your feedback, so if you want to request a feature or
+                  you spot a bug, please click the icon to the bottom right side
+                  of the site and submit some feedback
+                </Paragraph>
+                <Paragraph>
+                  This website just launched and we are adding new features all
+                  the time. If you want to keep up or see what features we have
+                  in the pipeline please see our{" "}
+                  <a
+                    href="https://trello.com/b/yQUPk6jx"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="event finda trello board"
+                  >
+                    trello board.
+                  </a>
+                </Paragraph>
+                <Paragraph>
+                  The website is also 100% opensource so if you see a bug and
+                  want to fix it yourself please feel free to make a pull
+                  request on the repo -{" "}
+                  <a
+                    href="https://github.com/johnnyxbell/eventfinda"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="event finda trello repo"
+                  >
+                    Event Finda Repo
+                  </a>
+                </Paragraph>
+                <Paragraph>
+                  I hope that you find the app useful and enjoy using it!
+                </Paragraph>
+              </Content>
+            </Column>
           </Main>
         </Container>
       </Layout>

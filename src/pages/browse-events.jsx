@@ -13,6 +13,7 @@ import { BLACK, RONCHI, TUNDORA } from "../styles/colors";
 import { Container, Main } from "../styles/shared";
 import config from "../utils/siteConfig";
 import Seo from "../components/seo/seo";
+import GhostButton from "../library/buttons/ghost-button";
 
 const Grid = styled.div`
   display: grid;
@@ -100,7 +101,9 @@ const BrowseEvents = () => {
             )}
 
             {context.data && Object.keys(context.data).length !== 0 && (
-              <Paragraph>{`Showing you ${context.data.meta.total} events`}</Paragraph>
+              <Paragraph>{`Showing you ${
+                context.data.meta.total
+              } events`}</Paragraph>
             )}
 
             {context.data &&
@@ -108,7 +111,9 @@ const BrowseEvents = () => {
               !context.location && (
                 <>
                   <Paragraph>
-                    {`We are currently showing you events ${context.radius} miles around your
+                    {`We are currently showing you events ${
+                      context.radius
+                    } miles around your
                   current location, please use the filter above to refine your
                   search.`}
                   </Paragraph>
@@ -131,13 +136,13 @@ const BrowseEvents = () => {
               Object.keys(context.data).length !== 0 &&
               context.data.meta.total >= context.data.meta.per_page && (
                 <Center>
-                  <MoreButton
+                  <GhostButton
+                    title="Load More"
+                    borderRadius={20}
                     onClick={() =>
                       context.setItemsPerPage(context.itemsPerPage + 25)
                     }
-                  >
-                    Load More
-                  </MoreButton>
+                  />
                 </Center>
               )}
           </Main>

@@ -6,6 +6,8 @@ import TextInput from "../../library/inputs/text";
 import { myContext } from "../../context/provider";
 import { navigate } from "gatsby";
 import PosterImage from "./poster";
+import Button from "../../library/buttons/button";
+import GhostButton from "../../library/buttons/ghost-button";
 
 const Input = styled.div`
   margin-top: 30px;
@@ -51,42 +53,18 @@ const Content = styled.div`
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
+  margin: 25px 0;
+  > button:first-of-type {
+    margin: 0 15px 0 0;
+  }
   @media (max-width: 769px) and (min-width: 320px) {
     flex-direction: column;
-  }
-`;
-
-const ButtonPrimary = styled.div`
-  cursor: pointer;
-  font-weight: normal;
-  border-radius: 4px;
-  border: 2px solid ${RONCHI};
-  padding: 10px 40px;
-  margin-top: 30px;
-  color: ${RONCHI};
-  background: transparent;
-  :hover {
-    background: ${RONCHI};
-    color: ${BLACK};
-  }
-`;
-
-const ButtonSecondary = styled.div`
-  margin-right: 20px;
-  @media (max-width: 769px) and (min-width: 320px) {
-    margin-right: 0;
-  }
-  cursor: pointer;
-  font-weight: normal;
-  border-radius: 4px;
-  border: 2px solid ${RONCHI};
-  padding: 10px 40px;
-  margin-top: 30px;
-  color: ${BLACK};
-  background: ${RONCHI};
-  :hover {
-    background: transparent;
-    color: ${RONCHI};
+    > button:first-of-type {
+      margin: 0 0 25px 0;
+    }
+    > button {
+      width: 100%;
+    }
   }
 `;
 
@@ -161,13 +139,21 @@ const Video = () => {
             />
           </Input>
           <ButtonWrapper>
-            <ButtonSecondary onClick={() => onButtonClick()}>
-              Find Events
-            </ButtonSecondary>
-            {!context.user && (
-              <ButtonPrimary onClick={() => onSignupClick()}>
-                Signup!
-              </ButtonPrimary>
+            <Button
+              textColor={BLACK}
+              height="50px"
+              title="Find Events"
+              borderRadius={4}
+              onClick={() => onButtonClick()}
+            />
+            {!context.uesr && (
+              <GhostButton
+                textColor={BLACK}
+                height="50px"
+                title="Sign Up"
+                borderRadius={4}
+                onClick={() => onSignupClick()}
+              />
             )}
           </ButtonWrapper>
         </Content>

@@ -1,15 +1,19 @@
 import React, { useContext } from "react";
 import AlgoliaPlaces from "algolia-places-react";
 import styled from "styled-components";
-import { BLACK, RONCHI, TUNDORA } from "../../styles/colors";
+import { BLACK, GREY, SILVER, TUNDORA } from "../../styles/colors";
 import TextInput from "../../library/inputs/text";
 import SelectInput from "../../library/inputs/select";
 import { myContext } from "../../context/provider";
 import { FONT_FAMILY, WEIGHT } from "../../styles/typography";
+import GhostButton from "../../library/buttons/ghost-button";
+import { isMobile } from "react-device-detect";
 
 const Container = styled.div`
   margin: 25px 0;
   padding: 25px 35px;
+  box-shadow: ${SILVER} 1px 1px 10px;
+  border-radius: 4px;
   background: ${TUNDORA};
   @media (max-width: 769px) and (min-width: 320px) {
     padding: 10px 20px;
@@ -25,28 +29,6 @@ const InputContainer = styled.div`
   }
 `;
 
-const ButtonSecondary = styled.div`
-  cursor: pointer;
-  height: 40px;
-  width: 10%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: ${FONT_FAMILY};
-  font-weight: normal;
-  border: 2px solid ${RONCHI};
-  padding: 0 40px;
-  color: ${BLACK};
-  background: ${RONCHI};
-  :hover {
-    background: transparent;
-    color: ${RONCHI};
-  }
-  @media (max-width: 769px) and (min-width: 320px) {
-    margin: 10px 0;
-  }
-`;
-
 const AlogilaContainer = styled.div`
   margin-right: 20px;
   width: 30%;
@@ -55,7 +37,7 @@ const AlogilaContainer = styled.div`
     display: none;
   }
   input {
-    height: 50px;
+    height: 45px;
     border-radius: 0;
     font-size: 16px;
     font-weight: ${WEIGHT.THIN};
@@ -77,6 +59,9 @@ const StyledTextInput = styled.div`
 
 const StyledButton = styled.div`
   margin-top: 15px;
+  @media (max-width: 769px) and (min-width: 320px) {
+    margin: 6px 0 8px 0;
+  }
   width: 100%;
   display: flex;
   align-items: flex-end;
@@ -184,9 +169,14 @@ const Filter = () => {
         </StyledSelect>
       </InputContainer>
       <StyledButton>
-        <ButtonSecondary onClick={() => onButtonClick()}>
-          Search
-        </ButtonSecondary>
+        <GhostButton
+          width={isMobile ? "100%" : "19%"}
+          title="Search"
+          textColor={BLACK}
+          height="45px"
+          borderRadius={4}
+          onClick={() => onButtonClick()}
+        />
       </StyledButton>
     </Container>
   );
