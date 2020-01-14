@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { fetch as fetchPolyfill } from "whatwg-fetch";
+import "whatwg-fetch";
 import AlgoliaPlaces from "algolia-places-react";
 import styled from "styled-components";
 import { BLACK, SILVER, TUNDORA } from "../../styles/colors";
@@ -9,6 +9,7 @@ import { myContext } from "../../context/provider";
 import { FONT_FAMILY, WEIGHT } from "../../styles/typography";
 import GhostButton from "../../library/buttons/ghost-button";
 import { isMobile } from "react-device-detect";
+import { useWindow } from "../../utils/useWindow";
 
 const Container = styled.div`
   margin: 25px 0;
@@ -94,29 +95,31 @@ const Filter = () => {
   const lon = context.location && context.location.latlng.lng;
 
   const onButtonClick = () => {
-    fetchPolyfill(
-      `https://api.seatgeek.com/2/events?q=${context.artistName
-        .replace(/\s+/g, "-")
-        .toLowerCase()}&range=${context.radius}mi&per_page=${
-        context.itemsPerPage
-      }&geoip=true${
-        context.location ? `&lat=${lat}&lon=${lon}` : ""
-      }&client_id=${process.env.GATSBY_API_KEY}`
-    )
-      .then(response => response.json())
-      .then(data => context.setData(data))
-      .then(() => {
-        if (process.env.NODE_ENV === "production") {
-          window.analytics.track("get_search_term", {
-            searchTerm: context.artistName,
-            path: window.location.pathname,
-            url: typeof window !== "undefined" ? window.location.href : null,
-            referrer: typeof document !== "undefined" ? document.referrer : null
-          });
-        }
-      })
-      // eslint-disable-next-line no-console
-      .catch(err => console.log(err));
+    useWindow &&
+      fetch(
+        `https://api.seatgeek.com/2/events?q=${context.artistName
+          .replace(/\s+/g, "-")
+          .toLowerCase()}&range=${context.radius}mi&per_page=${
+          context.itemsPerPage
+        }&geoip=true${
+          context.location ? `&lat=${lat}&lon=${lon}` : ""
+        }&client_id=${process.env.GATSBY_API_KEY}`
+      )
+        .then(response => response.json())
+        .then(data => context.setData(data))
+        .then(() => {
+          if (process.env.NODE_ENV === "production") {
+            window.analytics.track("get_search_term", {
+              searchTerm: context.artistName,
+              path: window.location.pathname,
+              url: typeof window !== "undefined" ? window.location.href : null,
+              referrer:
+                typeof document !== "undefined" ? document.referrer : null
+            });
+          }
+        })
+        // eslint-disable-next-line no-console
+        .catch(err => console.log(err));
   };
   const onClearClick = () => {
     context.setData({});

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { fetch as fetchPolyfill } from "whatwg-fetch";
+import "whatwg-fetch";
 import styled from "styled-components";
 import { FONT_FAMILY } from "../../styles/typography";
 import { BLACK, WHITE } from "../../styles/colors";
@@ -9,6 +9,7 @@ import { navigate } from "gatsby";
 import PosterImage from "./poster";
 import Button from "../../library/buttons/button";
 import GhostButton from "../../library/buttons/ghost-button";
+import { useWindow } from "../../utils/useWindow";
 
 const Input = styled.div`
   margin-top: 30px;
@@ -88,29 +89,31 @@ const Video = () => {
   }, []);
 
   const onButtonClick = () => {
-    fetchPolyfill(
-      `https://api.seatgeek.com/2/events?q=${context.artistName
-        .replace(/\s+/g, "-")
-        .toLowerCase()}&range=25mi&per_page=25&geoip=true&client_id=${
-        process.env.GATSBY_API_KEY
-      }`
-    )
-      .then(response => response.json())
-      .then(data => context.setData(data))
-      .then(() => {
-        navigate("/browse-events/");
-        context.setRadius(50);
-        if (process.env.NODE_ENV === "production") {
-          window.analytics.track("get_search_term", {
-            searchTerm: context.artistName,
-            path: window.location.pathname,
-            url: typeof window !== "undefined" ? window.location.href : null,
-            referrer: typeof document !== "undefined" ? document.referrer : null
-          });
-        }
-      })
-      // eslint-disable-next-line no-console
-      .catch(err => console.log(err));
+    useWindow &&
+      fetch(
+        `https://api.seatgeek.com/2/events?q=${context.artistName
+          .replace(/\s+/g, "-")
+          .toLowerCase()}&range=25mi&per_page=25&geoip=true&client_id=${
+          process.env.GATSBY_API_KEY
+        }`
+      )
+        .then(response => response.json())
+        .then(data => context.setData(data))
+        .then(() => {
+          navigate("/browse-events/");
+          context.setRadius(50);
+          if (process.env.NODE_ENV === "production") {
+            window.analytics.track("get_search_term", {
+              searchTerm: context.artistName,
+              path: window.location.pathname,
+              url: typeof window !== "undefined" ? window.location.href : null,
+              referrer:
+                typeof document !== "undefined" ? document.referrer : null
+            });
+          }
+        })
+        // eslint-disable-next-line no-console
+        .catch(err => console.log(err));
   };
 
   const onSignupClick = () => {

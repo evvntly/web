@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { navigate } from "gatsby";
 import styled from "styled-components";
 import Paragraph from "../paragraph/paragraph";
