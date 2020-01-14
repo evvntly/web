@@ -181,6 +181,9 @@ const NoImage = styled.div`
 const ButtonWrapper = styled.div`
   display: flex;
   order: 2;
+  @media (max-width: 769px) and (min-width: 320px) {
+    margin-top: -2px;
+  }
 `;
 
 const ButtonPrimary = styled.button`
