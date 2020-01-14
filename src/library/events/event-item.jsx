@@ -240,6 +240,8 @@ const EventItem = ({ item, isMyEventsPage }) => {
     fontWeight: 400
   };
 
+  const today = new Date();
+
   const changeToPastEvent = item => {
     if (context.eventData && context.eventData.events) {
       const eventDate = new Date(item.datetime_local);
@@ -368,31 +370,39 @@ const EventItem = ({ item, isMyEventsPage }) => {
           />
         </AttendingSettings>
       )}
-      <ButtonWrapper>
-        {!isMyEventsPage && (
-          <>
-            {eventAttendingIds.includes(item.id) ? (
-              <ButtonSecondary onClick={() => navigate("/my-events")}>
-                <TadaIcon />
-                You&apos;re Attending!
-              </ButtonSecondary>
-            ) : (
-              <>
-                <ButtonSecondary onClick={() => onImGoingClick(item)}>
-                  <ButtonWrap>
-                    <TickIcon />
-                    Attend
-                  </ButtonWrap>
+      {new Date(item.datetime_local) < today ? (
+        <ButtonWrapper>
+          <ButtonSecondary onClick={() => navigate("/my-events")}>
+            Event has passed
+          </ButtonSecondary>
+        </ButtonWrapper>
+      ) : (
+        <ButtonWrapper>
+          {!isMyEventsPage && (
+            <>
+              {eventAttendingIds.includes(item.id) ? (
+                <ButtonSecondary onClick={() => navigate("/my-events")}>
+                  <TadaIcon />
+                  You&apos;re Attending!
                 </ButtonSecondary>
-                <ButtonPrimary onClick={() => onMaybeClick(item)}>
-                  <StarIcon />
-                  Interested
-                </ButtonPrimary>
-              </>
-            )}
-          </>
-        )}
-      </ButtonWrapper>
+              ) : (
+                <>
+                  <ButtonSecondary onClick={() => onImGoingClick(item)}>
+                    <ButtonWrap>
+                      <TickIcon />
+                      Attend
+                    </ButtonWrap>
+                  </ButtonSecondary>
+                  <ButtonPrimary onClick={() => onMaybeClick(item)}>
+                    <StarIcon />
+                    Interested
+                  </ButtonPrimary>
+                </>
+              )}
+            </>
+          )}
+        </ButtonWrapper>
+      )}
       <Content>
         <Paragraph customStyle={HeadingStyle}>
           {item.venue.display_location}

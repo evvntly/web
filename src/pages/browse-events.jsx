@@ -75,9 +75,7 @@ const BrowseEvents = () => {
             )}
 
             {context.data && Object.keys(context.data).length !== 0 && (
-              <Paragraph>{`Showing you ${
-                context.data.meta.total
-              } events`}</Paragraph>
+              <Paragraph>{`Showing you ${context.data.meta.total} events`}</Paragraph>
             )}
 
             {context.data &&
@@ -85,9 +83,7 @@ const BrowseEvents = () => {
               !context.location && (
                 <>
                   <Paragraph>
-                    {`We are currently showing you events ${
-                      context.radius
-                    } miles around your
+                    {`We are currently showing you events ${context.radius} miles around your
                   current location, please use the filter above to refine your
                   search.`}
                   </Paragraph>
