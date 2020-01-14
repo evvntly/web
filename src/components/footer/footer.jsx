@@ -86,11 +86,11 @@ const Footer = () => {
           <Title>Services</Title>
           <ul>
             <li>
-              <li>
-                <Link to="/browse-events" aria-label="Advertise">
-                  Browse Events
-                </Link>
-              </li>
+              <Link to="/browse-events" aria-label="Advertise">
+                Browse Events
+              </Link>
+            </li>
+            <li>
               <Link to="/advertise" aria-label="Advertise">
                 Advertise
               </Link>

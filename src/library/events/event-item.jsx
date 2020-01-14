@@ -67,11 +67,11 @@ const TickHeaderIcon = styled(Tick)`
   height: 20px;
   padding: 10px;
   cursor: pointer;
-  background: ${props => (props.fill ? RONCHI : WHITE)};
+  background: ${props => (props.isFill ? RONCHI : WHITE)};
   border-radius: 50px;
   margin-right: 7px;
   border: ${props =>
-    props.fill ? `1px solid ${RONCHI}` : `1px solid ${BLACK}`};
+    props.isFill ? `1px solid ${RONCHI}` : `1px solid ${BLACK}`};
   path {
     fill: ${BLACK};
   }
@@ -85,10 +85,10 @@ const StarHeaderIcon = styled(Star)`
   height: 20px;
   padding: 10px;
   cursor: pointer;
-  background: ${props => (props.fill ? RONCHI : WHITE)};
+  background: ${props => (props.isFill ? RONCHI : WHITE)};
   border-radius: 50px;
   border: ${props =>
-    props.fill ? `1px solid ${RONCHI}` : `1px solid ${BLACK}`};
+    props.isFill ? `1px solid ${RONCHI}` : `1px solid ${BLACK}`};
   path {
     fill: ${BLACK};
   }
@@ -224,7 +224,6 @@ const truncate = (input, length) =>
 const EventItem = ({ item, isMyEventsPage }) => {
   const context = useContext(myContext);
   const firebase = React.useContext(FirebaseContext);
-  const [eventAttendingIds, seteventAttendingIds] = useState([]);
 
   const TitleStyle = {
     fontWeight: "bold",
@@ -246,7 +245,6 @@ const EventItem = ({ item, isMyEventsPage }) => {
       const eventDate = new Date(item.datetime_local);
       const today = new Date();
       if (eventDate < today) {
-        console.log("past");
         const eventRef = firebase
           .database()
           .ref(`${context.user.uid}/events/${item.firebaseId}`);
@@ -254,17 +252,6 @@ const EventItem = ({ item, isMyEventsPage }) => {
       }
     }
   };
-
-  useEffect(() => {
-    if (context.eventData && context.eventData.events) {
-      Object.keys(context.eventData.events).map(i => {
-        seteventAttendingIds([
-          ...eventAttendingIds,
-          context.eventData.events[i].id
-        ]);
-      });
-    }
-  }, [context.eventData]);
 
   const onImGoingClick = item => {
     if (process.env.NODE_ENV === "production" && context.user) {
@@ -352,6 +339,14 @@ const EventItem = ({ item, isMyEventsPage }) => {
     }
   };
 
+  let eventAttendingIds = [];
+
+  if (context.eventData && context.eventData.events) {
+    eventAttendingIds = Object.keys(context.eventData.events).map(i => {
+      return context.eventData.events[i].id;
+    });
+  }
+
   return (
     <Item key={item.id}>
       {changeToPastEvent(item)}
@@ -365,11 +360,11 @@ const EventItem = ({ item, isMyEventsPage }) => {
         <AttendingSettings>
           <TickHeaderIcon
             onClick={() => onUpdateToGoingClick(item.firebaseId)}
-            fill={item.attending === "going"}
+            isFill={item.attending === "going"}
           />
           <StarHeaderIcon
             onClick={() => onUpdateToMaybeClick(item.firebaseId)}
-            fill={item.attending === "maybe"}
+            isFill={item.attending === "maybe"}
           />
         </AttendingSettings>
       )}
