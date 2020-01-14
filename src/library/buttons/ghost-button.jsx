@@ -3,33 +3,29 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { WHITE, RONCHI } from "../../styles/colors";
 import { WEIGHT, FONT_FAMILY } from "../../styles/typography";
-import { lighten } from "polished";
 
 const ButtonStyle = styled.button`
-  border: ${props =>
-    props.disabled
-      ? `1px solid ${lighten(0.2, props.color)}`
-      : `1px solid ${props.color}`};
-  background: ${props =>
-    props.disabled ? lighten(0.2, props.color) : props.color};
-  cursor: ${props => (props.disabled ? "default" : "pointer")};
-  color: ${props => props.textColor};
+  border: ${props => `1px solid ${props.color}`};
+  background: transparent;
+  cursor: pointer;
+  color: ${props => props.color};
   font-family: ${FONT_FAMILY};
   padding: 0 50px;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: ${props => props.width};
   height: ${props => props.height};
   font-size: ${props => props.fontSize};
   border-radius: ${props =>
     props.borderRadius ? `${props.borderRadius}px` : "0"};
   font-weight: ${WEIGHT.NORMAL};
   &:hover {
-    background: ${props => lighten(0.1, props.color)};
-    border: ${props => `1px solid ${lighten(0.2, props.color)}`}
+    background: ${props => props.color};
+    color: ${props => props.textColor};
 `;
 
-const Button = ({
+const GhostButton = ({
   title,
   disabled,
   onClick,
@@ -38,7 +34,8 @@ const Button = ({
   borderRadius,
   textColor = WHITE,
   height = "40px",
-  fontSize = "16px"
+  fontSize = "16px",
+  width = "auto"
 }) => {
   return (
     <ButtonStyle
@@ -50,13 +47,14 @@ const Button = ({
       textColor={textColor}
       height={height}
       fontSize={fontSize}
+      width={width}
     >
       {title}
     </ButtonStyle>
   );
 };
 
-Button.propTypes = {
+GhostButton.propTypes = {
   title: PropTypes.string,
   type: PropTypes.string,
   disabled: PropTypes.bool,
@@ -65,7 +63,8 @@ Button.propTypes = {
   borderRadius: PropTypes.number,
   textColor: PropTypes.string,
   height: PropTypes.string,
-  fontSize: PropTypes.string
+  fontSize: PropTypes.string,
+  width: PropTypes.string
 };
 
-export default Button;
+export default GhostButton;

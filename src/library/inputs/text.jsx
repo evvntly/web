@@ -13,7 +13,8 @@ const Input = styled.input`
   border: ${props =>
     props.error ? `1px solid ${RED}` : `1px solid ${SILVER}`};
   font-family: ${FONT_FAMILY};
-  padding: 10px 30px 10px 10px;
+  padding: 0 30px 0 10px;
+  height: 45px;
   font-size: 16px;
   font-weight: ${WEIGHT.THIN};
   width: 100%;
@@ -42,9 +43,9 @@ const Clear = styled.div`
   cursor: pointer;
   position: absolute;
   right: 15px;
-  top: 18px;
+  top: 15px;
   width: 20px;
-  height: 50px;
+  height: 45px;
   &:before,
   &:after {
     position: absolute;
