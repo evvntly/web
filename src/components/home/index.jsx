@@ -146,7 +146,7 @@ const Video = () => {
               borderRadius={4}
               onClick={() => onButtonClick()}
             />
-            {!context.uesr && (
+            {!context.user && (
               <GhostButton
                 textColor={BLACK}
                 height="50px"
