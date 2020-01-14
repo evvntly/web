@@ -16,6 +16,7 @@ const Input = styled.input`
   padding: 0 30px 0 10px;
   height: 45px;
   font-size: 16px;
+  border-radius: 0;
   font-weight: ${WEIGHT.THIN};
   width: 100%;
   box-sizing: border-box;
