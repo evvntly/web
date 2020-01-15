@@ -181,14 +181,6 @@ const Footer = () => {
           target="_blank"
         >
           @johnnyxbell
-        </a>{" "}
-        &{" "}
-        <a
-          href="https://www.twitter.com/MartinKrestan"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          @MartinKrestan
         </a>
       </Copyright>
     </Navigation>

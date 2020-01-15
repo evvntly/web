@@ -81,15 +81,9 @@ const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
   margin: 25px 0;
-  > button:first-of-type {
-    margin: 0 15px 0 0;
-  }
   @media (max-width: 769px) and (min-width: 320px) {
     flex-direction: column;
-    > button:first-of-type {
-      margin: 0 0 25px 0;
-    }
-    > button {
+    button {
       width: 100%;
     }
   }

@@ -350,94 +350,96 @@ const EventItem = ({ item, isMyEventsPage }) => {
   }
 
   return (
-    <Item key={item.id}>
-      {changeToPastEvent(item)}
-      {item.performers[0].image ? (
-        <EventImage src={item.performers[0].image} alt={item.title} />
-      ) : (
-        <NoImage>No Image</NoImage>
-      )}
-      {renderDate(item)}
-      {isMyEventsPage && (
-        <AttendingSettings>
-          <TickHeaderIcon
-            onClick={() => onUpdateToGoingClick(item.firebaseId)}
-            isFill={item.attending === "going"}
-          />
-          <StarHeaderIcon
-            onClick={() => onUpdateToMaybeClick(item.firebaseId)}
-            isFill={item.attending === "maybe"}
-          />
-        </AttendingSettings>
-      )}
-      {new Date(item.datetime_local) < today ? (
-        <ButtonWrapper>
-          <ButtonSecondary>Event has passed</ButtonSecondary>
-        </ButtonWrapper>
-      ) : (
-        <ButtonWrapper>
-          {!isMyEventsPage && (
-            <>
-              {eventAttendingIds.includes(item.id) ? (
-                <ButtonSecondary onClick={() => navigate("/my-events")}>
-                  <TadaIcon />
-                  You&apos;re Attending!
-                </ButtonSecondary>
-              ) : (
-                <>
-                  <ButtonSecondary onClick={() => onImGoingClick(item)}>
-                    <ButtonWrap>
-                      <TickIcon />
-                      Attend
-                    </ButtonWrap>
-                  </ButtonSecondary>
-                  <ButtonPrimary onClick={() => onMaybeClick(item)}>
-                    <StarIcon />
-                    Interested
-                  </ButtonPrimary>
-                </>
-              )}
-            </>
+    <>
+      {new Date(item.datetime_local) > today && (
+        <Item key={item.id}>
+          {changeToPastEvent(item)}
+          {item.performers[0].image ? (
+            <EventImage src={item.performers[0].image} alt={item.title} />
+          ) : (
+            <NoImage>No Image</NoImage>
           )}
-        </ButtonWrapper>
-      )}
-      <Content>
-        <Paragraph customStyle={HeadingStyle}>
-          {item.venue.display_location}
-        </Paragraph>
-        <Paragraph customStyle={TitleStyle}>
-          {truncate(item.title, 34)}
-        </Paragraph>
-        <DateWrapper>
-          <div>
-            <Paragraph customStyle={HeadingStyle}>Date</Paragraph>
-            <Paragraph customStyle={{ fontSize: "1rem", margin: "0 0 0 0" }}>
-              {moment(item.datetime_local).format("MMMM Do YYYY")}
+          {renderDate(item)}
+          {isMyEventsPage && (
+            <AttendingSettings>
+              <TickHeaderIcon
+                onClick={() => onUpdateToGoingClick(item.firebaseId)}
+                isFill={item.attending === "going"}
+              />
+              <StarHeaderIcon
+                onClick={() => onUpdateToMaybeClick(item.firebaseId)}
+                isFill={item.attending === "maybe"}
+              />
+            </AttendingSettings>
+          )}
+          <ButtonWrapper>
+            {!isMyEventsPage && (
+              <>
+                {eventAttendingIds.includes(item.id) ? (
+                  <ButtonSecondary onClick={() => navigate("/my-events")}>
+                    <TadaIcon />
+                    You&apos;re Attending!
+                  </ButtonSecondary>
+                ) : (
+                  <>
+                    <ButtonSecondary onClick={() => onImGoingClick(item)}>
+                      <ButtonWrap>
+                        <TickIcon />
+                        Attend
+                      </ButtonWrap>
+                    </ButtonSecondary>
+                    <ButtonPrimary onClick={() => onMaybeClick(item)}>
+                      <StarIcon />
+                      Interested
+                    </ButtonPrimary>
+                  </>
+                )}
+              </>
+            )}
+          </ButtonWrapper>
+          <Content>
+            <Paragraph customStyle={HeadingStyle}>
+              {item.venue.display_location}
             </Paragraph>
-          </div>
-          <div>
-            <Paragraph customStyle={HeadingStyle}>Time</Paragraph>
-            <Paragraph customStyle={{ fontSize: "1rem", margin: "0 0 0 0" }}>
-              {moment(item.datetime_local).format("LT")}
+            <Paragraph customStyle={TitleStyle}>
+              {truncate(item.title, 34)}
             </Paragraph>
-          </div>
-        </DateWrapper>
-        <Paragraph customStyle={HeadingStyle}>Location</Paragraph>
-        <Paragraph customStyle={TitleStyle}>{item.venue.name}</Paragraph>
-        <Paragraph customStyle={{ fontSize: "1rem", margin: "5px 0 0 0" }}>
-          {item.venue.address}, {item.venue.display_location}
-        </Paragraph>
-      </Content>
-      {isMyEventsPage && (
-        <UserSettings>
-          {/*<NotesIcon title="Add / View Notes" />*/}
-          <TrashIcon
-            title="Delete Event"
-            onClick={() => removeEvent(item.firebaseId, item)}
-          />
-        </UserSettings>
+            <DateWrapper>
+              <div>
+                <Paragraph customStyle={HeadingStyle}>Date</Paragraph>
+                <Paragraph
+                  customStyle={{ fontSize: "1rem", margin: "0 0 0 0" }}
+                >
+                  {moment(item.datetime_local).format("MMMM Do YYYY")}
+                </Paragraph>
+              </div>
+              <div>
+                <Paragraph customStyle={HeadingStyle}>Time</Paragraph>
+                <Paragraph
+                  customStyle={{ fontSize: "1rem", margin: "0 0 0 0" }}
+                >
+                  {moment(item.datetime_local).format("LT")}
+                </Paragraph>
+              </div>
+            </DateWrapper>
+            <Paragraph customStyle={HeadingStyle}>Location</Paragraph>
+            <Paragraph customStyle={TitleStyle}>{item.venue.name}</Paragraph>
+            <Paragraph customStyle={{ fontSize: "1rem", margin: "5px 0 0 0" }}>
+              {item.venue.address}, {item.venue.display_location}
+            </Paragraph>
+          </Content>
+          {isMyEventsPage && (
+            <UserSettings>
+              {/*<NotesIcon title="Add / View Notes" />*/}
+              <TrashIcon
+                title="Delete Event"
+                onClick={() => removeEvent(item.firebaseId, item)}
+              />
+            </UserSettings>
+          )}
+        </Item>
       )}
-    </Item>
+    </>
   );
 };
 
