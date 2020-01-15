@@ -97,7 +97,7 @@ const BrowseEvents = () => {
               {context.data && Object.keys(context.data).length === 0 && (
                 <Paragraph>
                   Currently you have not searched for an event start looking for
-                  your event buddy by using the filter above.
+                  your next event by using the filter above.
                 </Paragraph>
               )}
 
