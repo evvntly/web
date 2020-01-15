@@ -8,7 +8,6 @@ import Netlify from "../../assets/svgs/netlify.svg";
 import SeatGeek from "../../assets/svgs/seatgeek.svg";
 
 const Navigation = styled.footer`
-  border-top: 6px solid ${BLACK};
   width: 100%;
   background: ${GREY};
   position: relative;
