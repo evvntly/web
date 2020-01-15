@@ -14,6 +14,10 @@ module.exports = {
           {
             family: `Mukta`,
             variants: [`200`, `400`, `600`]
+          },
+          {
+            family: `Rubik`,
+            variants: [`200`, `400`, `600`, `800`]
           }
         ]
       }
