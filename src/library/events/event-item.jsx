@@ -6,7 +6,15 @@ import moment from "moment";
 import { myContext } from "../../context/provider";
 import { FirebaseContext } from "gatsby-plugin-firebase";
 import { FONT_FAMILY } from "../../styles/typography";
-import { ALTO, BLACK, RED, RONCHI, SILVER, WHITE } from "../../styles/colors";
+import {
+  ALTO,
+  BLACK,
+  LA_PALMA,
+  RED,
+  RONCHI,
+  SILVER,
+  WHITE
+} from "../../styles/colors";
 import PropTypes from "prop-types";
 import Trash from "../../assets/svgs/bin.svg";
 // import Notes from "../../assets/svgs/notes.svg";
@@ -218,6 +226,20 @@ const ButtonSecondary = styled.button`
   }
 `;
 
+const ButtonAttending = styled.button`
+  font-family: ${FONT_FAMILY};
+  font-size: 13px;
+  font-weight: normal;
+  border: 1px solid ${LA_PALMA};
+  padding: 3px 0px;
+  color: ${WHITE};
+  background: ${LA_PALMA};
+  width: 100%;
+  svg path {
+    fill: ${WHITE};
+  }
+`;
+
 const truncate = (input, length) =>
   input.length > length ? `${input.substring(0, length)}...` : input;
 
@@ -380,10 +402,10 @@ const EventItem = ({ item, isMyEventsPage }) => {
             {!isMyEventsPage && (
               <>
                 {eventAttendingIds.includes(item.id) ? (
-                  <ButtonSecondary onClick={() => navigate("/my-events")}>
+                  <ButtonAttending onClick={() => navigate("/my-events")}>
                     <TadaIcon />
                     You&apos;re Attending!
-                  </ButtonSecondary>
+                  </ButtonAttending>
                 ) : (
                   <>
                     <ButtonSecondary onClick={() => onImGoingClick(item)}>
