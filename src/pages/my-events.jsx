@@ -11,6 +11,7 @@ import { Container, Main } from "../styles/shared";
 import config from "../utils/siteConfig";
 import Seo from "../components/seo/seo";
 import { RED } from "../styles/colors";
+import { Notice } from "./browse-events";
 
 const Grid = styled.div`
   display: grid;
@@ -64,14 +65,16 @@ const MyEvents = () => {
             <Container>
               <Main>
                 <Heading title="My Saved Events" />
+                {context.eventData.events && (
+                  <Notice>
+                    * Please note, events in the past will automatically be
+                    removed.
+                  </Notice>
+                )}
                 {context.eventData.events && <Grid>{loadEvents()}</Grid>}
                 {!context.eventData.events && (
                   <Paragraph>No events added yet, try to add some</Paragraph>
                 )}
-                <Paragraph customStyle={{ fontSize: ".9rem", color: RED }}>
-                  * Please note, events in the past will automatically be
-                  removed.
-                </Paragraph>
               </Main>
             </Container>
           </>

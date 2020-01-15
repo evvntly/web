@@ -25,11 +25,13 @@ const Grid = styled.div`
   grid-gap: 20px;
 `;
 
-const Notice = styled.div`
+export const Notice = styled.div`
   height: auto;
   background: ${RONCHI};
   position: relative;
+  margin: 0 0 25px 0;
   padding: 10px 0;
+  border-radius: 4px;
   color: ${BLACK};
   font-family: ${FONT_FAMILY};
   text-align: center;
