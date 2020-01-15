@@ -1,21 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Heading Heading 1`] = `
-<div>
-  <h1
-    className="sc-bdVaJa fxHgtP"
-  >
-    hello
-  </h1>
-</div>
+<h1
+  className="sc-AykKC bVbzdD"
+>
+  hello
+</h1>
 `;
 
 exports[`Heading Heading with trailing text 1`] = `
-<div>
-  <h1
-    className="sc-bdVaJa fxHgtP"
-  >
-    hello
-  </h1>
-</div>
+<h1
+  className="sc-AykKC bVbzdD"
+>
+  hello
+</h1>
 `;

@@ -9,6 +9,10 @@ const InputWrapper = styled.div`
   position: relative;
 `;
 
+const Container = styled.div`
+  position: relative;
+`;
+
 const Input = styled.input`
   border: ${props =>
     props.error ? `1px solid ${RED}` : `1px solid ${SILVER}`};
@@ -26,9 +30,10 @@ const Title = styled.p`
   color: ${SILVER};
   font-family: ${FONT_FAMILY};
   padding: 0;
-  margin: 0 0 10px 0;
+  text-align: left;
+  margin: 0 0 5px 0;
   font-size: 16px;
-  font-weight: ${WEIGHT.THIN};
+  font-weight: ${WEIGHT.NORMAL};
 `;
 
 const Error = styled.p`
@@ -79,17 +84,19 @@ const TextInput = ({
   return (
     <InputWrapper>
       {title && <Title>{title}</Title>}
-      <Input
-        onChange={onChange}
-        onFocus={onFocus}
-        type={type}
-        placeholder={placeholder}
-        required={required}
-        name={name}
-        error={!!error}
-        value={value}
-      />
-      {value && <Clear onClick={onClear} />}
+      <Container>
+        <Input
+          onChange={onChange}
+          onFocus={onFocus}
+          type={type}
+          placeholder={placeholder}
+          required={required}
+          name={name}
+          error={!!error}
+          value={value}
+        />
+        {value && <Clear onClick={onClear} />}
+      </Container>
       {error && <Error>{error}</Error>}
     </InputWrapper>
   );

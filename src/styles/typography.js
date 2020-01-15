@@ -1,4 +1,5 @@
 export const FONT_FAMILY = "Mukta, sans-serif";
+export const FONT_FAILY_HEADING = "Rubik, Mukta, sans-serif";
 
 export const WEIGHT = {
   THIN: "200",

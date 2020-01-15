@@ -1,24 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { WEIGHT, FONT_FAMILY } from "../../styles/typography";
-import { BLACK } from "../../styles/colors";
+import { FONT_FAILY_HEADING, WEIGHT } from "../../styles/typography";
+import { GREY } from "../../styles/colors";
 
 const Title = styled.h1`
-  font-size: 1.8rem;
-  text-align: center;
-  text-decoration: underline;
-  color: ${props => (props.color ? props.color : BLACK)};
-  font-weight: ${WEIGHT.THIN};
-  font-family: ${FONT_FAMILY};
+  font-size: 1.6rem;
+  text-align: left;
+  color: ${props => (props.color ? props.color : GREY)};
+  font-weight: ${WEIGHT.BOLD};
+  font-family: ${FONT_FAILY_HEADING};
+  text-transform: uppercase;
 `;
 
 const Heading = ({ title, color }) => {
-  return (
-    <div>
-      <Title color={color}>{title}</Title>
-    </div>
-  );
+  return <Title color={color}>{title}</Title>;
 };
 
 Heading.propTypes = {

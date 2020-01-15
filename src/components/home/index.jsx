@@ -2,17 +2,53 @@ import React, { useContext, useEffect, useState } from "react";
 import fetchPonyfill from "fetch-ponyfill";
 const { fetch } = fetchPonyfill();
 import styled from "styled-components";
-import { FONT_FAMILY } from "../../styles/typography";
-import { BLACK, WHITE } from "../../styles/colors";
+import { FONT_FAMILY, WEIGHT } from "../../styles/typography";
+import { BLACK, SILVER, WHITE } from "../../styles/colors";
 import TextInput from "../../library/inputs/text";
 import { myContext } from "../../context/provider";
 import { navigate } from "gatsby";
 import PosterImage from "./poster";
 import Button from "../../library/buttons/button";
 import GhostButton from "../../library/buttons/ghost-button";
+import AlgoliaPlaces from "algolia-places-react";
+import Heading from "../../library/headings/heading";
 
 const Input = styled.div`
   margin-top: 30px;
+  display: flex;
+  @media (max-width: 769px) and (min-width: 320px) {
+    flex-direction: column;
+  }
+`;
+
+const Title = styled.p`
+  color: ${SILVER};
+  font-family: ${FONT_FAMILY};
+  padding: 0;
+  text-align: left;
+  margin: 0 0 5px 0;
+  font-size: 16px;
+  font-weight: ${WEIGHT.NORMAL};
+`;
+
+const AlogilaContainer = styled.div`
+  margin-left: 20px;
+  width: 35%;
+  font-family: ${FONT_FAMILY};
+  color: ${BLACK};
+  button {
+    display: none;
+  }
+  input {
+    height: 45px;
+    border-radius: 0;
+    font-size: 16px;
+    font-weight: ${WEIGHT.THIN};
+  }
+  @media (max-width: 769px) and (min-width: 320px) {
+    width: 100%;
+    margin: 10px 0 0 0;
+  }
 `;
 
 const Content = styled.div`
@@ -20,34 +56,24 @@ const Content = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  max-width: 600px;
+  max-width: 800px;
+  min-width: 700px;
   transform: translate(-50%, -50%);
   font-family: ${FONT_FAMILY};
   color: ${WHITE};
   @media (max-width: 769px) and (min-width: 320px) {
-    width: 90%;
+    min-width: 90%;
   }
   h1 {
     padding: 0;
     font-weight: bold;
-    font-size: 40px;
-    max-width: 700px;
+    font-size: 35px;
     margin: 0 auto 30px auto;
-    line-height: 50px;
+    line-height: 45px;
+    text-align: center;
     @media (max-width: 769px) and (min-width: 320px) {
       font-size: 30px;
       line-height: 35px;
-    }
-  }
-  h2 {
-    margin: 0 auto;
-    padding: 0;
-    font-weight: lighter;
-    font-size: 25px;
-    max-width: 650px;
-    text-align: center;
-    @media (max-width: 769px) and (min-width: 320px) {
-      font-size: 20px;
     }
   }
 `;
@@ -73,6 +99,8 @@ const ButtonWrapper = styled.div`
 const Video = () => {
   const context = useContext(myContext);
   const [image, setImage] = useState(false);
+  const lat = context.location && context.location.latlng.lat;
+  const lon = context.location && context.location.latlng.lng;
 
   useEffect(() => {
     const images = [
@@ -92,9 +120,11 @@ const Video = () => {
     fetch(
       `https://api.seatgeek.com/2/events?q=${context.artistName
         .replace(/\s+/g, "-")
-        .toLowerCase()}&range=25mi&per_page=25&geoip=true&client_id=${
-        process.env.GATSBY_API_KEY
-      }`
+        .toLowerCase()}&range=${context.radius}mi&per_page=${
+        context.itemsPerPage
+      }&geoip=true${
+        context.location ? `&lat=${lat}&lon=${lon}` : ""
+      }&client_id=${process.env.GATSBY_API_KEY}`
     )
       .then(response => response.json())
       .then(data => context.setData(data))
@@ -130,15 +160,44 @@ const Video = () => {
     <div>
       <PosterImage img={image}>
         <Content>
-          <h1>Looking for events near you or around the US?</h1>
-          <h2>Stop searching and enjoying life!</h2>
+          <Heading
+            color={WHITE}
+            title="Start enjoying life by finding the perfect event near you."
+          />
           <Input>
             <TextInput
+              title="Artist / Event / Sport / Team"
               onChange={e => {
                 context.setArtistName(e.target.value);
               }}
-              placeholder="Artist / Event / Sports team... e.g. Golden State Warriors"
+              placeholder="E.G. Golden State Warriors"
             />
+            {!context.location ? (
+              <AlogilaContainer>
+                <Title>Where</Title>
+                <AlgoliaPlaces
+                  placeholder="E.G. New York"
+                  options={{
+                    appId: process.env.GATSBY_ALGOLIA_APP_ID,
+                    apiKey: process.env.GATSBY_ALGOLIA_API
+                  }}
+                  onChange={({ suggestion }) => context.setLocation(suggestion)}
+                  onClear={() => context.setLocation(false)}
+                  onError={({ message }) =>
+                    // eslint-disable-next-line no-console
+                    console.log(message)
+                  }
+                />
+              </AlogilaContainer>
+            ) : (
+              <AlogilaContainer>
+                <TextInput
+                  title="Where"
+                  onClear={() => context.setLocation(false)}
+                  value={context.location && `${context.location.value}`}
+                />
+              </AlogilaContainer>
+            )}
           </Input>
           <ButtonWrapper>
             <Button
@@ -148,15 +207,6 @@ const Video = () => {
               borderRadius={4}
               onClick={() => onButtonClick()}
             />
-            {!context.user && (
-              <GhostButton
-                textColor={BLACK}
-                height="50px"
-                title="Sign Up"
-                borderRadius={4}
-                onClick={() => onSignupClick()}
-              />
-            )}
           </ButtonWrapper>
         </Content>
       </PosterImage>
