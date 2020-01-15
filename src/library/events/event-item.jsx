@@ -249,7 +249,7 @@ const EventItem = ({ item, isMyEventsPage }) => {
       if (eventDate < today) {
         const eventRef = firebase
           .database()
-          .ref(`${context.user.uid}/events/${item.firebaseId}`);
+          .ref(`/users/${context.user.uid}/events`);
         eventRef.remove();
       }
     }
@@ -265,7 +265,9 @@ const EventItem = ({ item, isMyEventsPage }) => {
       });
     }
     if (context.user) {
-      const eventRef = firebase.database().ref(`${context.user.uid}/events`);
+      const eventRef = firebase
+        .database()
+        .ref(`/users/${context.user.uid}/events`);
       const eventItem = {
         ...item,
         notes: "",
@@ -288,7 +290,9 @@ const EventItem = ({ item, isMyEventsPage }) => {
     }
 
     if (context.user) {
-      const eventRef = firebase.database().ref(`${context.user.uid}/events`);
+      const eventRef = firebase
+        .database()
+        .ref(`/users/${context.user.uid}/events`);
       const eventItem = {
         ...item,
         notes: "",
@@ -311,7 +315,7 @@ const EventItem = ({ item, isMyEventsPage }) => {
     }
     const eventRef = firebase
       .database()
-      .ref(`${context.user.uid}/events/${eventId}`);
+      .ref(`/users/${context.user.uid}/events/${eventId}`);
     eventRef.remove();
     if (Object.keys(context.eventData.events).length === 1) {
       navigate("/browse-events");
@@ -321,14 +325,14 @@ const EventItem = ({ item, isMyEventsPage }) => {
   const onUpdateToGoingClick = firebaseId => {
     firebase
       .database()
-      .ref(`${context.user.uid}/events/${firebaseId}`)
+      .ref(`/users/${context.user.uid}/events/${firebaseId}`)
       .update({ attending: "going" });
   };
 
   const onUpdateToMaybeClick = firebaseId => {
     firebase
       .database()
-      .ref(`${context.user.uid}/events/${firebaseId}`)
+      .ref(`/users/${context.user.uid}/events/${firebaseId}`)
       .update({ attending: "maybe" });
   };
 

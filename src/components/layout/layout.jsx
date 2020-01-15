@@ -53,7 +53,7 @@ const Layout = ({ children }) => {
           context.setUser(user);
           firebase
             .database()
-            .ref(`${context.user.uid}`)
+            .ref(`/users/${context.user.uid}`)
             .on("value", snapshot => {
               if (snapshot && snapshot.exists()) {
                 context.setEventData(snapshot.val());
