@@ -101,11 +101,13 @@ const BrowseEvents = () => {
                 </Paragraph>
               )}
 
-              {context.data && Object.keys(context.data).length !== 0 && (
-                <Paragraph>{`Showing you ${
-                  context.data.meta.total
-                } events`}</Paragraph>
-              )}
+              {context.data &&
+                Object.keys(context.data).length !== 0 &&
+                context.data.meta.total !== 0 && (
+                  <Paragraph>{`Showing you ${
+                    context.data.meta.total
+                  } events`}</Paragraph>
+                )}
 
               {context.data &&
                 Object.keys(context.data).length !== 0 &&
