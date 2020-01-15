@@ -8,7 +8,6 @@ import { FirebaseContext } from "gatsby-plugin-firebase";
 import SignIn from "../signin";
 import debug from "debug";
 import PropTypes from "prop-types";
-import { BLACK, RONCHI } from "../../styles/colors";
 import Video from "../home";
 import { useWindow } from "../../utils/useWindow";
 import UserReport from "../user-report";
@@ -17,6 +16,7 @@ import { isMobile } from "react-device-detect";
 const Container = styled.div`
   position: relative;
   min-height: 100vh;
+  overflow: hidden;
 `;
 
 const GlobalStyle = createGlobalStyle`

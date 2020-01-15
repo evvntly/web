@@ -12,10 +12,6 @@ import Button from "../../library/buttons/button";
 import AlgoliaPlaces from "algolia-places-react";
 import Heading from "../../library/headings/heading";
 
-const Container = styled.div`
-  overflow: hidden;
-`;
-
 const Input = styled.div`
   margin-top: 30px;
   display: flex;
@@ -148,7 +144,7 @@ const Video = () => {
   };
 
   return (
-    <Container>
+    <>
       <PosterImage img={image}>
         <Content>
           <Heading
@@ -201,7 +197,7 @@ const Video = () => {
           </ButtonWrapper>
         </Content>
       </PosterImage>
-    </Container>
+    </>
   );
 };
 
