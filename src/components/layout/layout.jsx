@@ -19,6 +19,10 @@ const Container = styled.div`
   overflow: hidden;
 `;
 
+const VideoContainer = styled.div`
+  overflow: hidden;
+`;
+
 const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
@@ -62,7 +66,11 @@ const Layout = ({ children }) => {
     <>
       <GlobalStyle />
       <Navigation />
-      {isHome && <Video />}
+      {isHome && (
+        <VideoContainer>
+          <Video />
+        </VideoContainer>
+      )}
       {!isHome && <Container>{children}</Container>}
       <Footer />
       {context.signin && <SignIn />}
