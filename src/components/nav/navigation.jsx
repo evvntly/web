@@ -18,7 +18,6 @@ const Nav = styled.nav`
   top: 0;
   width: 100%;
   background: ${GREY};
-  box-shadow: ${BLACK} 1px 1px 5px;
   font-family: ${FONT_FAMILY};
   a {
     font-weight: ${WEIGHT.NORMAL};
