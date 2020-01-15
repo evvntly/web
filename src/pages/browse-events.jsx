@@ -47,6 +47,9 @@ const Center = styled.div`
 
 const Wrapper = styled.div`
   margin: 120px 0 0 0;
+  @media (max-width: 769px) and (min-width: 320px) {
+    margin: 80px 0 0 0;
+  }
 `;
 
 const BrowseEvents = () => {
