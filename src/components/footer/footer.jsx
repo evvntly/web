@@ -103,6 +103,15 @@ const Footer = () => {
                 OpenSource - Contribute
               </a>
             </li>
+            <li>
+              <a
+                href="https://stackshare.io/johnnyxbell/event-finda"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Tech Stach
+              </a>
+            </li>
           </ul>
         </Section>
         <Section>
