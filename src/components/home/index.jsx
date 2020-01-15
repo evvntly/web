@@ -9,9 +9,12 @@ import { myContext } from "../../context/provider";
 import { navigate } from "gatsby";
 import PosterImage from "./poster";
 import Button from "../../library/buttons/button";
-import GhostButton from "../../library/buttons/ghost-button";
 import AlgoliaPlaces from "algolia-places-react";
 import Heading from "../../library/headings/heading";
+
+const Container = styled.div`
+  overflow: hidden;
+`;
 
 const Input = styled.div`
   margin-top: 30px;
@@ -144,20 +147,8 @@ const Video = () => {
       .catch(err => console.log(err));
   };
 
-  const onSignupClick = () => {
-    if (process.env.NODE_ENV === "production") {
-      window.analytics.track("signup_clicked", {
-        position: "cta",
-        path: window.location.pathname,
-        url: typeof window !== "undefined" ? window.location.href : null,
-        referrer: typeof document !== "undefined" ? document.referrer : null
-      });
-    }
-    context.setSignin(true);
-  };
-
   return (
-    <div>
+    <Container>
       <PosterImage img={image}>
         <Content>
           <Heading
@@ -210,7 +201,7 @@ const Video = () => {
           </ButtonWrapper>
         </Content>
       </PosterImage>
-    </div>
+    </Container>
   );
 };
 
