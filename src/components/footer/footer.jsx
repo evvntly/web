@@ -8,7 +8,6 @@ import Netlify from "../../assets/svgs/netlify.svg";
 import SeatGeek from "../../assets/svgs/seatgeek.svg";
 
 const Navigation = styled.footer`
-  border-top: 6px solid ${BLACK};
   width: 100%;
   background: ${GREY};
   position: relative;
@@ -181,14 +180,6 @@ const Footer = () => {
           target="_blank"
         >
           @johnnyxbell
-        </a>{" "}
-        &{" "}
-        <a
-          href="https://www.twitter.com/MartinKrestan"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          @MartinKrestan
         </a>
       </Copyright>
     </Navigation>

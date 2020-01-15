@@ -81,15 +81,9 @@ const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
   margin: 25px 0;
-  > button:first-of-type {
-    margin: 0 15px 0 0;
-  }
   @media (max-width: 769px) and (min-width: 320px) {
     flex-direction: column;
-    > button:first-of-type {
-      margin: 0 0 25px 0;
-    }
-    > button {
+    button {
       width: 100%;
     }
   }
@@ -195,6 +189,18 @@ const Video = () => {
               onClick={() => onButtonClick()}
             />
           </ButtonWrapper>
+          <a
+            href="https://www.producthunt.com/posts/event-finda?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-event-finda"
+            target="_blank"
+          >
+            <img
+              src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=180841&theme=dark"
+              alt="Event Finda - Find events near you, and all around the world. | Product Hunt Embed"
+              style={{ width: "250px", height: "54px" }}
+              width="250px"
+              height="54px"
+            />
+          </a>
         </Content>
       </PosterImage>
     </>
