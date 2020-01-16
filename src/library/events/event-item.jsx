@@ -152,7 +152,6 @@ const Item = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   position: relative;
-  z-index: -1;
 `;
 
 const Content = styled.div`
