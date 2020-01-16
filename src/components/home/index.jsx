@@ -123,7 +123,8 @@ const Video = () => {
       .then(data => context.setData(data))
       .then(() => {
         navigate("/browse-events/");
-        context.setRadius(50);
+        context.setRadius(25);
+        context.setStartDate(false);
         if (process.env.NODE_ENV === "production") {
           window.analytics.track("get_search_term", {
             searchTerm: context.artistName,

@@ -16,6 +16,7 @@ const Container = styled.div`
   top: 60px;
   text-align: right;
   padding: 0 20px;
+  z-index: 5000;
   a {
     color: ${BLACK} !important;
     text-transform: none !important;
@@ -103,7 +104,7 @@ const UserNav = () => {
   return (
     <>
       {context.user && (
-        <div ref={wrapperRef}>
+        <div ref={wrapperRef} style={{ zIndex: 5000 }}>
           <li style={{ position: "relative" }}>
             <UserContainer
               onClick={() =>
