@@ -14,3 +14,7 @@ jobs:
         run: yarn install
       - name: Lint
         uses: Krizzu/eslint-check-action@v1.0.0
+        with:
+          eslintFiles: "/node_modules/"
+          eslintConfig: ".eslintrc.json",
+          eslintExt: "js, jsx"
