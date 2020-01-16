@@ -18,6 +18,6 @@ jobs:
         uses: Krizzu/eslint-check-action@v1.0.0
         with:
           ghToken: ${{ secrets.GITHUB_TOKEN }}
-          eslintFiles: "node_modules"
+          eslintFiles: "node_modules",
           eslintConfig: ".eslintrc.json",
           eslintExt: "jsx, js"
