@@ -22,7 +22,7 @@ const Container = styled.div`
   box-shadow: ${SILVER} 1px 1px 10px;
   border-radius: 4px;
   background: ${TUNDORA};
-  z-index: 0;
+  z-index: 2;
   @media (max-width: 769px) and (min-width: 320px) {
     padding: 10px 20px;
   }
