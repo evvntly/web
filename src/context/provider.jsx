@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import FullStory, { identify } from "react-fullstory";
 import { ipCheck } from "../startup/ipcheck";
 import ErrorBoundary from "../components/error-boundry/error-boundry";
+import moment from "moment";
 export const myContext = React.createContext();
 
 const Provider = props => {
@@ -22,6 +23,7 @@ const Provider = props => {
   const [userLoading, SetUserLoading] = useState(true);
   const [isAuthPage, setIsAuthPage] = useState(false);
   const [forceSearch, setForceSearch] = useState(false);
+  const [startDate, setStartDate] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -37,6 +39,12 @@ const Provider = props => {
   }, []);
 
   const withinUs = ipLocation === "US";
+
+  const convertDate =
+    startDate &&
+    moment(startDate)
+      .format("L")
+      .replace(/\//g, "-");
 
   const context = {
     data,
@@ -69,7 +77,10 @@ const Provider = props => {
     isAuthPage,
     setIsAuthPage,
     forceSearch,
-    setForceSearch
+    setForceSearch,
+    startDate,
+    setStartDate,
+    convertDate
   };
 
   return (
