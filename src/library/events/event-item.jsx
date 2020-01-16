@@ -418,7 +418,13 @@ const EventItem = ({ item, isMyEventsPage }) => {
 
           {images.length > 1 && (
             <>
-              <Carousel showArrows={true} showThumbs={false} showStatus={true}>
+              <Carousel
+                showArrows={true}
+                showThumbs={false}
+                showStatus={true}
+                infiniteLoop={true}
+                showIndicators={!isMyEventsPage}
+              >
                 {images.map((i, index) => (
                   <EventImage key={index}>
                     <img src={i} alt={item.name} />

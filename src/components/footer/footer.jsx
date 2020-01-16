@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { WHITE, GREY, BLACK } from "../../styles/colors";
+import { WHITE, GREY } from "../../styles/colors";
 import { FONT_FAMILY } from "../../styles/typography";
 import { Link } from "gatsby";
 import Gatsby from "../../assets/svgs/gatsby.svg";

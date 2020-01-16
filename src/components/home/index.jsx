@@ -192,6 +192,7 @@ const Video = () => {
           <a
             href="https://www.producthunt.com/posts/event-finda?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-event-finda"
             target="_blank"
+            rel="noopener noreferrer"
           >
             <img
               src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=180841&theme=dark"

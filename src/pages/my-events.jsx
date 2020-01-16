@@ -10,7 +10,6 @@ import EventItem from "../library/events/event-item";
 import { Container, Main } from "../styles/shared";
 import config from "../utils/siteConfig";
 import Seo from "../components/seo/seo";
-import { RED } from "../styles/colors";
 import { Notice } from "./browse-events";
 
 const Grid = styled.div`

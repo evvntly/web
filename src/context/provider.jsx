@@ -3,8 +3,6 @@ import React, { useState, useEffect } from "react";
 import FullStory, { identify } from "react-fullstory";
 import { ipCheck } from "../startup/ipcheck";
 import ErrorBoundary from "../components/error-boundry/error-boundry";
-import { LOGGEDIN_PATHS } from "../constants/paths";
-import { useWindow } from "../utils/useWindow";
 export const myContext = React.createContext();
 
 const Provider = props => {
