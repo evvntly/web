@@ -12,6 +12,7 @@ const Nav = styled.nav`
     display: none;
   }
   top: 0;
+  z-index: 1;
   padding: 0;
   margin: 0;
   position: absolute;
