@@ -82,11 +82,8 @@ const selectData = [
   { value: 25, name: "Close (25 Miles)" },
   { value: 50, name: "50 Miles" },
   { value: 100, name: "100 Miles" },
-  { value: 250, name: "250 Miles" },
-  { value: 500, name: "500 Miles" },
-  { value: 2500, name: "25,00 Miles" },
-  { value: 10000, name: "10,000 miles" },
-  { value: 1000000000, name: "The Whole World! 🌎" }
+  { value: 150, name: "150 Miles" },
+  { value: 300, name: "300 Miles" }
 ];
 
 const Filter = () => {
