@@ -13,8 +13,7 @@ jobs:
         with:
           node-version: 12
       - run: rm -f .yarnclean
-      - run: yarn --frozen-lockfile --ignore-engines --ignore-optional --no-bin-links --non-interactive --silent --ignore-scripts --production=false
+      - run: yarn install
       - uses: actions/checkout@v1
-      - uses: stefanoeb/eslint-action@1.0.2
-        with:
-          files: src/
+      - run: yarn lint
+      - uses: actions/checkout@v1
