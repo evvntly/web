@@ -46,9 +46,9 @@ const Center = styled.div`
 `;
 
 const Wrapper = styled.div`
-  margin: 120px 0 0 0;
+  margin: 120px auto 0 auto;
   @media (max-width: 769px) and (min-width: 320px) {
-    margin: 80px 0 0 0;
+    margin: 80px auto 0 auto;
   }
 `;
 
@@ -63,6 +63,7 @@ const BrowseEvents = () => {
   const lon = context.location && context.location.latlng.lng;
 
   useEffect(() => {
+    context.setForceSearch(false);
     fetch(
       `https://api.seatgeek.com/2/events?q=${context.artistName
         .replace(/\s+/g, "-")
@@ -76,7 +77,12 @@ const BrowseEvents = () => {
       .then(data => context.setData(data))
       // eslint-disable-next-line no-console
       .catch(err => console.log(err));
-  }, [context.radius, context.itemsPerPage, context.location]);
+  }, [
+    context.radius,
+    context.itemsPerPage,
+    context.location,
+    context.forceSearch
+  ]);
 
   return (
     <>

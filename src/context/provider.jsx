@@ -23,6 +23,7 @@ const Provider = props => {
   const [emailInUse, setEmailInUse] = useState(false);
   const [userLoading, SetUserLoading] = useState(true);
   const [isAuthPage, setIsAuthPage] = useState(false);
+  const [forceSearch, setForceSearch] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -68,7 +69,9 @@ const Provider = props => {
     userLoading,
     SetUserLoading,
     isAuthPage,
-    setIsAuthPage
+    setIsAuthPage,
+    forceSearch,
+    setForceSearch
   };
 
   return (

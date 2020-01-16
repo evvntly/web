@@ -21,6 +21,8 @@ import Trash from "../../assets/svgs/bin.svg";
 import Tick from "../../assets/svgs/tick.svg";
 import Star from "../../assets/svgs/star.svg";
 import Tada from "../../assets/svgs/tada.svg";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from "react-responsive-carousel";
 
 const ButtonWrap = styled.div`
   display: flex;
@@ -57,6 +59,10 @@ const UserSettings = styled.div`
   align-items: center;
   padding: 10px;
   order: 4;
+`;
+
+const PerformerName = styled.span`
+  cursor: pointer;
 `;
 
 const AttendingSettings = styled.div`
@@ -166,13 +172,6 @@ const TodayOrTomorrow = styled.div`
   opacity: 0.8;
 `;
 
-const EventImage = styled.img`
-  object-fit: cover;
-  width: 100%;
-  height: 150px;
-  order: 1;
-`;
-
 const NoImage = styled.div`
   width: 100%;
   height: 150px;
@@ -208,6 +207,22 @@ const ButtonPrimary = styled.button`
     background: ${RONCHI};
     color: ${BLACK};
   }
+`;
+
+const EventImage = styled.div`
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 150px;
+    order: 1;
+  }
+`;
+
+const SingleImage = styled.img`
+  object-fit: cover;
+  width: 100%;
+  height: 150px;
+  order: 1;
 `;
 
 const ButtonSecondary = styled.button`
@@ -358,6 +373,15 @@ const EventItem = ({ item, isMyEventsPage }) => {
       .update({ attending: "maybe" });
   };
 
+  const onPerformerClick = item => {
+    window.scrollTo(0, 0);
+    context.setArtistName(item.name);
+    context.setForceSearch(true);
+    if (isMyEventsPage) {
+      navigate("/browse-events");
+    }
+  };
+
   const renderDate = item => {
     const eventDate = new Date(item.datetime_local);
     const today = new Date();
@@ -375,16 +399,41 @@ const EventItem = ({ item, isMyEventsPage }) => {
     });
   }
 
+  const allImages = item.performers.map(i => i.image);
+  const images = allImages.filter(x => !!x);
+
   return (
     <>
       {new Date(item.datetime_local) > today && (
         <Item key={item.id}>
           {changeToPastEvent(item)}
-          {item.performers[0].image ? (
-            <EventImage src={item.performers[0].image} alt={item.title} />
-          ) : (
-            <NoImage>No Image</NoImage>
+
+          {images.length === 1 && (
+            <>
+              {images.map((i, index) => (
+                <SingleImage key={index} src={i} alt={item.name} />
+              ))}
+            </>
           )}
+
+          {images.length > 1 && (
+            <>
+              <Carousel showArrows={true} showThumbs={false} showStatus={true}>
+                {images.map((i, index) => (
+                  <EventImage key={index}>
+                    <img src={i} alt={item.name} />
+                  </EventImage>
+                ))}
+              </Carousel>
+            </>
+          )}
+
+          {images.length === 0 && (
+            <>
+              <NoImage>No Image</NoImage>
+            </>
+          )}
+
           {renderDate(item)}
           {isMyEventsPage && (
             <AttendingSettings>
@@ -430,6 +479,38 @@ const EventItem = ({ item, isMyEventsPage }) => {
             <Paragraph customStyle={TitleStyle}>
               {truncate(item.title, 34)}
             </Paragraph>
+            {item.type === "concert" && item.performers.length > 1 && (
+              <div>
+                <Paragraph customStyle={HeadingStyle}>
+                  Performing Artists:
+                </Paragraph>
+                <Paragraph
+                  customStyle={{
+                    margin: "5px 0 0 0",
+                    lineHeight: "1rem",
+                    fontSize: "0.9rem"
+                  }}
+                >
+                  {item.performers.map((i, index) => {
+                    const lastItem = item.performers.length === index + 1;
+                    if (lastItem) {
+                      return (
+                        <PerformerName
+                          onClick={() => onPerformerClick(i)}
+                        >{`& ${i.name}.`}</PerformerName>
+                      );
+                    } else {
+                      return (
+                        <PerformerName
+                          key={i.id}
+                          onClick={() => onPerformerClick(i)}
+                        >{`${i.name}, `}</PerformerName>
+                      );
+                    }
+                  })}
+                </Paragraph>
+              </div>
+            )}
             <DateWrapper>
               <div>
                 <Paragraph customStyle={HeadingStyle}>Date</Paragraph>
