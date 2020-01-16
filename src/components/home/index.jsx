@@ -20,16 +20,6 @@ const Input = styled.div`
   }
 `;
 
-const Test = styled.div`
-  margin-top: 30px;
-  display: flex;
-  @media (max-width: 769px) and (min-width: 320px) {
-    flex-direction: column;
-  }
-`;
-
-const test2 = "";
-
 const Title = styled.p`
   color: ${SILVER};
   font-family: ${FONT_FAMILY};
