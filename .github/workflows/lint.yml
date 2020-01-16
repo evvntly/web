@@ -14,6 +14,4 @@ jobs:
           node-version: 12
       - run: rm -f .yarnclean
       - run: yarn install
-      - uses: actions/checkout@v1
       - run: yarn lint
-      - uses: actions/checkout@v1
