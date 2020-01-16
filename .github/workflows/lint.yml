@@ -2,6 +2,8 @@ name: Lint
 
 on: pull_request
 
+name: Eslint check
+on: [push]
 jobs:
   eslint_check:
     name: prepare
@@ -15,6 +17,7 @@ jobs:
       - name: Lint
         uses: Krizzu/eslint-check-action@v1.0.0
         with:
-          eslintFiles: "/node_modules/",
+          ghToken: ${{ secrets.GITHUB_TOKEN }}
+          eslintFiles: "node_modules"
           eslintConfig: ".eslintrc.json",
-          eslintExt: "js, jsx"
+          eslintExt: "jsx, js"
