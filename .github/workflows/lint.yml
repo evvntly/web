@@ -2,8 +2,6 @@ name: Lint
 
 on: pull_request
 
-name: Eslint check
-on: [push]
 jobs:
   eslint_check:
     name: prepare
