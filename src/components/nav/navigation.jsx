@@ -53,8 +53,7 @@ const Hamburger = styled.div`
 `;
 
 const LogoIcon = styled(Logo)`
-  height: 50px;
-  width: 20px;
+  height: 65px;
 `;
 
 const MobileNav = styled.nav`
@@ -69,7 +68,7 @@ const MobileNav = styled.nav`
   box-sizing: border-box;
   margin: 0;
   top: 0;
-  height: 50px;
+  height: 65px;
   width: 100%;
   background: ${GREY};
   z-index: 1;
@@ -93,7 +92,7 @@ const HamburgerIcon = styled.div`
   position: absolute;
   padding: 0 10px;
   right: 15px;
-  top: 13px;
+  top: 20px;
   height: 25px;
   width: 25px;
   &:before {
@@ -109,15 +108,14 @@ const HamburgerIcon = styled.div`
 const MobileLogo = styled.div`
   padding-top: 8px;
   svg {
-    width: 40px;
-    height: 35px;
+    height: 45px;
   }
 `;
 
 const CloseIcon = styled.div`
   position: absolute;
   right: 25px;
-  top: 7px;
+  top: 15px;
   width: 25px;
   height: 25px;
   &:before,
