@@ -1,12 +1,13 @@
 name: Lint
 
-on: pull_request
+on: [pull_request]
 
 jobs:
-  eslint:
-    runs-on: ubuntu-latest
+  lint:
     steps:
-      - name: ESLint Action
-        uses: hallee/eslint-action@1.0.1
+      - uses: actions/checkout@v1
+      - uses: a-b-r-o-w-n/eslint-action@v1
         with:
-          secrets: ${{secrets.GITHUB_TOKEN}}
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          files: "src/**/*"
+          extensions: ".js,.ts,.jsx,.tsx"
