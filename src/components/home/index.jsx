@@ -28,6 +28,8 @@ const Test = styled.div`
   }
 `;
 
+const test2 = "";
+
 const Title = styled.p`
   color: ${SILVER};
   font-family: ${FONT_FAMILY};
