@@ -11,11 +11,11 @@ const Nav = styled.nav`
   @media (max-width: 769px) and (min-width: 320px) {
     display: none;
   }
+  top: 0;
   z-index: 1;
   padding: 0;
   margin: 0;
   position: absolute;
-  top: 0;
   width: 100%;
   background: ${GREY};
   font-family: ${FONT_FAMILY};
@@ -70,8 +70,8 @@ const MobileNav = styled.nav`
   top: 0;
   height: 65px;
   width: 100%;
+  z-index: 5;
   background: ${GREY};
-  z-index: 1;
   font-family: ${FONT_FAMILY};
   justify-content: space-between;
   align-items: center;
@@ -80,7 +80,7 @@ const MobileNav = styled.nav`
 const MobileItems = styled.div`
   top: 0;
   position: absolute;
-  z-index: 1;
+  z-index: 5;
   width: 100%;
   background: ${BLACK};
   height: 100vh;

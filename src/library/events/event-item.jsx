@@ -152,6 +152,7 @@ const Item = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   position: relative;
+  z-index: 1;
 `;
 
 const Content = styled.div`
@@ -375,7 +376,7 @@ const EventItem = ({ item, isMyEventsPage }) => {
 
   const onPerformerClick = item => {
     window.scrollTo(0, 0);
-    context.setArtistName(item.name);
+    context.setsearchTerm(item.name);
     context.setForceSearch(true);
     if (isMyEventsPage) {
       navigate("/browse-events");
@@ -399,8 +400,7 @@ const EventItem = ({ item, isMyEventsPage }) => {
     });
   }
 
-  const allImages = item.performers.map(i => i.image);
-  const images = allImages.filter(x => !!x);
+  const images = item.performers.map(i => i.image).filter(x => !!x);
 
   return (
     <>

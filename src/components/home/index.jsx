@@ -111,7 +111,7 @@ const Video = () => {
 
   const onButtonClick = () => {
     fetch(
-      `https://api.seatgeek.com/2/events?q=${context.artistName
+      `https://api.seatgeek.com/2/events?q=${context.searchTerm
         .replace(/\s+/g, "-")
         .toLowerCase()}&range=${context.radius}mi&per_page=${
         context.itemsPerPage
@@ -123,10 +123,11 @@ const Video = () => {
       .then(data => context.setData(data))
       .then(() => {
         navigate("/browse-events/");
-        context.setRadius(50);
+        context.setRadius(25);
+        context.setStartDate(false);
         if (process.env.NODE_ENV === "production") {
           window.analytics.track("get_search_term", {
-            searchTerm: context.artistName,
+            searchTerm: context.searchTerm,
             path: window.location.pathname,
             url: typeof window !== "undefined" ? window.location.href : null,
             referrer: typeof document !== "undefined" ? document.referrer : null
@@ -149,7 +150,7 @@ const Video = () => {
             <TextInput
               title="Artist / Event / Sport / Team"
               onChange={e => {
-                context.setArtistName(e.target.value);
+                context.setsearchTerm(e.target.value);
               }}
               placeholder="E.G. Golden State Warriors"
             />

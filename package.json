@@ -17,6 +17,8 @@
   },
   "dependencies": {
     "fetch-ponyfill": "^6.1.0",
+    "react-datepicker": "^2.11.0",
+    "react-debounce-input": "^3.2.2",
     "react-responsive-carousel": "^3.1.51",
     "whatwg-fetch": "^3.0.0"
   },

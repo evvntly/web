@@ -65,12 +65,12 @@ const BrowseEvents = () => {
   useEffect(() => {
     context.setForceSearch(false);
     fetch(
-      `https://api.seatgeek.com/2/events?q=${context.artistName
+      `https://api.seatgeek.com/2/events?q=${context.searchTerm
         .replace(/\s+/g, "-")
         .toLowerCase()}&range=${context.radius}mi&per_page=${
         context.itemsPerPage
-      }&geoip=true${
-        context.location ? `&lat=${lat}&lon=${lon}` : ""
+      }&geoip=true${context.location ? `&lat=${lat}&lon=${lon}` : ""}${
+        context.startDate ? `&datetime_utc.gt=${context.convertDate}` : ""
       }&client_id=${process.env.GATSBY_API_KEY}`
     )
       .then(response => response.json())
@@ -81,7 +81,9 @@ const BrowseEvents = () => {
     context.radius,
     context.itemsPerPage,
     context.location,
-    context.forceSearch
+    context.forceSearch,
+    context.startDate,
+    context.searchTerm
   ]);
 
   return (
