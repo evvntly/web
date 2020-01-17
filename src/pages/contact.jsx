@@ -1,3 +1,4 @@
+//@flow\
 import React from "react";
 import styled from "styled-components";
 import Layout from "../components/layout/layout";
@@ -90,7 +91,7 @@ const Contact = () => {
                 />
               </Flex>
               <Flex>
-                <Button title="Send" type="submit" />
+                <Button borderRadius={2} title="Send" type="submit" />
               </Flex>
             </form>
           </Main>

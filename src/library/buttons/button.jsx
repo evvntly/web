@@ -1,17 +1,18 @@
+// @flow
+
 import React from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
 import { WHITE, RONCHI } from "../../styles/colors";
 import { WEIGHT, FONT_FAMILY } from "../../styles/typography";
-import { lighten } from "polished";
+import { ALPHA } from "../../utils/colorUtils";
 
 const ButtonStyle = styled.button`
   border: ${props =>
     props.disabled
-      ? `1px solid ${lighten(0.2, props.color)}`
+      ? `1px solid ${ALPHA(props.color, 0.5)}`
       : `1px solid ${props.color}`};
   background: ${props =>
-    props.disabled ? lighten(0.2, props.color) : props.color};
+    props.disabled ? ALPHA(props.color, 0.5) : props.color};
   cursor: ${props => (props.disabled ? "default" : "pointer")};
   color: ${props => props.textColor};
   font-family: ${FONT_FAMILY};
@@ -25,8 +26,8 @@ const ButtonStyle = styled.button`
     props.borderRadius ? `${props.borderRadius}px` : "0"};
   font-weight: ${WEIGHT.NORMAL};
   &:hover {
-    background: ${props => lighten(0.1, props.color)};
-    border: ${props => `1px solid ${lighten(0.2, props.color)}`}
+    background: ${props => ALPHA(props.color, 0.7)};
+    border: ${props => `1px solid ${ALPHA(props.color, 0.7)}`}
 `;
 
 const Button = ({
@@ -39,6 +40,16 @@ const Button = ({
   textColor = WHITE,
   height = "40px",
   fontSize = "16px"
+}: {
+  title?: string,
+  disabled?: boolean,
+  onClick?: Function,
+  type?: string,
+  color?: string,
+  borderRadius?: number,
+  textColor?: string,
+  height?: string,
+  fontSize?: string
 }) => {
   return (
     <ButtonStyle
@@ -54,18 +65,6 @@ const Button = ({
       {title}
     </ButtonStyle>
   );
-};
-
-Button.propTypes = {
-  title: PropTypes.string,
-  type: PropTypes.string,
-  disabled: PropTypes.bool,
-  onClick: PropTypes.func,
-  color: PropTypes.string,
-  borderRadius: PropTypes.number,
-  textColor: PropTypes.string,
-  height: PropTypes.string,
-  fontSize: PropTypes.string
 };
 
 export default Button;
