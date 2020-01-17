@@ -54,10 +54,10 @@ const Debounced = ({ onClear, placeHolder }) => {
         placeHolder={placeHolder}
         minLength={2}
         debounceTimeout={400}
-        value={context.artistName ? context.artistName : ""}
-        onChange={e => context.setArtistName(e.target.value)}
+        value={context.searchTerm ? context.searchTerm : ""}
+        onChange={e => context.setsearchTerm(e.target.value)}
       />
-      {context.artistName && <Clear onClick={onClear} />}
+      {context.searchTerm && <Clear onClick={onClear} />}
     </Input>
   );
 };

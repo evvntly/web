@@ -65,7 +65,7 @@ const BrowseEvents = () => {
   useEffect(() => {
     context.setForceSearch(false);
     fetch(
-      `https://api.seatgeek.com/2/events?q=${context.artistName
+      `https://api.seatgeek.com/2/events?q=${context.searchTerm
         .replace(/\s+/g, "-")
         .toLowerCase()}&range=${context.radius}mi&per_page=${
         context.itemsPerPage
@@ -83,7 +83,7 @@ const BrowseEvents = () => {
     context.location,
     context.forceSearch,
     context.startDate,
-    context.artistName
+    context.searchTerm
   ]);
 
   return (

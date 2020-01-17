@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React, { useState, useEffect } from "react";
-import FullStory, { identify } from "react-fullstory";
+import FullStory from "react-fullstory";
 import { ipCheck } from "../startup/ipcheck";
 import ErrorBoundary from "../components/error-boundry/error-boundry";
 import moment from "moment";
@@ -8,7 +8,7 @@ export const myContext = React.createContext();
 
 const Provider = props => {
   const [data, setData] = useState({});
-  const [artistName, setArtistName] = useState("");
+  const [searchTerm, setsearchTerm] = useState("");
   const [user, setUser] = useState(false);
   const [error, setError] = useState(false);
   const [signin, setSignin] = useState(false);
@@ -26,15 +26,6 @@ const Provider = props => {
   const [startDate, setStartDate] = useState(false);
 
   useEffect(() => {
-    if (user) {
-      identify(user.uid, {
-        displayName: user.displayName,
-        email: user.email
-      });
-    }
-  }, [user]);
-
-  useEffect(() => {
     ipCheck(setIplocation);
   }, []);
 
@@ -49,8 +40,8 @@ const Provider = props => {
   const context = {
     data,
     setData,
-    artistName,
-    setArtistName,
+    searchTerm,
+    setsearchTerm,
     user,
     setUser,
     signin,

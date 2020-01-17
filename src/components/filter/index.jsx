@@ -119,7 +119,7 @@ const Filter = () => {
 
   const onClearClick = () => {
     context.setData({});
-    context.setArtistName("");
+    context.setsearchTerm("");
     context.setForceSearch(true);
   };
 

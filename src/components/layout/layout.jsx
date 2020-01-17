@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from "react";
+import { identify } from "react-fullstory";
 import styled, { createGlobalStyle } from "styled-components";
 import Navigation from "../nav/navigation";
 import Footer from "../footer/footer";
@@ -40,6 +41,15 @@ const Layout = ({ children }) => {
   let firebase = React.useContext(FirebaseContext);
 
   const isHome = useWindow && window.location.pathname === "/";
+
+  useEffect(() => {
+    if (context.user) {
+      identify(context.user.uid, {
+        displayName: context.user.displayName,
+        email: context.user.email
+      });
+    }
+  }, [context.user]);
 
   useEffect(() => {
     if (context.isAuthPage && !context.user) {
