@@ -1,3 +1,5 @@
+// @flow
+
 import React, { useContext } from "react";
 import { navigate } from "gatsby";
 import styled from "styled-components";
@@ -17,7 +19,6 @@ import {
 } from "../../styles/colors";
 import PropTypes from "prop-types";
 import Trash from "../../assets/svgs/bin.svg";
-// import Notes from "../../assets/svgs/notes.svg";
 import Tick from "../../assets/svgs/tick.svg";
 import Star from "../../assets/svgs/star.svg";
 import Tada from "../../assets/svgs/tada.svg";
@@ -41,17 +42,6 @@ const TrashIcon = styled(Trash)`
     fill: ${RED};
   }
 `;
-
-// const NotesIcon = styled(Notes)`
-//   width: 20px;
-//   height: 20px;
-//   opacity: 0.5;
-//   padding: 0 5px 0 5px;
-//   cursor: pointer;
-//   path {
-//     fill: ${GREY};
-//   }
-// `;
 
 const UserSettings = styled.div`
   display: flex;
@@ -259,7 +249,23 @@ const ButtonAttending = styled.button`
 const truncate = (input, length) =>
   input.length > length ? `${input.substring(0, length)}...` : input;
 
-const EventItem = ({ item, isMyEventsPage }) => {
+const EventItem = ({
+  item,
+  isMyEventsPage
+}: {
+  isMyEventsPage: boolean,
+  item: {
+    datetime_local: string,
+    performers: Array<Content>,
+    id: number,
+    name: string,
+    firebaseId: number,
+    attending: string,
+    venue: { display_location: string, name: string, address: string },
+    title: string,
+    type: string
+  }
+}) => {
   const context = useContext(myContext);
   const firebase = React.useContext(FirebaseContext);
 
@@ -543,7 +549,6 @@ const EventItem = ({ item, isMyEventsPage }) => {
           </Content>
           {isMyEventsPage && (
             <UserSettings>
-              {/*<NotesIcon title="Add / View Notes" />*/}
               <TrashIcon
                 title="Delete Event"
                 onClick={() => removeEvent(item.firebaseId, item)}
