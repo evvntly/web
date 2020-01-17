@@ -8,21 +8,17 @@
   "plugins": [
     "jsx-a11y"
   ],
-  "extends": ["plugin:react/recommended", "eslint:recommended", "plugin:flowtype/recommended", "plugin:jsx-a11y/recommended"],
+  "extends": ["plugin:react/recommended", "eslint:recommended", "plugin:flowtype/recommended", "plugin:jsx-a11y/recommended", "plugin:flowtype-errors/recommended"],
   "rules": {
     "no-unsafe-finally": "off",
     "jsx-a11y/no-noninteractive-element-to-interactive-role": "off"
   },
-
-  "overrides": [
-    {
-      "files": [ "src/**/*.js", "src/**/*.jsx"],
-      "excludedFiles": "*.test.js"
-    }
-  ],
   "settings": {
     "react": {
       "version": "detect"
+    },
+    "flowtype": {
+      "onlyFilesWithFlowAnnotation": true
     },
     "import/resolver": {
       "node": {

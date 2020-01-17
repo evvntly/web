@@ -10,6 +10,7 @@ import { isMobile } from "react-device-detect";
 import FacebookAuth from "./facebook";
 import TwitterAuth from "./twitter";
 import GoogleAuth from "./google";
+import CloseIcon from "../../assets/svgs/close.svg";
 
 const Overlay = styled.div`
   position: fixed;
@@ -49,6 +50,14 @@ const Close = styled.div`
   justify-content: center;
   align-items: center;
   font-family: ${FONT_FAMILY};
+`;
+
+const CloseSvg = styled(CloseIcon)`
+  width: 12px;
+  height: 12px;
+  path {
+    fill: ${BLACK};
+  }
 `;
 
 const LoginItems = styled.div`
@@ -183,7 +192,7 @@ const SignIn = () => {
               </Content>
               {!context.isAuthPage && (
                 <Close onClick={() => onCloseClick()}>
-                  <div>X</div>
+                  <CloseSvg />
                 </Close>
               )}
             </Modal>
