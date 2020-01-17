@@ -1,5 +1,4 @@
 // @flow
-
 import React, { useContext } from "react";
 import { navigate } from "gatsby";
 import styled from "styled-components";
@@ -17,7 +16,6 @@ import {
   SILVER,
   WHITE
 } from "../../styles/colors";
-import PropTypes from "prop-types";
 import Trash from "../../assets/svgs/bin.svg";
 import Tick from "../../assets/svgs/tick.svg";
 import Star from "../../assets/svgs/star.svg";
@@ -559,11 +557,6 @@ const EventItem = ({
       )}
     </>
   );
-};
-
-EventItem.propTypes = {
-  isMyEventsPage: PropTypes.bool,
-  item: PropTypes.object
 };
 
 export default EventItem;

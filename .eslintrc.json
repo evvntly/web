@@ -5,10 +5,10 @@
     "browser": true,
     "es6": true
   },
+  "extends": ["plugin:react/recommended", "eslint:recommended", "plugin:flowtype/recommended", "plugin:jsx-a11y/recommended", "plugin:flowtype-errors/recommended", "plugin:flowtype/recommended"],
   "plugins": [
-    "jsx-a11y"
+    "jsx-a11y", "flowtype"
   ],
-  "extends": ["plugin:react/recommended", "eslint:recommended", "plugin:flowtype/recommended", "plugin:jsx-a11y/recommended", "plugin:flowtype-errors/recommended"],
   "rules": {
     "no-unsafe-finally": "off",
     "jsx-a11y/no-noninteractive-element-to-interactive-role": "off"
