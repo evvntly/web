@@ -91,7 +91,7 @@ const Contact = () => {
                 />
               </Flex>
               <Flex>
-                <Button borderRadius="red" title="Send" type="submit" />
+                <Button title="Send" type="submit" />
               </Flex>
             </form>
           </Main>
