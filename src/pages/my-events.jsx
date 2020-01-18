@@ -2,24 +2,14 @@ import React, { useContext, useEffect } from "react";
 import Layout from "../components/layout/layout";
 import Heading from "../library/headings/heading";
 import { Helmet } from "react-helmet";
-import styled from "styled-components";
 import Banner from "../library/banner";
 import { myContext } from "../context/provider";
 import Paragraph from "../library/paragraph/paragraph";
 import EventItem from "../library/events/event-item";
-import { Container, Main } from "../styles/shared";
+import { Container, Grid, Main } from "../styles/shared";
 import config from "../utils/siteConfig";
 import Seo from "../components/seo/seo";
 import { Notice } from "./browse-events";
-
-const Grid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  @media (max-width: 769px) and (min-width: 320px) {
-    grid-template-columns: 1fr;
-  }
-  grid-gap: 20px;
-`;
 
 const MyEvents = () => {
   const postNode = {

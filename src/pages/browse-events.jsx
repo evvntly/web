@@ -9,21 +9,12 @@ import Paragraph from "../library/paragraph/paragraph";
 import { myContext } from "../context/provider";
 import Filter from "../components/filter";
 import EventItem from "../library/events/event-item";
-import { Container, Main } from "../styles/shared";
+import { Container, Grid, Main } from "../styles/shared";
 import config from "../utils/siteConfig";
 import Seo from "../components/seo/seo";
 import GhostButton from "../library/buttons/ghost-button";
 import { BLACK, RONCHI } from "../styles/colors";
 import { FONT_FAMILY } from "../styles/typography";
-
-const Grid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  @media (max-width: 769px) and (min-width: 320px) {
-    grid-template-columns: 1fr;
-  }
-  grid-gap: 20px;
-`;
 
 export const Notice = styled.div`
   height: auto;
@@ -152,7 +143,7 @@ const BrowseEvents = () => {
                       title="Load More"
                       borderRadius={20}
                       onClick={() =>
-                        context.setItemsPerPage(context.itemsPerPage + 25)
+                        context.setItemsPerPage(context.itemsPerPage + 24)
                       }
                     />
                   </Center>

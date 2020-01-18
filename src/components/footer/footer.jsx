@@ -90,7 +90,7 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link to="/advertise" aria-label="Advertise">
+              <Link to="/contact" aria-label="Advertise">
                 Advertise
               </Link>
             </li>

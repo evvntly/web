@@ -39,12 +39,15 @@ const Nav = styled.nav`
 `;
 
 const NavWrapper = styled.div`
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0 3px 0;
+  padding: 10px 50px 3px 50px;
+  @media (max-width: 769px) and (min-width: 320px) {
+    padding: 10px 0 3px 0;
+  }
   min-height: 70px;
 `;
 
