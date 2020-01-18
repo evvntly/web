@@ -387,6 +387,17 @@ const EventItem = ({
     }
   };
 
+  const daysRemaining = item => {
+    const eventDate = moment(item.datetime_local);
+    const todaysDate = moment();
+    return (
+      <TodayOrTomorrow>{`${eventDate.diff(
+        todaysDate,
+        "days"
+      )} days away`}</TodayOrTomorrow>
+    );
+  };
+
   const renderDate = item => {
     const eventDate = new Date(item.datetime_local);
     const today = new Date();
@@ -401,6 +412,8 @@ const EventItem = ({
           }
         </TodayOrTomorrow>
       );
+    } else if (isMyEventsPage) {
+      return daysRemaining(item);
     }
   };
 
