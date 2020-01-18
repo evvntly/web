@@ -149,7 +149,7 @@ const Content = styled.div`
   flex-grow: 1;
 `;
 
-const TodayOrTomorrow = styled.div`
+const Pill = styled.div`
   position: absolute;
   top: 10px;
   left: 10px;
@@ -387,20 +387,28 @@ const EventItem = ({
     }
   };
 
+  const daysRemaining = item => {
+    const eventDate = moment(item.datetime_local);
+    const todaysDate = moment();
+    return <Pill>{`${eventDate.diff(todaysDate, "days")} days away`}</Pill>;
+  };
+
   const renderDate = item => {
     const eventDate = new Date(item.datetime_local);
     const today = new Date();
     const nextWeek = new Date(today.getTime() + 1.5 * 24 * 60 * 60 * 1000);
     if (eventDate < nextWeek) {
       return (
-        <TodayOrTomorrow>
+        <Pill>
           {
             moment(eventDate)
               .calendar()
               .split(" ")[0]
           }
-        </TodayOrTomorrow>
+        </Pill>
       );
+    } else if (isMyEventsPage) {
+      return daysRemaining(item);
     }
   };
 
