@@ -392,7 +392,15 @@ const EventItem = ({
     const today = new Date();
     const nextWeek = new Date(today.getTime() + 1.5 * 24 * 60 * 60 * 1000);
     if (eventDate < nextWeek) {
-      return <TodayOrTomorrow>{moment(eventDate).calendar()}</TodayOrTomorrow>;
+      return (
+        <TodayOrTomorrow>
+          {
+            moment(eventDate)
+              .calendar()
+              .split(" ")[0]
+          }
+        </TodayOrTomorrow>
+      );
     }
   };
 
@@ -527,7 +535,7 @@ const EventItem = ({
                 <Paragraph
                   customStyle={{ fontSize: "1rem", margin: "0 0 0 0" }}
                 >
-                  {moment(item.datetime_local).format("MMMM Do YYYY")}
+                  {moment(item.datetime_local).format("dddd MMMM Do YYYY")}
                 </Paragraph>
               </div>
               <div>
