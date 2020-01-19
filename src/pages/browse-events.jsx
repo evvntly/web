@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import fetchPonyfill from "fetch-ponyfill";
 const { fetch } = fetchPonyfill();
 import Layout from "../components/layout/layout";
@@ -13,21 +13,8 @@ import { Container, Grid, Main } from "../styles/shared";
 import config from "../utils/siteConfig";
 import Seo from "../components/seo/seo";
 import GhostButton from "../library/buttons/ghost-button";
-import { BLACK, RONCHI } from "../styles/colors";
-import { FONT_FAMILY } from "../styles/typography";
-
-export const Notice = styled.div`
-  height: auto;
-  background: ${RONCHI};
-  position: relative;
-  margin: 0 0 25px 0;
-  padding: 10px 0;
-  border-radius: 4px;
-  color: ${BLACK};
-  font-family: ${FONT_FAMILY};
-  text-align: center;
-  font-size: 13px;
-`;
+import Notice from "../library/notice";
+import { Link } from "gatsby";
 
 const Center = styled.div`
   display: flex;
@@ -52,6 +39,9 @@ const BrowseEvents = () => {
   const context = useContext(myContext);
   const lat = context.location && context.location.latlng.lat;
   const lon = context.location && context.location.latlng.lng;
+  const [noticeSeen, setNoticeSeen] = useState(
+    localStorage.getItem("outside-us-notice")
+  );
 
   useEffect(() => {
     context.setForceSearch(false);
@@ -87,12 +77,20 @@ const BrowseEvents = () => {
         <Container>
           <Wrapper>
             <Main>
-              {!context.withinUs && (
-                <Notice>
-                  Hi! Results are limited outside the US.{" "}
-                  <span role="img" aria-label="crying">
-                    😭
-                  </span>
+              {!context.withinUs && !noticeSeen && (
+                <Notice
+                  icon
+                  onDismiss={() => {
+                    localStorage.setItem("outside-us-notice", true);
+                    setNoticeSeen(localStorage.getItem("outside-us-notice"));
+                  }}
+                >
+                  <div>
+                    Hi! Results are limited outside the US.{" "}
+                    <Link to="/outside-us" aria-label="Outside The USA">
+                      Learn More
+                    </Link>
+                  </div>
                 </Notice>
               )}
 

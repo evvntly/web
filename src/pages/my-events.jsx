@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Layout from "../components/layout/layout";
 import Heading from "../library/headings/heading";
 import { Helmet } from "react-helmet";
@@ -9,14 +9,16 @@ import EventItem from "../library/events/event-item";
 import { Container, Grid, Main } from "../styles/shared";
 import config from "../utils/siteConfig";
 import Seo from "../components/seo/seo";
-import { Notice } from "./browse-events";
+import Notice from "../library/notice";
 
 const MyEvents = () => {
   const postNode = {
     title: `${config.siteTitle} | My Events`,
     pagePath: "/my-events"
   };
-
+  const [noticeSeen, setNoticeSeen] = useState(
+    localStorage.getItem("my-events-deleted-after-date-notice")
+  );
   const context = useContext(myContext);
 
   useEffect(() => {
@@ -54,8 +56,20 @@ const MyEvents = () => {
             <Container>
               <Main>
                 <Heading title="My Saved Events" />
-                {context.eventData.events && (
-                  <Notice>
+                {context.eventData.events && !noticeSeen && (
+                  <Notice
+                    onDismiss={() => {
+                      localStorage.setItem(
+                        "my-events-deleted-after-date-notice",
+                        true
+                      );
+                      setNoticeSeen(
+                        localStorage.getItem(
+                          "my-events-deleted-after-date-notice"
+                        )
+                      );
+                    }}
+                  >
                     * Please note, events in the past will automatically be
                     removed.
                   </Notice>
