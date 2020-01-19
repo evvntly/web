@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import styled from "styled-components";
-import { BLACK, TUNDORA, WHITE } from "../../styles/colors";
+import { BLACK, WHITE } from "../../styles/colors";
 import { FONT_FAMILY } from "../../styles/typography";
 import CloseIcon from "../../assets/svgs/close.svg";
 
