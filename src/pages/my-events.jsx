@@ -11,6 +11,7 @@ import config from "../utils/siteConfig";
 import Seo from "../components/seo/seo";
 import Notice from "../library/notice";
 import { useWindow } from "../utils/useWindow";
+import { Link } from "gatsby";
 
 const MyEvents = () => {
   const postNode = {
@@ -21,11 +22,20 @@ const MyEvents = () => {
     useWindow &&
       window.localStorage.getItem("my-events-deleted-after-date-notice")
   );
+  const [loading, setLoading] = useState(false);
   const context = useContext(myContext);
 
   useEffect(() => {
     context.setIsAuthPage(true);
   }, []);
+
+  useEffect(() => {
+    if (context.eventData.events) {
+      setLoading(false);
+    }
+  }, [context.eventData.events]);
+
+  console.log(loading);
 
   const loadEvents = () => {
     if (context.eventData.events) {
@@ -38,7 +48,6 @@ const MyEvents = () => {
       const sortedEvents = placeholder.sort(function(a, b) {
         return new Date(a.datetime_local) - new Date(b.datetime_local);
       });
-
       return sortedEvents.map(item => (
         <EventItem key={item.id} item={item} isMyEventsPage={true} />
       ));
@@ -80,7 +89,14 @@ const MyEvents = () => {
                 )}
                 {context.eventData.events && <Grid>{loadEvents()}</Grid>}
                 {!context.eventData.events && (
-                  <Paragraph>No events added yet, try to add some</Paragraph>
+                  <>
+                    <Paragraph>You&apos;ve not added any events yet!</Paragraph>
+                    <Paragraph>
+                      <Link to="/browse-events" aria-label="Advertise">
+                        Browse Events
+                      </Link>
+                    </Paragraph>
+                  </>
                 )}
               </Main>
             </Container>
