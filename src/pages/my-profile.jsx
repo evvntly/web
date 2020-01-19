@@ -8,11 +8,9 @@ import { Container, Main } from "../styles/shared";
 import { myContext } from "../context/provider";
 import config from "../utils/siteConfig";
 import Seo from "../components/seo/seo";
-import { FirebaseContext } from "gatsby-plugin-firebase";
 import { RED, WHITE } from "../styles/colors";
 import Button from "../library/buttons/button";
 import styled from "styled-components";
-import NotesModal from "../components/my-events/notes-modal";
 import DeleteAccountModal from "../components/my-profile/delete-account-modal";
 
 const Danger = styled.div`
