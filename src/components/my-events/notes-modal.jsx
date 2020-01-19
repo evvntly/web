@@ -21,9 +21,13 @@ const TrashIcon = styled(Trash)`
 `;
 
 const Content = styled.div`
-  max-width: 400px;
+  width: 450px;
   text-align: left;
-  padding: 10px 0;
+  box-sizing: border-box;
+  padding: 25px 20px;
+  @media (max-width: 769px) and (min-width: 320px) {
+    width: 340px;
+  }
 `;
 
 const Icon = styled.div`

@@ -15,7 +15,7 @@ const Provider = props => {
   const [userMenu, setUserMenu] = useState(false);
   const [ipLocation, setIplocation] = useState("US");
   const [radius, setRadius] = useState(25);
-  const [itemsPerPage, setItemsPerPage] = useState(25);
+  const [itemsPerPage, setItemsPerPage] = useState(24);
   const [showHamburger, setShowHamburger] = useState(false);
   const [location, setLocation] = useState(false);
   const [eventData, setEventData] = useState(false);

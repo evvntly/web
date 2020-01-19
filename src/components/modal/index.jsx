@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import styled from "styled-components";
-import { BLACK, TUNDORA, WHITE } from "../../styles/colors";
+import { BLACK, WHITE } from "../../styles/colors";
 import { FONT_FAMILY } from "../../styles/typography";
 import CloseIcon from "../../assets/svgs/close.svg";
 
@@ -54,13 +54,7 @@ const CloseSvg = styled(CloseIcon)`
   }
 `;
 
-const Content = styled.div`
-  padding: 10px 25px;
-  text-align: center;
-  a {
-    color: ${TUNDORA};
-  }
-`;
+const Content = styled.div``;
 
 const ModalContainer = styled.div`
   display: flex;
