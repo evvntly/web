@@ -310,7 +310,7 @@ const EventItem = ({
       if (eventDate < today) {
         const eventRef = firebase
           .database()
-          .ref(`/users/${context.user.uid}/events`);
+          .ref(`/users/${context.user.uid}/events/${item.firebaseId}`);
         eventRef.remove();
       }
     }
