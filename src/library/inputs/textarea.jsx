@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { SILVER, RED } from "../../styles/colors";
+import { SILVER, RED, BLACK } from "../../styles/colors";
 import { WEIGHT, FONT_FAMILY } from "../../styles/typography";
 
 const InputWrapper = styled.div`
@@ -21,10 +21,11 @@ const Input = styled.textarea`
 `;
 
 const Title = styled.p`
-  color: ${SILVER};
+  color: ${BLACK};
   font-family: ${FONT_FAMILY};
   padding: 0;
-  margin: 0 0 10px 0;
+  text-align: left;
+  margin: 0 0 5px 0;
   font-size: 16px;
   font-weight: ${WEIGHT.THIN};
 `;
@@ -45,17 +46,19 @@ const TextArea = ({
   type,
   name,
   required,
-  onFocus
+  onFocus,
+  onChange
 }) => {
   return (
     <InputWrapper>
       {title && <Title>{title}</Title>}
       <Input
+        onChange={onChange}
         placeholder={placeholder}
         type={type}
         name={name}
         required={required}
-        error={error ? true : false}
+        error={!!error}
         onFocus={onFocus}
       />
       {error && <Error>{error}</Error>}
@@ -70,7 +73,8 @@ TextArea.propTypes = {
   type: PropTypes.string,
   name: PropTypes.string,
   required: PropTypes.bool,
-  onFocus: PropTypes.func
+  onFocus: PropTypes.func,
+  onChange: PropTypes.func
 };
 
 export default TextArea;

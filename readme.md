@@ -1,8 +1,6 @@
 # Event Finda
 
-Looking for events near you or around the US?
-
-Stop searching and enjoying life!
+START ENJOYING LIFE BY FINDING THE PERFECT EVENT NEAR YOU.
 
 [![StackShare](http://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](https://stackshare.io/johnnyxbell/event-finda)
 

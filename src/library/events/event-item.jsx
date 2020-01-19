@@ -1,5 +1,5 @@
 // @flow
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { navigate } from "gatsby";
 import styled from "styled-components";
 import Paragraph from "../paragraph/paragraph";
@@ -20,14 +20,10 @@ import Trash from "../../assets/svgs/bin.svg";
 import Tick from "../../assets/svgs/tick.svg";
 import Star from "../../assets/svgs/star.svg";
 import Tada from "../../assets/svgs/tada.svg";
+import Notes from "../../assets/svgs/notes.svg";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
-
-const ButtonWrap = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+import NotesModal from "../../components/my-events/notes-modal";
 
 const TrashIcon = styled(Trash)`
   width: 20px;
@@ -38,6 +34,24 @@ const TrashIcon = styled(Trash)`
   background: ${WHITE};
   path {
     fill: ${RED};
+  }
+`;
+
+const ButtonWrap = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const NotesIcon = styled(Notes)`
+  width: 20px;
+  height: 20px;
+  padding: 0 5px 0 0;
+  opacity: 0.5;
+  cursor: pointer;
+  background: ${WHITE};
+  path {
+    fill: ${BLACK};
   }
 `;
 
@@ -261,11 +275,13 @@ const EventItem = ({
     attending: string,
     venue: { display_location: string, name: string, address: string },
     title: string,
-    type: string
+    type: string,
+    notes: string
   }
 }) => {
   const context = useContext(myContext);
   const firebase = React.useContext(FirebaseContext);
+  const [showNotesModal, setShowNotesModal] = useState(false);
 
   const TitleStyle = {
     fontWeight: "bold",
@@ -563,6 +579,10 @@ const EventItem = ({
           </Content>
           {isMyEventsPage && (
             <UserSettings>
+              <NotesIcon
+                onClick={() => setShowNotesModal(true)}
+                title="Notes"
+              />
               <TrashIcon
                 title="Delete Event"
                 onClick={() => removeEvent(item.firebaseId, item)}
@@ -570,6 +590,9 @@ const EventItem = ({
             </UserSettings>
           )}
         </Item>
+      )}
+      {showNotesModal && (
+        <NotesModal onDismiss={() => setShowNotesModal(false)} item={item} />
       )}
     </>
   );
