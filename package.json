@@ -1,6 +1,6 @@
 {
   "name": "event-finda",
-  "private": true,
+  "private": false,
   "description": "Event Finda",
   "version": "1.0",
   "license": "MIT",
@@ -82,6 +82,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/johnnyxbell/concertbuddy"
+    "url": "https://github.com/johnnyxbell/eventfinda"
   }
 }
