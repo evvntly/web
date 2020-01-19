@@ -15,6 +15,7 @@ import Seo from "../components/seo/seo";
 import GhostButton from "../library/buttons/ghost-button";
 import Notice from "../library/notice";
 import { Link } from "gatsby";
+import { useWindow } from "../utils/useWindow";
 
 const Center = styled.div`
   display: flex;
@@ -40,7 +41,7 @@ const BrowseEvents = () => {
   const lat = context.location && context.location.latlng.lat;
   const lon = context.location && context.location.latlng.lng;
   const [noticeSeen, setNoticeSeen] = useState(
-    localStorage.getItem("outside-us-notice")
+    useWindow && window.localStorage.getItem("outside-us-notice")
   );
 
   useEffect(() => {
@@ -81,8 +82,12 @@ const BrowseEvents = () => {
                 <Notice
                   icon
                   onDismiss={() => {
-                    localStorage.setItem("outside-us-notice", true);
-                    setNoticeSeen(localStorage.getItem("outside-us-notice"));
+                    useWindow &&
+                      window.localStorage.setItem("outside-us-notice", true);
+                    setNoticeSeen(
+                      useWindow &&
+                        window.localStorage.getItem("outside-us-notice")
+                    );
                   }}
                 >
                   <div>

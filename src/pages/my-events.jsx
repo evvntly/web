@@ -10,6 +10,7 @@ import { Container, Grid, Main } from "../styles/shared";
 import config from "../utils/siteConfig";
 import Seo from "../components/seo/seo";
 import Notice from "../library/notice";
+import { useWindow } from "../utils/useWindow";
 
 const MyEvents = () => {
   const postNode = {
@@ -17,7 +18,8 @@ const MyEvents = () => {
     pagePath: "/my-events"
   };
   const [noticeSeen, setNoticeSeen] = useState(
-    localStorage.getItem("my-events-deleted-after-date-notice")
+    useWindow &&
+      window.localStorage.getItem("my-events-deleted-after-date-notice")
   );
   const context = useContext(myContext);
 
@@ -59,14 +61,16 @@ const MyEvents = () => {
                 {context.eventData.events && !noticeSeen && (
                   <Notice
                     onDismiss={() => {
-                      localStorage.setItem(
-                        "my-events-deleted-after-date-notice",
-                        true
-                      );
+                      useWindow &&
+                        window.localStorage.setItem(
+                          "my-events-deleted-after-date-notice",
+                          true
+                        );
                       setNoticeSeen(
-                        localStorage.getItem(
-                          "my-events-deleted-after-date-notice"
-                        )
+                        useWindow &&
+                          window.localStorage.getItem(
+                            "my-events-deleted-after-date-notice"
+                          )
                       );
                     }}
                   >
