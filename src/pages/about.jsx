@@ -78,16 +78,7 @@ const About = () => {
                 </Paragraph>
                 <Paragraph>
                   This website just launched and we are adding new features all
-                  the time. If you want to keep up or see what features we have
-                  in the pipeline please see our{" "}
-                  <a
-                    href="https://trello.com/b/yQUPk6jx"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title="event finda trello board"
-                  >
-                    trello board.
-                  </a>
+                  the time.
                 </Paragraph>
                 <Paragraph>
                   The website is also 100% opensource so if you see a bug and

@@ -77,6 +77,7 @@ const AttendingSettings = styled.div`
   position: absolute;
   width: 100%;
   opacity: 0.9;
+  box-sizing: border-box;
 `;
 
 const TickHeaderIcon = styled(Tick)`
