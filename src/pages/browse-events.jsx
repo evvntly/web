@@ -16,6 +16,7 @@ import GhostButton from "../library/buttons/ghost-button";
 import Notice from "../library/notice";
 import { Link } from "gatsby";
 import { useWindow } from "../utils/useWindow";
+import EventItemLoader from "../library/loaders/event-item";
 
 const Center = styled.div`
   display: flex;
@@ -102,10 +103,7 @@ const BrowseEvents = () => {
               <Heading title="Browse Events" />
               <Filter />
               {context.data && Object.keys(context.data).length === 0 && (
-                <Paragraph>
-                  Currently you have not searched for an event start looking for
-                  your next event by using the filter above.
-                </Paragraph>
+                <EventItemLoader />
               )}
 
               {context.data &&
@@ -135,7 +133,11 @@ const BrowseEvents = () => {
                 {context.data &&
                   Object.keys(context.data).length !== 0 &&
                   context.data.events.map(item => (
-                    <EventItem key={item.id} item={item} />
+                    <EventItem
+                      isMyEventsPage={false}
+                      key={item.id}
+                      item={item}
+                    />
                   ))}
               </Grid>
               {context.data &&
