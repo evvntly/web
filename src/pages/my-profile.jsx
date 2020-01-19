@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Layout from "../components/layout/layout";
 import Heading from "../library/headings/heading";
 import { Helmet } from "react-helmet";
@@ -8,10 +8,10 @@ import { Container, Main } from "../styles/shared";
 import { myContext } from "../context/provider";
 import config from "../utils/siteConfig";
 import Seo from "../components/seo/seo";
-import { FirebaseContext } from "gatsby-plugin-firebase";
 import { RED, WHITE } from "../styles/colors";
 import Button from "../library/buttons/button";
 import styled from "styled-components";
+import DeleteAccountModal from "../components/my-profile/delete-account-modal";
 
 const Danger = styled.div`
   margin-top: 25px;
@@ -25,26 +25,11 @@ const MyProfile = () => {
   };
 
   const context = useContext(myContext);
-  let firebase = React.useContext(FirebaseContext);
+  const [showDeleteAccountModal, setShowDeleteAccountModal] = useState(false);
 
   useEffect(() => {
     context.setIsAuthPage(true);
   }, []);
-
-  const onDeleteClick = () => {
-    if (window.confirm("Are you sure? All your events will be deleted.")) {
-      const me = firebase.auth().currentUser;
-      me.delete()
-        .then(function() {
-          context.setUser(false);
-          context.setSignin(false);
-          window.location.href = "/";
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    }
-  };
 
   const DangerZoneStyle = {
     color: RED,
@@ -90,7 +75,7 @@ const MyProfile = () => {
                     textColor={WHITE}
                     color={RED}
                     title="Delete my account"
-                    onClick={() => onDeleteClick()}
+                    onClick={() => setShowDeleteAccountModal(true)}
                   />
                   <Paragraph customStyle={{ color: RED, fontSize: ".9rem" }}>
                     * This will completely delete your account, and anything you
@@ -102,6 +87,12 @@ const MyProfile = () => {
           </>
         )}
       </Layout>
+      {showDeleteAccountModal && (
+        <DeleteAccountModal
+          onDismiss={() => setShowDeleteAccountModal(false)}
+          onComplete={() => setShowDeleteAccountModal(false)}
+        />
+      )}
     </>
   );
 };

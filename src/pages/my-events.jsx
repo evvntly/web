@@ -22,20 +22,11 @@ const MyEvents = () => {
     useWindow &&
       window.localStorage.getItem("my-events-deleted-after-date-notice")
   );
-  const [loading, setLoading] = useState(false);
   const context = useContext(myContext);
 
   useEffect(() => {
     context.setIsAuthPage(true);
   }, []);
-
-  useEffect(() => {
-    if (context.eventData.events) {
-      setLoading(false);
-    }
-  }, [context.eventData.events]);
-
-  console.log(loading);
 
   const loadEvents = () => {
     if (context.eventData.events) {
