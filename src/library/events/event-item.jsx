@@ -446,151 +446,160 @@ const EventItem = ({
 
   return (
     <>
-      <Item key={item.id} past={new Date(item.datetime_local) < today}>
-        {changeToPastEvent(item)}
+      {new Date(item.datetime_local) > today && (
+        <Item key={item.id} past={new Date(item.datetime_local) < today}>
+          {changeToPastEvent(item)}
 
-        {images.length === 1 && (
-          <>
-            {images.map((i, index) => (
-              <SingleImage key={index} src={i} alt={item.name} />
-            ))}
-          </>
-        )}
-
-        {images.length > 1 && (
-          <>
-            <Carousel
-              showArrows={true}
-              showThumbs={false}
-              showStatus={true}
-              infiniteLoop={true}
-              showIndicators={!isMyEventsPage}
-            >
-              {images.map((i, index) => (
-                <EventImage key={index}>
-                  <img src={i} alt={item.name} />
-                </EventImage>
-              ))}
-            </Carousel>
-          </>
-        )}
-
-        {images.length === 0 && (
-          <>
-            <NoImage>No Image</NoImage>
-          </>
-        )}
-
-        {renderDate(item)}
-        {isMyEventsPage && (
-          <AttendingSettings>
-            <TickHeaderIcon
-              onClick={() => onUpdateToGoingClick(item.firebaseId)}
-              isFill={item.attending === "going"}
-            />
-            <StarHeaderIcon
-              onClick={() => onUpdateToMaybeClick(item.firebaseId)}
-              isFill={item.attending === "maybe"}
-            />
-          </AttendingSettings>
-        )}
-        <ButtonWrapper>
-          {!isMyEventsPage && new Date(item.datetime_local) > today && (
+          {images.length === 1 && (
             <>
-              {eventAttendingIds.includes(item.id) ? (
-                <ButtonAttending onClick={() => navigate("/my-events")}>
-                  <TadaIcon />
-                  You&apos;re Attending!
-                </ButtonAttending>
-              ) : (
-                <>
-                  <ButtonSecondary onClick={() => onImGoingClick(item)}>
-                    <ButtonWrap>
-                      <TickIcon />
-                      Attend
-                    </ButtonWrap>
-                  </ButtonSecondary>
-                  <ButtonPrimary onClick={() => onMaybeClick(item)}>
-                    <StarIcon />
-                    Interested
-                  </ButtonPrimary>
-                </>
-              )}
+              {images.map((i, index) => (
+                <SingleImage key={index} src={i} alt={item.name} />
+              ))}
             </>
           )}
-        </ButtonWrapper>
-        {!isMyEventsPage && new Date(item.datetime_local) < today && (
-          <ButtonSecondary>Passed Event</ButtonSecondary>
-        )}
-        <Content>
-          <Paragraph customStyle={HeadingStyle}>
-            {item.venue.display_location}
-          </Paragraph>
-          <Paragraph customStyle={TitleStyle}>
-            {truncate(item.title, 34)}
-          </Paragraph>
-          {item.type === "concert" && item.performers.length > 1 && (
-            <div>
-              <Paragraph customStyle={HeadingStyle}>
-                Performing Artists:
-              </Paragraph>
-              <Paragraph
-                customStyle={{
-                  margin: "5px 0 0 0",
-                  lineHeight: "1rem",
-                  fontSize: "0.9rem"
-                }}
+
+          {images.length > 1 && (
+            <>
+              <Carousel
+                showArrows={true}
+                showThumbs={false}
+                showStatus={true}
+                infiniteLoop={true}
+                showIndicators={!isMyEventsPage}
               >
-                {item.performers.map((i, index) => {
-                  const lastItem = item.performers.length === index + 1;
-                  if (lastItem) {
-                    return (
-                      <PerformerName
-                        onClick={() => onPerformerClick(i)}
-                      >{`& ${i.name}.`}</PerformerName>
-                    );
-                  } else {
-                    return (
-                      <PerformerName
-                        key={i.id}
-                        onClick={() => onPerformerClick(i)}
-                      >{`${i.name}, `}</PerformerName>
-                    );
-                  }
-                })}
-              </Paragraph>
-            </div>
+                {images.map((i, index) => (
+                  <EventImage key={index}>
+                    <img src={i} alt={item.name} />
+                  </EventImage>
+                ))}
+              </Carousel>
+            </>
           )}
-          <DateWrapper>
-            <div>
-              <Paragraph customStyle={HeadingStyle}>Date</Paragraph>
-              <Paragraph customStyle={{ fontSize: "1rem", margin: "0 0 0 0" }}>
-                {moment(item.datetime_local).format("dddd MMMM Do YYYY")}
-              </Paragraph>
-            </div>
-            <div>
-              <Paragraph customStyle={HeadingStyle}>Time</Paragraph>
-              <Paragraph customStyle={{ fontSize: "1rem", margin: "0 0 0 0" }}>
-                {moment(item.datetime_local).format("LT")}
-              </Paragraph>
-            </div>
-          </DateWrapper>
-          <Paragraph customStyle={HeadingStyle}>Location</Paragraph>
-          <Paragraph customStyle={TitleStyle}>{item.venue.name}</Paragraph>
-          <Paragraph customStyle={{ fontSize: "1rem", margin: "5px 0 0 0" }}>
-            {item.venue.address}, {item.venue.display_location}
-          </Paragraph>
-        </Content>
-        {isMyEventsPage && (
-          <UserSettings>
-            <NotesIcon onClick={() => setShowNotesModal(true)} title="Notes" />
-            <TrashIcon
-              title="Delete Event"
-              onClick={() => removeEvent(item.firebaseId, item)}
-            />
-          </UserSettings>
-        )}
-      </Item>
+
+          {images.length === 0 && (
+            <>
+              <NoImage>No Image</NoImage>
+            </>
+          )}
+
+          {renderDate(item)}
+          {isMyEventsPage && (
+            <AttendingSettings>
+              <TickHeaderIcon
+                onClick={() => onUpdateToGoingClick(item.firebaseId)}
+                isFill={item.attending === "going"}
+              />
+              <StarHeaderIcon
+                onClick={() => onUpdateToMaybeClick(item.firebaseId)}
+                isFill={item.attending === "maybe"}
+              />
+            </AttendingSettings>
+          )}
+          <ButtonWrapper>
+            {!isMyEventsPage && new Date(item.datetime_local) > today && (
+              <>
+                {eventAttendingIds.includes(item.id) ? (
+                  <ButtonAttending onClick={() => navigate("/my-events")}>
+                    <TadaIcon />
+                    You&apos;re Attending!
+                  </ButtonAttending>
+                ) : (
+                  <>
+                    <ButtonSecondary onClick={() => onImGoingClick(item)}>
+                      <ButtonWrap>
+                        <TickIcon />
+                        Attend
+                      </ButtonWrap>
+                    </ButtonSecondary>
+                    <ButtonPrimary onClick={() => onMaybeClick(item)}>
+                      <StarIcon />
+                      Interested
+                    </ButtonPrimary>
+                  </>
+                )}
+              </>
+            )}
+          </ButtonWrapper>
+          {!isMyEventsPage && new Date(item.datetime_local) < today && (
+            <ButtonSecondary>Passed Event</ButtonSecondary>
+          )}
+          <Content>
+            <Paragraph customStyle={HeadingStyle}>
+              {item.venue.display_location}
+            </Paragraph>
+            <Paragraph customStyle={TitleStyle}>
+              {truncate(item.title, 34)}
+            </Paragraph>
+            {item.type === "concert" && item.performers.length > 1 && (
+              <div>
+                <Paragraph customStyle={HeadingStyle}>
+                  Performing Artists:
+                </Paragraph>
+                <Paragraph
+                  customStyle={{
+                    margin: "5px 0 0 0",
+                    lineHeight: "1rem",
+                    fontSize: "0.9rem"
+                  }}
+                >
+                  {item.performers.map((i, index) => {
+                    const lastItem = item.performers.length === index + 1;
+                    if (lastItem) {
+                      return (
+                        <PerformerName
+                          onClick={() => onPerformerClick(i)}
+                        >{`& ${i.name}.`}</PerformerName>
+                      );
+                    } else {
+                      return (
+                        <PerformerName
+                          key={i.id}
+                          onClick={() => onPerformerClick(i)}
+                        >{`${i.name}, `}</PerformerName>
+                      );
+                    }
+                  })}
+                </Paragraph>
+              </div>
+            )}
+            <DateWrapper>
+              <div>
+                <Paragraph customStyle={HeadingStyle}>Date</Paragraph>
+                <Paragraph
+                  customStyle={{ fontSize: "1rem", margin: "0 0 0 0" }}
+                >
+                  {moment(item.datetime_local).format("dddd MMMM Do YYYY")}
+                </Paragraph>
+              </div>
+              <div>
+                <Paragraph customStyle={HeadingStyle}>Time</Paragraph>
+                <Paragraph
+                  customStyle={{ fontSize: "1rem", margin: "0 0 0 0" }}
+                >
+                  {moment(item.datetime_local).format("LT")}
+                </Paragraph>
+              </div>
+            </DateWrapper>
+            <Paragraph customStyle={HeadingStyle}>Location</Paragraph>
+            <Paragraph customStyle={TitleStyle}>{item.venue.name}</Paragraph>
+            <Paragraph customStyle={{ fontSize: "1rem", margin: "5px 0 0 0" }}>
+              {item.venue.address}, {item.venue.display_location}
+            </Paragraph>
+          </Content>
+          {isMyEventsPage && (
+            <UserSettings>
+              <NotesIcon
+                onClick={() => setShowNotesModal(true)}
+                title="Notes"
+              />
+              <TrashIcon
+                title="Delete Event"
+                onClick={() => removeEvent(item.firebaseId, item)}
+              />
+            </UserSettings>
+          )}
+        </Item>
+      )}
       {showNotesModal && (
         <NotesModal onDismiss={() => setShowNotesModal(false)} item={item} />
       )}

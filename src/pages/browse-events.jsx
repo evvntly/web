@@ -45,14 +45,31 @@ const BrowseEvents = () => {
     useWindow && window.localStorage.getItem("outside-us-notice")
   );
 
+  let passedEvents = [];
+
+  const today = new Date();
+
+  if (context.data && context.data.events) {
+    passedEvents = context.data.events.map(i => {
+      if (new Date(i.datetime_local) < today) {
+        return i;
+      }
+    });
+  }
+
+  const passedEventsCount = passedEvents.map(i => i).filter(x => !!x).length;
+
+  console.log(passedEventsCount + context.itemsPerPage);
+
   useEffect(() => {
     context.setForceSearch(false);
     fetch(
       `https://api.seatgeek.com/2/events?q=${context.searchTerm
         .replace(/\s+/g, "-")
-        .toLowerCase()}&range=${context.radius}mi&per_page=${
-        context.itemsPerPage
-      }&geoip=true${context.location ? `&lat=${lat}&lon=${lon}` : ""}${
+        .toLowerCase()}&range=${context.radius}mi&per_page=${passedEventsCount +
+        context.itemsPerPage}&geoip=true${
+        context.location ? `&lat=${lat}&lon=${lon}` : ""
+      }${
         context.startDate ? `&datetime_utc.gt=${context.convertDate}` : ""
       }&client_id=${process.env.GATSBY_API_KEY}`
     )
@@ -66,7 +83,8 @@ const BrowseEvents = () => {
     context.location,
     context.forceSearch,
     context.startDate,
-    context.searchTerm
+    context.searchTerm,
+    passedEventsCount
   ]);
 
   return (
