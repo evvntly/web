@@ -59,8 +59,9 @@ const UserSettings = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 10px;
-  order: 4;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
 `;
 
 const PerformerName = styled.span`
@@ -163,6 +164,7 @@ const Content = styled.div`
   padding: 10px 15px;
   order: 2;
   flex-grow: 1;
+  margin-bottom: 25px;
 `;
 
 const Pill = styled.div`
