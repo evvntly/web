@@ -54,13 +54,7 @@ const CloseSvg = styled(CloseIcon)`
   }
 `;
 
-const Content = styled.div`
-  padding: 10px 25px;
-  text-align: center;
-  a {
-    color: ${TUNDORA};
-  }
-`;
+const Content = styled.div``;
 
 const ModalContainer = styled.div`
   display: flex;
