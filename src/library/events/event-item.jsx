@@ -517,12 +517,7 @@ const EventItem = ({
           )}
         </ButtonWrapper>
         {!isMyEventsPage && new Date(item.datetime_local) < today && (
-          <ButtonSecondary onClick={() => onImGoingClick(item)}>
-            <ButtonWrap>
-              <TickIcon />
-              Passed Event
-            </ButtonWrap>
-          </ButtonSecondary>
+          <ButtonSecondary>Passed Event</ButtonSecondary>
         )}
         <Content>
           <Paragraph customStyle={HeadingStyle}>
