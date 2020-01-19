@@ -11,7 +11,6 @@ import config from "../utils/siteConfig";
 import Seo from "../components/seo/seo";
 import Notice from "../library/notice";
 import { useWindow } from "../utils/useWindow";
-import EventItemLoader from "../library/loaders/event-item";
 import { Link } from "gatsby";
 
 const MyEvents = () => {
