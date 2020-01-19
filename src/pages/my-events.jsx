@@ -35,8 +35,6 @@ const MyEvents = () => {
     }
   }, [context.eventData.events]);
 
-  console.log(loading);
-
   const loadEvents = () => {
     if (context.eventData.events) {
       const placeholder = [];
