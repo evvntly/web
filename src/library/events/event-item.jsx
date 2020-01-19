@@ -37,6 +37,12 @@ const TrashIcon = styled(Trash)`
   }
 `;
 
+const ButtonWrap = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const NotesIcon = styled(Notes)`
   width: 20px;
   height: 20px;
@@ -269,7 +275,8 @@ const EventItem = ({
     attending: string,
     venue: { display_location: string, name: string, address: string },
     title: string,
-    type: string
+    type: string,
+    notes: string
   }
 }) => {
   const context = useContext(myContext);
