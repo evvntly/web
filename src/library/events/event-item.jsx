@@ -24,6 +24,7 @@ import Notes from "../../assets/svgs/notes.svg";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import NotesModal from "../../components/my-events/notes-modal";
+import { PHONE } from "../../styles/breakpoints";
 
 const TrashIcon = styled(Trash)`
   width: 20px;
@@ -196,7 +197,7 @@ const NoImage = styled.div`
 const ButtonWrapper = styled.div`
   display: flex;
   order: 2;
-  @media (max-width: 769px) and (min-width: 320px) {
+  ${PHONE} {
     margin-top: -2px;
   }
 `;

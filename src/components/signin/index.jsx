@@ -11,6 +11,7 @@ import FacebookAuth from "./facebook";
 import TwitterAuth from "./twitter";
 import GoogleAuth from "./google";
 import CloseIcon from "../../assets/svgs/close.svg";
+import { PHONE } from "../../styles/breakpoints";
 
 const Overlay = styled.div`
   position: fixed;
@@ -90,7 +91,7 @@ const Modal = styled.div`
   background: ${WHITE};
   z-index: 5;
   position: relative;
-  @media (max-width: 769px) and (min-width: 320px) {
+  ${PHONE} {
     width: 340px;
   }
 `;

@@ -12,6 +12,7 @@ import DateInput from "../../library/inputs/date-picker";
 import Debounced from "../../library/inputs/debounced-input";
 import Paragraph from "../../library/paragraph/paragraph";
 import World from "../../assets/svgs/world.svg";
+import { PHONE } from "../../styles/breakpoints";
 
 const Container = styled.div`
   margin: 25px 0 0 0;
@@ -23,7 +24,7 @@ const Container = styled.div`
   border-radius: 4px;
   background: ${TUNDORA};
   z-index: 2;
-  @media (max-width: 769px) and (min-width: 320px) {
+  ${PHONE} {
     padding: 10px 20px;
   }
 `;
@@ -32,7 +33,7 @@ const InputContainer = styled.div`
   display: flex;
   text-align: center;
   justify-content: center;
-  @media (max-width: 769px) and (min-width: 320px) {
+  ${PHONE} {
     flex-direction: column;
   }
 `;
@@ -51,7 +52,7 @@ const AlogilaContainer = styled.div`
     font-size: 16px;
     font-weight: ${WEIGHT.THIN};
   }
-  @media (max-width: 769px) and (min-width: 320px) {
+  ${PHONE} {
     width: 100%;
     margin: 10px 0;
   }
@@ -60,7 +61,7 @@ const AlogilaContainer = styled.div`
 const StyledTextInput = styled.div`
   margin-right: 20px;
   width: 45%;
-  @media (max-width: 769px) and (min-width: 320px) {
+  ${PHONE} {
     width: 100%;
     margin: 10px 0;
   }
@@ -68,7 +69,7 @@ const StyledTextInput = styled.div`
 
 const StyledSelect = styled.div`
   width: 15%;
-  @media (max-width: 769px) and (min-width: 320px) {
+  ${PHONE} {
     width: 100%;
     margin: 10px 0;
   }
@@ -77,7 +78,7 @@ const StyledSelect = styled.div`
 const StyledDate = styled.div`
   width: 15%;
   margin-right: 15px;
-  @media (max-width: 769px) and (min-width: 320px) {
+  ${PHONE} {
     width: 100%;
     margin: 10px 0;
   }
@@ -112,7 +113,7 @@ const selectData = [
   { value: 300, name: "300 Miles" },
   { value: 500, name: "500 Miles" },
   { value: 1000, name: "1000 Miles" },
-  { value: 1000, name: "5000 Miles" }
+  { value: 5000, name: "5000 Miles" }
 ];
 
 const Filter = () => {

@@ -5,13 +5,14 @@ import BackgroundImage from "gatsby-background-image";
 import { BLACK, WHITE } from "../../styles/colors";
 import { FONT_FAMILY } from "../../styles/typography";
 import PropTypes from "prop-types";
+import { PHONE } from "../../styles/breakpoints";
 
 const Title = styled.h2`
   color: ${WHITE};
   padding: 0;
   margin: 0;
   font-size: 25px;
-  @media (max-width: 769px) and (min-width: 320px) {
+  ${PHONE} {
     font-size: 20px;
   }
   position: relative;
@@ -97,7 +98,7 @@ const StyledBackgroundSection = styled(BackgroundSection)`
   justify-content: center;
   align-items: center;
   position: relative;
-  @media (max-width: 769px) and (min-width: 320px) {
+  ${PHONE} {
     height: 175px !important; // override inline
   }
 `;

@@ -6,9 +6,10 @@ import { FONT_FAMILY, WEIGHT } from "../../styles/typography";
 import NavItems from "./nav-items";
 import Logo from "../../assets/svgs/logo.svg";
 import { myContext } from "../../context/provider";
+import { PHONE } from "../../styles/breakpoints";
 
 const Nav = styled.nav`
-  @media (max-width: 769px) and (min-width: 320px) {
+  ${PHONE} {
     display: none;
   }
   top: 0;
@@ -45,7 +46,7 @@ const NavWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 10px 50px 3px 50px;
-  @media (max-width: 769px) and (min-width: 320px) {
+  ${PHONE} {
     padding: 10px 0 3px 0;
   }
   min-height: 70px;
@@ -60,7 +61,7 @@ const LogoIcon = styled(Logo)`
 `;
 
 const MobileNav = styled.nav`
-  @media (max-width: 769px) and (min-width: 320px) {
+  ${PHONE} {
     display: flex;
   }
   @media (min-width: 769px) {

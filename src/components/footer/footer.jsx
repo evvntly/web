@@ -6,6 +6,7 @@ import { Link } from "gatsby";
 import Gatsby from "../../assets/svgs/gatsby.svg";
 import Netlify from "../../assets/svgs/netlify.svg";
 import SeatGeek from "../../assets/svgs/seatgeek.svg";
+import { PHONE } from "../../styles/breakpoints";
 
 const Navigation = styled.footer`
   width: 100%;
@@ -56,7 +57,7 @@ const Container = styled.div`
   margin: auto;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  @media (max-width: 769px) and (min-width: 320px) {
+  ${PHONE} {
     grid-template-columns: 1fr;
     text-align: center;
   }

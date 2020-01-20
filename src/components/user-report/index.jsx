@@ -14,6 +14,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  opacity: 0.5;
 `;
 
 const UserReportIcon = styled(Icon)`
