@@ -9,6 +9,7 @@ import { myContext } from "../../context/provider";
 import { FirebaseContext } from "gatsby-plugin-firebase";
 import Trash from "../../assets/svgs/bin.svg";
 import { RED } from "../../styles/colors";
+import { PHONE } from "../../styles/breakpoints";
 
 const TrashIcon = styled(Trash)`
   width: 20px;
@@ -25,7 +26,7 @@ const Content = styled.div`
   text-align: left;
   box-sizing: border-box;
   padding: 25px 20px;
-  @media (max-width: 769px) and (min-width: 320px) {
+  ${PHONE} {
     width: 340px;
   }
 `;

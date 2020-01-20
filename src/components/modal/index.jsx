@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { BLACK, WHITE } from "../../styles/colors";
 import { FONT_FAMILY } from "../../styles/typography";
 import CloseIcon from "../../assets/svgs/close.svg";
+import { PHONE } from "../../styles/breakpoints";
 
 const Overlay = styled.div`
   position: fixed;
@@ -71,7 +72,7 @@ const ModalBody = styled.div`
   background: ${WHITE};
   z-index: 5;
   position: relative;
-  @media (max-width: 769px) and (min-width: 320px) {
+  ${PHONE} {
     width: 340px;
   }
 `;

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { SILVER, TUNDORA } from "../../styles/colors";
 import Chevron from "../../assets/svgs/up-arrow.svg";
 import { useWindow } from "../../utils/useWindow";
+import { PHONE } from "../../styles/breakpoints";
 
 const BackToTop = styled.div`
   height: 50px;
@@ -16,7 +17,7 @@ const BackToTop = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  @media (max-width: 769px) and (min-width: 320px) {
+  ${PHONE} {
     display: none;
   }
 `;

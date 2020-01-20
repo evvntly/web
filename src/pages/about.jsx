@@ -8,6 +8,7 @@ import { Container, Main } from "../styles/shared";
 import config from "../utils/siteConfig";
 import Seo from "../components/seo/seo";
 import styled from "styled-components";
+import { PHONE } from "../styles/breakpoints";
 
 const About = () => {
   const postNode = {
@@ -17,7 +18,7 @@ const About = () => {
 
   const Column = styled.div`
     display: flex;
-    @media (max-width: 769px) and (min-width: 320px) {
+    ${PHONE} {
       flex-direction: column;
     }
   `;
@@ -25,7 +26,7 @@ const About = () => {
   const Content = styled.div`
     margin-left: 40px;
     width: 50%;
-    @media (max-width: 769px) and (min-width: 320px) {
+    ${PHONE} {
       width: 100%;
       margin: 0;
     }
@@ -34,7 +35,7 @@ const About = () => {
   const ImageContainer = styled.div`
     width: 50%;
     margin-top: 20px;
-    @media (max-width: 769px) and (min-width: 320px) {
+    ${PHONE} {
       width: 100%;
       margin: 0;
     }

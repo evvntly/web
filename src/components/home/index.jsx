@@ -11,11 +11,12 @@ import PosterImage from "./poster";
 import Button from "../../library/buttons/button";
 import AlgoliaPlaces from "algolia-places-react";
 import Heading from "../../library/headings/heading";
+import { PHONE } from "../../styles/breakpoints";
 
 const Input = styled.div`
   margin-top: 30px;
   display: flex;
-  @media (max-width: 769px) and (min-width: 320px) {
+  ${PHONE} {
     flex-direction: column;
   }
 `;
@@ -44,7 +45,7 @@ const AlogilaContainer = styled.div`
     font-size: 16px;
     font-weight: ${WEIGHT.THIN};
   }
-  @media (max-width: 769px) and (min-width: 320px) {
+  ${PHONE} {
     width: 100%;
     margin: 10px 0 0 0;
   }
@@ -60,7 +61,7 @@ const Content = styled.div`
   transform: translate(-50%, -50%);
   font-family: ${FONT_FAMILY};
   color: ${WHITE};
-  @media (max-width: 769px) and (min-width: 320px) {
+  ${PHONE} {
     min-width: 90%;
   }
   h1 {
@@ -70,7 +71,7 @@ const Content = styled.div`
     margin: 0 auto 30px auto;
     line-height: 45px;
     text-align: center;
-    @media (max-width: 769px) and (min-width: 320px) {
+    ${PHONE} {
       font-size: 30px;
       line-height: 35px;
     }
@@ -81,7 +82,7 @@ const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
   margin: 25px 0;
-  @media (max-width: 769px) and (min-width: 320px) {
+  ${PHONE} {
     flex-direction: column;
     button {
       width: 100%;

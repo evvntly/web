@@ -8,6 +8,7 @@ import UserNav from "./user-nav";
 import User from "../../assets/svgs/user.svg";
 import { isMobile } from "react-device-detect";
 import { FirebaseContext } from "gatsby-plugin-firebase";
+import { PHONE } from "../../styles/breakpoints";
 
 const LoginButton = styled.div`
   cursor: pointer;
@@ -38,7 +39,7 @@ const LoginContainer = styled.div`
 const Items = styled.nav`
   a {
     color: ${WHITE};
-    @media (max-width: 769px) and (min-width: 320px) {
+    ${PHONE} {
       color: ${WHITE};
     }
     font-weight: ${WEIGHT.NORMAL};
@@ -53,7 +54,7 @@ const Items = styled.nav`
     padding: 0;
     margin: 0;
     align-items: center;
-    @media (max-width: 769px) and (min-width: 320px) {
+    ${PHONE} {
       flex-direction: column;
       justify-content: center;
       text-align: center;
@@ -64,7 +65,7 @@ const Items = styled.nav`
     list-style-type: none;
     font-weight: ${WEIGHT.NORMAL};
     font-size: 16px;
-    @media (max-width: 769px) and (min-width: 320px) {
+    ${PHONE} {
       font-family: ${FONT_FAMILY};
       font-size: 20px;
       padding: 10px 0;

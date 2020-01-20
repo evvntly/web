@@ -18,6 +18,7 @@ import { Link } from "gatsby";
 import { useWindow } from "../utils/useWindow";
 import EventItemLoader from "../library/loaders/event-item";
 import GoTop from "../components/go-to-top";
+import { PHONE } from "../styles/breakpoints";
 
 const Center = styled.div`
   display: flex;
@@ -28,7 +29,7 @@ const Center = styled.div`
 
 const Wrapper = styled.div`
   margin: 120px auto 0 auto;
-  @media (max-width: 769px) and (min-width: 320px) {
+  ${PHONE} {
     margin: 80px auto 0 auto;
   }
 `;
