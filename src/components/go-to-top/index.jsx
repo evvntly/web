@@ -33,13 +33,14 @@ const ChevronIcon = styled(Chevron)`
 
 const GoToTop = () => {
   const [showBackToTop, setShowBackToTop] = useState(false);
-  document.addEventListener("scroll", () => {
-    if (window.scrollY > 500) {
-      setShowBackToTop(true);
-    } else {
-      setShowBackToTop(false);
-    }
-  });
+  useWindow &&
+    document.addEventListener("scroll", () => {
+      if (window.scrollY > 500) {
+        setShowBackToTop(true);
+      } else {
+        setShowBackToTop(false);
+      }
+    });
 
   console.log(showBackToTop);
 
