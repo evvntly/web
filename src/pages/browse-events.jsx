@@ -17,6 +17,7 @@ import Notice from "../library/notice";
 import { Link } from "gatsby";
 import { useWindow } from "../utils/useWindow";
 import EventItemLoader from "../library/loaders/event-item";
+import GoTop from "../components/go-to-top";
 
 const Center = styled.div`
   display: flex;
@@ -175,6 +176,7 @@ const BrowseEvents = () => {
           </Wrapper>
         </Container>
       </Layout>
+      <GoTop />
     </>
   );
 };
