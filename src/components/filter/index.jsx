@@ -111,7 +111,8 @@ const selectData = [
   { value: 150, name: "150 Miles" },
   { value: 300, name: "300 Miles" },
   { value: 500, name: "500 Miles" },
-  { value: 1000, name: "1000 Miles" }
+  { value: 1000, name: "1000 Miles" },
+  { value: 1000, name: "5000 Miles" }
 ];
 
 const Filter = () => {
