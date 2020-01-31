@@ -59,8 +59,8 @@ const About = () => {
               <Content>
                 <Paragraph>Hi there!</Paragraph>
                 <Paragraph>
-                  Welcome to Event Finda! We help you find events happening near
-                  you or all around the USA. You can search for Sports Events,
+                  Welcome to Evvntly! We help you find events happening near you
+                  or all around the USA. You can search for Sports Events,
                   Concerts, Musicals, you name it we can hopefully help you find
                   it.
                 </Paragraph>
@@ -89,9 +89,9 @@ const About = () => {
                     href="https://github.com/johnnyxbell/eventfinda"
                     target="_blank"
                     rel="noopener noreferrer"
-                    title="event finda trello repo"
+                    title="Evvntly Repo"
                   >
-                    Event Finda Repo
+                    Evvntly Repo
                   </a>
                 </Paragraph>
                 <Paragraph>

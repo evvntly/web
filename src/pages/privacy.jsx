@@ -22,13 +22,13 @@ const Privacy = () => {
         <Banner img="moshpit" />
         <Container>
           <Main>
-            <Heading title="Privacy Policy for Event Finda" />
+            <Heading title="Privacy Policy for Evvntly" />
             <div>
               <p>
-                At Event Finda, accessible from eventfinda.io, one of our main
+                At Evvntly, accessible from evvntly.com, one of our main
                 priorities is the privacy of our visitors. This Privacy Policy
                 document contains types of information that is collected and
-                recorded by Event Finda and how we use it.
+                recorded by Evvntly and how we use it.
               </p>
 
               <p>
@@ -39,8 +39,8 @@ const Privacy = () => {
               <h2>Log Files</h2>
 
               <p>
-                Event Finda follows a standard procedure of using log files.
-                These files log visitors when they visit websites. All hosting
+                Evvntly follows a standard procedure of using log files. These
+                files log visitors when they visit websites. All hosting
                 companies do this and a part of hosting services&apos;
                 analytics. The information collected by log files include
                 internet protocol (IP) addresses, browser type, Internet Service
@@ -57,7 +57,7 @@ const Privacy = () => {
               <p>
                 Third-party ad servers or ad networks uses technologies like
                 cookies, JavaScript, or Web Beacons that are used in their
-                respective advertisements and links that appear on Event Finda,
+                respective advertisements and links that appear on Evvntly,
                 which are sent directly to users&apos; browser. They
                 automatically receive your IP address when this occurs. These
                 technologies are used to measure the effectiveness of their
@@ -66,14 +66,14 @@ const Privacy = () => {
               </p>
 
               <p>
-                Note that Event Finda has no access to or control over these
-                cookies that are used by third-party advertisers.
+                Note that Evvntly has no access to or control over these cookies
+                that are used by third-party advertisers.
               </p>
 
               <h2>Third Party Privacy Policies</h2>
 
               <p>
-                Event Finda&apos;s Privacy Policy does not apply to other
+                Evvntly&apos;s Privacy Policy does not apply to other
                 advertisers or websites. Thus, we are advising you to consult
                 the respective Privacy Policies of these third-party ad servers
                 for more detailed information. It may include their practices
@@ -99,7 +99,7 @@ const Privacy = () => {
               </p>
 
               <p>
-                Event Finda does not knowingly collect any Personal Identifiable
+                Evvntly does not knowingly collect any Personal Identifiable
                 Information from children under the age of 13. If you think that
                 your child provided this kind of information on our website, we
                 strongly encourage you to contact us immediately and we will do
@@ -112,7 +112,7 @@ const Privacy = () => {
               <p>
                 This Privacy Policy applies only to our online activities and is
                 valid for visitors to our website with regards to the
-                information that they shared and/or collect in Event Finda. This
+                information that they shared and/or collect in Evvntly. This
                 policy is not applicable to any information collected offline or
                 via channels other than this website.
               </p>

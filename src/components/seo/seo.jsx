@@ -72,13 +72,13 @@ const Seo = ({ ...props }) => {
       {!loggedInPage && (
         <meta
           property="og:image"
-          content="http://eventfinda.io/socialshare.jpg"
+          content="http://evvntly.com/socialshare.jpg"
         />
       )}
       {!loggedInPage && (
         <meta
           property="og:image:secure_url"
-          content="https://eventfinda.io/socialshare.jpg"
+          content="https://evvntly.com/socialshare.jpg"
         />
       )}
       {!loggedInPage && <meta property="og:image:width" content={imgWidth} />}
