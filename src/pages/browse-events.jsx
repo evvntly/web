@@ -172,8 +172,6 @@ const BrowseEvents = () => {
                         context.setItemsPerPage(context.itemsPerPage + 24)
                       }
                     />
-                    {/* eslint-disable-next-line no-undef */}
-                    <button onClick={() => hello()}>hi</button>
                   </Center>
                 )}
             </Main>
