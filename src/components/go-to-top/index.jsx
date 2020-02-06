@@ -42,8 +42,6 @@ const GoToTop = () => {
       }
     });
 
-  console.log(showBackToTop);
-
   return (
     <>
       {showBackToTop && (

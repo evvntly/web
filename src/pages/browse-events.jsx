@@ -60,9 +60,6 @@ const BrowseEvents = () => {
   }
 
   const passedEventsCount = passedEvents.map(i => i).filter(x => !!x).length;
-
-  console.log(passedEventsCount + context.itemsPerPage);
-
   useEffect(() => {
     context.setForceSearch(false);
     fetch(
@@ -129,7 +126,9 @@ const BrowseEvents = () => {
               {context.data &&
                 Object.keys(context.data).length !== 0 &&
                 context.data.meta.total !== 0 && (
-                  <Paragraph>{`Showing you ${context.data.meta.total} events`}</Paragraph>
+                  <Paragraph>{`Showing you ${
+                    context.data.meta.total
+                  } events`}</Paragraph>
                 )}
 
               {context.data &&
@@ -137,7 +136,9 @@ const BrowseEvents = () => {
                 !context.location && (
                   <>
                     <Paragraph>
-                      {`We are currently showing you events ${context.radius} miles around your
+                      {`We are currently showing you events ${
+                        context.radius
+                      } miles around your
                   current location, please use the filter above to refine your
                   search.`}
                     </Paragraph>
@@ -171,6 +172,8 @@ const BrowseEvents = () => {
                         context.setItemsPerPage(context.itemsPerPage + 24)
                       }
                     />
+                    {/* eslint-disable-next-line no-undef */}
+                    <button onClick={() => hello()}>hi</button>
                   </Center>
                 )}
             </Main>
