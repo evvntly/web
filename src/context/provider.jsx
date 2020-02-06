@@ -4,6 +4,7 @@ import FullStory from "react-fullstory";
 import { ipCheck } from "../startup/ipcheck";
 import ErrorBoundary from "../components/error-boundry/error-boundry";
 import moment from "moment";
+import LogRocket from "logrocket";
 export const myContext = React.createContext();
 
 const Provider = props => {
@@ -27,6 +28,9 @@ const Provider = props => {
 
   useEffect(() => {
     ipCheck(setIplocation);
+    if (process.env.NODE_ENV === "production") {
+      LogRocket.init("pgrlla/evvntly");
+    }
   }, []);
 
   const withinUs = ipLocation === "US";

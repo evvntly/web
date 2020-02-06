@@ -13,6 +13,7 @@ import Video from "../home";
 import { useWindow } from "../../utils/useWindow";
 import UserReport from "../user-report";
 import { isMobile } from "react-device-detect";
+import LogRocket from "logrocket";
 
 const Container = styled.div`
   position: relative;
@@ -43,7 +44,11 @@ const Layout = ({ children }) => {
   const isHome = useWindow && window.location.pathname === "/";
 
   useEffect(() => {
-    if (context.user) {
+    if (context.user && process.env.NODE_ENV === "production") {
+      LogRocket.identify(context.user.uid, {
+        name: context.user.displayName,
+        email: context.user.email
+      });
       identify(context.user.uid, {
         displayName: context.user.displayName,
         email: context.user.email

@@ -63,7 +63,9 @@ const MyProfile = () => {
                 >{`Email: ${context.user.email}.`}</Paragraph>
                 <Paragraph
                   customStyle={{ padding: 0, margin: 0 }}
-                >{`Linked to: ${context.user.providerData[0].providerId}.`}</Paragraph>
+                >{`Linked to: ${
+                  context.user.providerData[0].providerId
+                }.`}</Paragraph>
                 <Danger>
                   <Paragraph customStyle={DangerZoneStyle}>
                     Danger Zone
