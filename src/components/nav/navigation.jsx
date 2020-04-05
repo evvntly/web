@@ -7,6 +7,7 @@ import NavItems from "./nav-items";
 import Logo from "../../assets/svgs/logo.svg";
 import { myContext } from "../../context/provider";
 import { PHONE } from "../../styles/breakpoints";
+import Notice from "../../library/notice";
 
 const Nav = styled.nav`
   ${PHONE} {
@@ -144,6 +145,12 @@ const Navigation = () => {
   return (
     <>
       <Nav showNotice={!context.withinUs}>
+        <Notice
+        >
+          <div>
+            DUE TO COVID-19 PLEASE STAY AT HOME - WE WILL BE BACK AFTER THIS.
+          </div>
+        </Notice>
         <NavWrapper>
           <Link to="/" aria-label="Concert Buddy">
             <LogoIcon />

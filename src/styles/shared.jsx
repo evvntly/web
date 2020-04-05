@@ -6,7 +6,7 @@ export const Main = styled.div`
   max-width: 1200px;
   margin: auto;
   font-family: ${FONT_FAMILY};
-  padding: 0 50px;
+  padding: 25px 50px;
   ${PHONE} {
     margin: auto;
     padding: 0 10px;
