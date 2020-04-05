@@ -9,7 +9,6 @@ import Info from "../../assets/svgs/error.svg";
 const CloseSvg = styled(CloseIcon)`
   width: 12px;
   height: 12px;
-  margin: 0 10px 0 0;
   cursor: pointer;
   position: absolute;
   right: 10px;
@@ -32,7 +31,6 @@ export const Container = styled.div`
   height: auto;
   background: ${props => props.color};
   position: relative;
-  margin: 0 0 25px 0;
   padding: 10px 0;
   border-radius: 4px;
   color: ${BLACK};
