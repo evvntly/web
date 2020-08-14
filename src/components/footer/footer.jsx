@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { WHITE, GREY } from "../../styles/colors";
 import { FONT_FAMILY } from "../../styles/typography";
 import { Link } from "gatsby";
-import Gatsby from "../../assets/svgs/gatsby.svg";
 import Netlify from "../../assets/svgs/netlify.svg";
 import SeatGeek from "../../assets/svgs/seatgeek.svg";
 import { PHONE } from "../../styles/breakpoints";
@@ -28,10 +27,6 @@ const Navigation = styled.footer`
       font-size: 14px;
     }
   }
-`;
-
-const Gatsbyogo = styled(Gatsby)`
-  width: 70px;
 `;
 
 const NetlifyLogo = styled(Netlify)`
@@ -162,13 +157,6 @@ const Footer = () => {
               rel="noopener noreferrer"
             >
               <NetlifyLogo />
-            </a>
-            <a
-              href="https://www.gatsbyjs.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Gatsbyogo />
             </a>
           </Logos>
         </Section>
