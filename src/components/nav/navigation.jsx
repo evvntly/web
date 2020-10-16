@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "gatsby";
 import styled from "styled-components";
-import { BLACK, GREY, SILVER, WHITE } from "../../styles/colors";
+import { BLACK, GREY, RONCHI, SILVER, WHITE } from "../../styles/colors";
 import { FONT_FAMILY, WEIGHT } from "../../styles/typography";
 import NavItems from "./nav-items";
 import Logo from "../../assets/svgs/logo.svg";
@@ -145,10 +145,12 @@ const Navigation = () => {
   return (
     <>
       <Nav showNotice={!context.withinUs}>
-        <Notice
-        >
+        <Notice>
           <div>
-            DUE TO COVID-19 PLEASE STAY AT HOME - WE WILL BE BACK AFTER THIS.
+            STAY HOME AND CHECK OUT{" "}
+            <Link to="/virtual-events" aria-label="Virtual Events">
+              VIRTUAL EVENTS!
+            </Link>
           </div>
         </Notice>
         <NavWrapper>

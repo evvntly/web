@@ -12,6 +12,7 @@ import { FirebaseContext } from "gatsby-plugin-firebase";
 import EventItemLoader from "../library/loaders/event-item";
 import GhostButton from "../library/buttons/ghost-button";
 import styled from "styled-components";
+import GoTop from "../components/go-to-top";
 
 const Center = styled.div`
   display: flex;
@@ -102,6 +103,7 @@ const VirtualEvents = () => {
           </Container>
         </>
       </Layout>
+      <GoTop />
     </>
   );
 };

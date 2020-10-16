@@ -11,7 +11,7 @@ const BackToTop = styled.div`
   background: ${SILVER};
   position: fixed;
   right: 0;
-  bottom: 70px;
+  bottom: 20px;
   opacity: 0.5;
   display: flex;
   align-items: center;

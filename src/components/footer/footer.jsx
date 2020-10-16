@@ -96,16 +96,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                OpenSource - Contribute
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://stackshare.io/johnnyxbell/event-finda"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                Tech Stach
+                OpenSource
               </a>
             </li>
           </ul>

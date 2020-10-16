@@ -11,8 +11,6 @@ import debug from "debug";
 import PropTypes from "prop-types";
 import Video from "../home";
 import { useWindow } from "../../utils/useWindow";
-import UserReport from "../user-report";
-import { isMobile } from "react-device-detect";
 import LogRocket from "logrocket";
 
 const Container = styled.div`
@@ -88,11 +86,6 @@ const Layout = ({ children }) => {
       {!isHome && <Container>{children}</Container>}
       <Footer />
       {context.signin && <SignIn />}
-      {!isMobile && (
-        <div>
-          <UserReport />
-        </div>
-      )}
     </>
   );
 };
