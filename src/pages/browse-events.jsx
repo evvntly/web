@@ -59,8 +59,6 @@ const BrowseEvents = () => {
     });
   }
 
-  console.log(context.data);
-
   const passedEventsCount = passedEvents.map(i => i).filter(x => !!x).length;
   useEffect(() => {
     context.setForceSearch(false);
@@ -162,6 +160,7 @@ const BrowseEvents = () => {
                       item={item}
                     />
                   ))}
+                <div id="bottom" />
               </Grid>
               {context.data &&
                 Object.keys(context.data).length !== 0 &&
@@ -170,9 +169,10 @@ const BrowseEvents = () => {
                     <GhostButton
                       title="Load More"
                       borderRadius={20}
-                      onClick={() =>
-                        context.setItemsPerPage(context.itemsPerPage + 24)
-                      }
+                      onClick={() => {
+                        context.setItemsPerPage(context.itemsPerPage + 24);
+                        window.location = "#bottom";
+                      }}
                     />
                   </Center>
                 )}

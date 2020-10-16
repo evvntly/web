@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Layout from "../components/layout/layout";
 import Heading from "../library/headings/heading";
 import { Helmet } from "react-helmet";
@@ -10,35 +10,57 @@ import config from "../utils/siteConfig";
 import Seo from "../components/seo/seo";
 import { FirebaseContext } from "gatsby-plugin-firebase";
 import EventItemLoader from "../library/loaders/event-item";
+import GhostButton from "../library/buttons/ghost-button";
+import styled from "styled-components";
+
+const Center = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 50px 0;
+`;
 
 const VirtualEvents = () => {
   const postNode = {
     title: `${config.siteTitle} | Virtual Events`,
     pagePath: "/virtual-events"
   };
+
   const context = useContext(myContext);
 
   const firebase = React.useContext(FirebaseContext);
+
+  let passedEvents = [];
+
+  const today = new Date();
+
+  if (context.virtualEventData) {
+    passedEvents = Object.keys(context.virtualEventData).map(i => {
+      if (new Date(context.virtualEventData[i].datetime_local) < today) {
+        return context.virtualEventData[i];
+      }
+    });
+  }
+
+  const passedEventsCount = passedEvents.map(i => i).filter(x => !!x).length;
+
+  const [limit, setLimit] = useState(passedEventsCount + 24);
 
   useEffect(() => {
     firebase &&
       firebase
         .database()
         .ref(`/events/`)
-        .limitToFirst(25)
+        .limitToFirst(limit + passedEventsCount)
         .on("value", snapshot => {
           if (snapshot && snapshot.exists()) {
             context.setVirtualEventData(snapshot.val());
           }
         });
-  }, [firebase]);
-
-  console.log(context.virtualEventData);
+  }, [firebase, limit, passedEventsCount]);
 
   const loadEvents = () => {
-    console.log(context.virtualEventData, "hi");
     if (context.virtualEventData) {
-      console.log("hi");
       const placeholder = [];
       Object.keys(context.virtualEventData).map(item => {
         let object = context.virtualEventData[item];
@@ -46,17 +68,10 @@ const VirtualEvents = () => {
         placeholder.push(context.virtualEventData[item]);
       });
       return placeholder.map(item => (
-        <EventItem
-          key={item.firebaseId}
-          item={item}
-          isMyEventsPage={false}
-          base64={true}
-        />
+        <EventItem key={item.firebaseId} item={item} isMyEventsPage={false} />
       ));
     }
   };
-
-  console.log(context.virtualEventData);
 
   return (
     <>
@@ -71,7 +86,18 @@ const VirtualEvents = () => {
             <Main>
               <Heading title="Virtual Events" />
               {context.virtualEventData && <Grid>{loadEvents()}</Grid>}
+              <div id="bottom" />
               {!context.virtualEventData && <EventItemLoader />}
+              <Center>
+                <GhostButton
+                  title="Load More"
+                  borderRadius={20}
+                  onClick={() => {
+                    setLimit(limit + 24);
+                    window.location = "#bottom";
+                  }}
+                />
+              </Center>
             </Main>
           </Container>
         </>
