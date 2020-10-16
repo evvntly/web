@@ -59,6 +59,8 @@ const BrowseEvents = () => {
     });
   }
 
+  console.log(context.data);
+
   const passedEventsCount = passedEvents.map(i => i).filter(x => !!x).length;
   useEffect(() => {
     context.setForceSearch(false);

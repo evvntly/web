@@ -5,6 +5,7 @@ import { ipCheck } from "../startup/ipcheck";
 import ErrorBoundary from "../components/error-boundry/error-boundry";
 import moment from "moment";
 import LogRocket from "logrocket";
+import { FirebaseContext } from "gatsby-plugin-firebase";
 export const myContext = React.createContext();
 
 const Provider = props => {
@@ -20,6 +21,7 @@ const Provider = props => {
   const [showHamburger, setShowHamburger] = useState(false);
   const [location, setLocation] = useState(false);
   const [eventData, setEventData] = useState(false);
+  const [virtualEventData, setVirtualEventData] = useState(false);
   const [emailInUse, setEmailInUse] = useState(false);
   const [userLoading, SetUserLoading] = useState(true);
   const [isAuthPage, setIsAuthPage] = useState(false);
@@ -75,7 +77,9 @@ const Provider = props => {
     setForceSearch,
     startDate,
     setStartDate,
-    convertDate
+    convertDate,
+    virtualEventData,
+    setVirtualEventData
   };
 
   return (
