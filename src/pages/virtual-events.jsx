@@ -25,6 +25,7 @@ const VirtualEvents = () => {
       firebase
         .database()
         .ref(`/events/`)
+        .limitToFirst(25)
         .on("value", snapshot => {
           if (snapshot && snapshot.exists()) {
             context.setVirtualEventData(snapshot.val());
