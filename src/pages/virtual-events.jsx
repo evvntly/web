@@ -31,17 +31,17 @@ const VirtualEvents = () => {
 
   const firebase = React.useContext(FirebaseContext);
 
-  let passedEvents = [];
+  // let passedEvents = [];
+  //
+  // const today = new Date();
 
-  const today = new Date();
-
-  if (context.virtualEventData) {
-    passedEvents = Object.keys(context.virtualEventData).map(i => {
-      if (new Date(context.virtualEventData[i].datetime_local) < today) {
-        return context.virtualEventData[i];
-      }
-    });
-  }
+  // if (context.virtualEventData) {
+  //   passedEvents = Object.keys(context.virtualEventData).map(i => {
+  //     if (new Date(context.virtualEventData[i].datetime_local) < today) {
+  //       return context.virtualEventData[i];
+  //     }
+  //   });
+  // }
 
   //const passedEventsCount = passedEvents.map(i => i).filter(x => !!x).length;
 
