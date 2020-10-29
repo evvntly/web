@@ -45,7 +45,7 @@ const VirtualEvents = () => {
 
   //const passedEventsCount = passedEvents.map(i => i).filter(x => !!x).length;
 
-  const [limit, setLimit] = useState(24);
+  const [limit, setLimit] = useState(100);
 
   useEffect(() => {
     firebase &&
