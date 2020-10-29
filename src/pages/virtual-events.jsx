@@ -43,22 +43,22 @@ const VirtualEvents = () => {
     });
   }
 
-  const passedEventsCount = passedEvents.map(i => i).filter(x => !!x).length;
+  //const passedEventsCount = passedEvents.map(i => i).filter(x => !!x).length;
 
-  const [limit, setLimit] = useState(passedEventsCount + 24);
+  const [limit, setLimit] = useState(24);
 
   useEffect(() => {
     firebase &&
       firebase
         .database()
         .ref(`/events/`)
-        .limitToFirst(limit + passedEventsCount)
+        .limitToFirst(limit)
         .on("value", snapshot => {
           if (snapshot && snapshot.exists()) {
             context.setVirtualEventData(snapshot.val());
           }
         });
-  }, [firebase, limit, passedEventsCount]);
+  }, [firebase, limit]);
 
   const loadEvents = () => {
     if (context.virtualEventData) {
