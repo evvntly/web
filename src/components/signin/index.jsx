@@ -8,7 +8,6 @@ import { BLACK, RED, TUNDORA, WHITE } from "../../styles/colors";
 import { FONT_FAMILY } from "../../styles/typography";
 import { isMobile } from "react-device-detect";
 import FacebookAuth from "./facebook";
-import TwitterAuth from "./twitter";
 import GoogleAuth from "./google";
 import CloseIcon from "../../assets/svgs/close.svg";
 import { PHONE } from "../../styles/breakpoints";
@@ -183,7 +182,6 @@ const SignIn = () => {
                 <LoginItems>
                   <GoogleAuth />
                   <FacebookAuth />
-                  <TwitterAuth />
                 </LoginItems>
 
                 <Paragraph fontSize="0.9rem">
