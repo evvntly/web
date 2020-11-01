@@ -60,6 +60,7 @@ const MyEvents = () => {
                 <Heading title="My Saved Events" />
                 {context.eventData.events && !noticeSeen && (
                   <Notice
+                    style={{ marginBottom: 25 }}
                     onDismiss={() => {
                       useWindow &&
                         window.localStorage.setItem(
@@ -83,7 +84,7 @@ const MyEvents = () => {
                   <>
                     <Paragraph>You&apos;ve not added any events yet!</Paragraph>
                     <Paragraph>
-                      <Link to="/browse-events" aria-label="Advertise">
+                      <Link to="/browse-events" aria-label="browse-events">
                         Browse Events
                       </Link>
                     </Paragraph>

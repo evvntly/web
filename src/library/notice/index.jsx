@@ -55,16 +55,18 @@ const Notice = ({
   children,
   onDismiss,
   icon,
-  color = RONCHI
+  color = RONCHI,
+  style
 }: {
   onDismiss?: Function,
   children: any,
   icon?: any,
-  color?: string
+  color?: string,
+  style?: string
 }) => {
   return (
     <>
-      <Container color={color} onDismiss={onDismiss} icon={icon}>
+      <Container color={color} onDismiss={onDismiss} icon={icon} style={style}>
         {icon && <InfoIcon />}
         <Content>{children}</Content>
         {onDismiss && <CloseSvg onClick={onDismiss} />}
