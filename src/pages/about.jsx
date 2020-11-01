@@ -73,11 +73,6 @@ const About = () => {
                   their system.
                 </Paragraph>
                 <Paragraph>
-                  We want your feedback, so if you want to request a feature or
-                  you spot a bug, please click the icon to the bottom right side
-                  of the site and submit some feedback
-                </Paragraph>
-                <Paragraph>
                   This website just launched and we are adding new features all
                   the time.
                 </Paragraph>
@@ -86,7 +81,7 @@ const About = () => {
                   want to fix it yourself please feel free to make a pull
                   request on the repo -{" "}
                   <a
-                    href="https://github.com/johnnyxbell/eventfinda"
+                    href="https://github.com/evvntly/web"
                     target="_blank"
                     rel="noopener noreferrer"
                     title="Evvntly Repo"

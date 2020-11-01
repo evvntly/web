@@ -92,7 +92,7 @@ const Footer = () => {
             </li>
             <li>
               <a
-                href="https://github.com/johnnyxbell/eventfinda"
+                href="https://github.com/evvntly/web"
                 rel="noopener noreferrer"
                 target="_blank"
               >
@@ -118,17 +118,6 @@ const Footer = () => {
               <Link to="/about" aria-label="About">
                 About
               </Link>
-            </li>
-            <li>
-              <span
-                tabIndex={0}
-                role="button"
-                aria-label="Feedback & Bugs"
-                onClick={() => window._urq.push(["Feedback_Open"])}
-                onKeyDown={() => window._urq.push(["Feedback_Open"])}
-              >
-                Feedback / Bugs
-              </span>
             </li>
           </ul>
         </Section>
