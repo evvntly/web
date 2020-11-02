@@ -6,7 +6,7 @@ import config from "../utils/siteConfig";
 
 const Index = () => {
   const postNode = {
-    title: `${config.siteTitle} | Events in San Francisco, LA, New York and all around the USA. Find events near you`,
+    title: `${config.siteTitle} | Virtual Events, Events in San Francisco, LA, New York and all around the USA. Find events near you`,
     pagePath: "/"
   };
 
