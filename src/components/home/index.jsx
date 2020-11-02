@@ -145,7 +145,7 @@ const Video = () => {
         <Content>
           <Heading
             color={WHITE}
-            title="Start enjoying life by finding the perfect event near you."
+            title="Start enjoying life by finding the perfect event virtually or near you."
           />
           <Input>
             <TextInput
