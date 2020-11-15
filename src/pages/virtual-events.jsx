@@ -31,7 +31,7 @@ const VirtualEvents = () => {
 
   const firebase = React.useContext(FirebaseContext);
 
-  const [limit, setLimit] = useState(85);
+  const [limit, setLimit] = useState(84);
 
   useEffect(() => {
     firebase &&
