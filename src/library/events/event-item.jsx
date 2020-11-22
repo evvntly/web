@@ -294,7 +294,8 @@ const EventItem = ({
     fontWeight: "bold",
     fontSize: "1.1rem",
     lineHeight: "1.2rem",
-    margin: "5px 0 0 0"
+    margin: "5px 0 0 0",
+    textTransform: "capitalize"
   };
 
   const HeadingStyle = {

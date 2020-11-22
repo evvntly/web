@@ -8,18 +8,20 @@ module.exports = {
       }
     },
     {
-      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      resolve: `gatsby-plugin-webfonts`,
       options: {
-        fonts: [
-          {
-            family: `Mukta`,
-            variants: [`200`, `400`, `600`]
-          },
-          {
-            family: `Rubik`,
-            variants: [`200`, `400`, `600`, `800`]
-          }
-        ]
+        fonts: {
+          google: [
+            {
+              family: "Mukta",
+              variants: ["200", "400", "600"]
+            },
+            {
+              family: "Rubik",
+              variants: ["200", "400", "600", "800"]
+            }
+          ]
+        }
       }
     },
     {

@@ -73,7 +73,7 @@ const VirtualEvents = () => {
           .database()
           .ref(`/events/`)
           .orderByChild("title")
-          .equalTo(artistName)
+          .equalTo(artistName.toLowerCase())
           .on("value", snapshot => {
             if (snapshot) {
               context.setVirtualEventData(snapshot.val());
