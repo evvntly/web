@@ -55,8 +55,6 @@ const VirtualEvents = () => {
   const [limit, setLimit] = useState(52);
   const [artistName, setArtistName] = useState("");
 
-  const debouncedSearchTerm = useDebounce(artistName, 500);
-
   const changeToPastVirtualEvent = item => {
     if (context.virtualEventData && context.virtualEventData) {
       const eventDate = new Date(item.datetime_local);
@@ -93,7 +91,7 @@ const VirtualEvents = () => {
             }
           });
     }
-  }, [firebase, limit, debouncedSearchTerm]);
+  }, [firebase, limit, artistName]);
 
   const loadEvents = () => {
     if (context.virtualEventData) {
