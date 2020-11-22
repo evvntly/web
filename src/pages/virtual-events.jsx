@@ -31,7 +31,18 @@ const VirtualEvents = () => {
 
   const firebase = React.useContext(FirebaseContext);
 
-  const [limit, setLimit] = useState(84);
+  const [limit, setLimit] = useState(52);
+
+  const changeToPastVirtualEvent = item => {
+    if (context.virtualEventData && context.virtualEventData) {
+      const eventDate = new Date(item.datetime_local);
+      const today = new Date();
+      if (eventDate < today) {
+        const eventRef = firebase.database().ref(`/events/${item.firebaseId}`);
+        eventRef.remove();
+      }
+    }
+  };
 
   useEffect(() => {
     firebase &&
@@ -54,9 +65,12 @@ const VirtualEvents = () => {
         object.firebaseId = item;
         placeholder.push(context.virtualEventData[item]);
       });
-      return placeholder.map(item => (
-        <EventItem key={item.firebaseId} item={item} isMyEventsPage={false} />
-      ));
+      return placeholder.map(item => {
+        changeToPastVirtualEvent(item);
+        return (
+          <EventItem key={item.firebaseId} item={item} isMyEventsPage={false} />
+        );
+      });
     }
   };
 
