@@ -6,7 +6,7 @@ import { FONT_FAMILY, WEIGHT } from "../../styles/typography";
 import { myContext } from "../../context/provider";
 import { SILVER } from "../../styles/colors";
 
-const Input = styled.div`
+export const Input = styled.div`
   position: relative;
   input {
     border: 1px solid ${SILVER};
@@ -22,7 +22,7 @@ const Input = styled.div`
   }
 `;
 
-const Clear = styled.div`
+export const Clear = styled.div`
   cursor: pointer;
   position: absolute;
   right: 15px;
