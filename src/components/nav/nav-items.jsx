@@ -126,16 +126,6 @@ const NavItems = () => {
               Home
             </Link>
           </li>
-
-          <li>
-            <Link
-              to="/virtual-events"
-              aria-label="Virtual Events"
-              activeStyle={{ color: RONCHI }}
-            >
-              Virtual Events
-            </Link>
-          </li>
           <li>
             <Link
               to="/browse-events"

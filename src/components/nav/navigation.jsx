@@ -1,13 +1,12 @@
 import React, { useContext } from "react";
 import { Link } from "gatsby";
 import styled from "styled-components";
-import { BLACK, GREY, RONCHI, SILVER, WHITE } from "../../styles/colors";
+import { BLACK, GREY, SILVER, WHITE } from "../../styles/colors";
 import { FONT_FAMILY, WEIGHT } from "../../styles/typography";
 import NavItems from "./nav-items";
 import Logo from "../../assets/svgs/logo.svg";
 import { myContext } from "../../context/provider";
 import { PHONE } from "../../styles/breakpoints";
-import Notice from "../../library/notice";
 
 const Nav = styled.nav`
   ${PHONE} {
@@ -145,14 +144,6 @@ const Navigation = () => {
   return (
     <>
       <Nav showNotice={!context.withinUs}>
-        <Notice>
-          <div>
-            STAY HOME AND CHECK OUT{" "}
-            <Link to="/virtual-events" aria-label="Virtual Events">
-              VIRTUAL EVENTS!
-            </Link>
-          </div>
-        </Notice>
         <NavWrapper>
           <Link to="/" aria-label="Concert Buddy">
             <LogoIcon />
